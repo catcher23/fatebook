@@ -1,13 +1,13 @@
-# FresherNote
+# Facer
 
-[Heroku link][heroku] 
+[Heroku link][heroku]
 
 [heroku]: https://vast-brushlands-6199.herokuapp.com/
 
 ## Minimum Viable Product
 
-FresherNote is a web application inspired by Evernote built using Ruby on Rails
-and React.js. FresherNote allows users to:
+Facer is a web application inspired by Facebook, built using Ruby on Rails
+and React.js. Facer allows users to:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
