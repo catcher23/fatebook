@@ -13,12 +13,12 @@ and React.js. Facer allows users to:
 
 - [ ] Create an account
 - [ ] Log in / Log out
-- [ ] Create, read, edit, and delete notes
-- [ ] Organize notes within Notebooks
-- [ ] Tag notes with multiple tags and search notes by tag
-- [ ] Search through notes for blocks of text
-- [ ] Apply complex styling to notes while editing
-- [ ] Set reminders on notes
+- [ ] Create and edit a profile
+- [ ] Add and delete friends
+- [ ] Write on friends' walls
+- [ ] "Check in" to locations using Google maps
+- [ ] Upload pics and tag friends
+- [ ] Sort friends by their information
 
 ## Design Docs
 * [View Wireframes][view]
