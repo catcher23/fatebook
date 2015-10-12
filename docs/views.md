@@ -13,19 +13,7 @@
 ![search]
 
 ## Component Hierarchy
-App
-  ProfileIndex(Index Route)
-    ProfileForm
-  PostsIndex
-    PostForm
-    PostIndexItem
-  CommentsIndex
-    CommentForm
-    CommentIndexItem
-  FriendSuggest
-    FriendSuggestItem
-  Googlemap
-
+![component-hierarchy]
 
 [friends]: ./wireframes/friends.png
 [new-session]: ./wireframes/new-session.png
