@@ -19,7 +19,7 @@ and React.js. Facer allows users to:
 - [ ] "Check in" to locations using Google maps
 - [ ] Upload pics and tag friends
 - [ ] Sort friends by their information
-
+- [ ] Have a 'todos' list
 ## Design Docs
 * [View Wireframes][view]
 * [DB schema][schema]
@@ -29,12 +29,12 @@ and React.js. Facer allows users to:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Note Model and JSON API (1.5 days)
+### Phase 1: User Authentication, Profile model and JSON API (1.5 days)
 
 In Phase 1, I will begin by implementing user signup and authentication (using
 BCrypt). There will be a basic landing page after signup that will contain the
 container for the application's root React component. Before building out the
-front end, I will begin by setting up a full JSON API for Notes.
+front end, I will begin by setting up a full JSON API for the profile page.
 
 [Details][phase-one]
 
@@ -42,53 +42,44 @@ front end, I will begin by setting up a full JSON API for Notes.
 
 Phase 2 is focused on setting up Flux, the React Router, and the React view
 structure for the main application. After the basic Flux architecture has been
-set up, a Note store will be implemented and a set of actions corresponding to
+set up, a Profile store will be implemented and a set of actions corresponding to
 the needed CRUD functionality created. Once this is done, I will create React
-views for the Notes `Index`, `IndexItem` and `Form`. At the end of Phase 2,
-Notes can be created, read, edited and destroyed in the browser. Notes should
-save to the database when the form loses focus or is left idle after editing.
+views for the Profile `Index`, `IndexItem` and `Form`. At the end of Phase 2,
+Profile information can be created, read, edited and destroyed in the browser. Images will be able to be uploaded.
 Lastly, while constructing the views I will start using basic bootstrap for
 styling.
 
 [Details][phase-two]
 
-### Phase 3: Notebooks and Tags (2 days)
+### Phase 3: Searching and adding friends (1 day)
 
-Phase 3 adds organization to the Notes. Notes belong to a Notebook, which has
-its own `Index` view. Create JSON API for Notebooks. Notes can also now be
-tagged with multiple tags. Users can bring up notes in a separate `SearchIndex`
-view by searching for their tags. Once the tag search is implemented, I will
-extend this to a fuzzy search through every Note's content.
+Users can search for friends using a search box, from a collection of preseeded friends. Once the search is implemented, I will extend this to a fuzzy search that matches names.
 
 [Details][phase-three]
 
-### Phase 4: Allow Complex Styling in Notes (1 day)
+### Phase 4: Walls and Comments (2 days)
 
-Using quill.js, allow for complex styling of notes.
+Phase 3 adds a wall. Walls belong to a Profile page, which has
+its own `Index` view. Create JSON API for Comments. Comments can be left on walls and pictures, edited, and deleted. Friends can be tagged in pictures.
 
 [Details][phase-four]
 
-### Phase 5: Reminders and Garbage Collection (1 day)
+### Phase 5: Check in with Google maps (2 days)
 
-Phase 5 introduces two new features. First, users can set reminders on notes
-which will at the time they are set for prompt the user to review and edit the
-given note. In addition, I will implement a feature that asks users to review
-notes once they reach a certain age and ask whether they should be kept,
-archived, or deleted.
+Users can check in their location using google maps. It will be integrated with the Yelp Api so that users can check in at actual places. A marker and a date will be added to the map.
 
 [Details][phase-five]
 
 ### Phase 6: Styling Cleanup and Seeding (1 day)
 
 Bootstrap will have been used to keep things organized up until now, but in
-Phase 6 I will add styling flourishes and make modals out of some elements (like
-the NotebookForm).
+Phase 6 I will add styling flourishes and make modals out of some elements like the comment form.
 
 ### Bonus Features (TBD)
 - [ ] Prettify transitions
-- [ ] Use javascript library for cleaner tag selection
-- [ ] Changelogs for Notes
-- [ ] Pagination / infinite scroll for Notes Index
+- [ ] A friends sorting function
+- [ ] A 'todos' list
+- [ ] Pagination / infinite scroll for profile index
 - [ ] Multiple sessions
 
 [phase-one]: ./docs/phases/phase1.md
