@@ -1,0 +1,12 @@
+App
+  ProfileIndex(Index Route)
+    ProfileForm
+  PostsIndex
+    PostForm
+    PostIndexItem
+  CommentsIndex
+    CommentForm
+    CommentIndexItem
+  FriendSuggest
+    FriendSuggestItem
+  Googlemap
