@@ -1,18 +1,18 @@
-# Phase 3: Notebooks and Tags (2 days)
+# Phase 3: Walls and Comments (2 days)
 
 ## Rails
 ### Models
-* Notebook
-* Tag
-* Tagging
+* Post
+* Comment
 
 ### Controllers
-* Api::NotebooksController (create, destroy, index, show, update)
+* Api::PostsController (create, destroy, index, show, update)
+* Api::CommentsController (create, destroy, index, show, update)
 
 ### Views
-* notebooks/index.json.jbuilder
-* notebooks/show.json.jbuilder
-* tags/show.json.jbuilder
+* user/index.json.jbuilder
+* posts/show.json.jbuilder
+* comments/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)
@@ -25,15 +25,22 @@
 * Notebook
 
 ### Actions
-* ApiActions.receiveAllNotebooks
-* ApiActions.receiveSingleNotebook
-* ApiActions.deleteNotebook
-
+* ApiActions.receiveAllPosts
+* ApiActions.receiveSinglePost
+* ApiActions.deletePost
+* ApiActions.receiveAllComments
+* ApiActions.receiveSingleComment
+* ApiActions.deleteComment
 ### ApiUtil
-* ApiUtil.fetchAllNotebooks
-* ApiUtil.fetchSingleNotebook
-* ApiUtil.createNotebook
-* ApiUtil.editNotebook
-* ApiUtil.destroyNotebook
+* ApiUtil.fetchAllPosts
+* ApiUtil.fetchSinglePost
+* ApiUtil.createPost
+* ApiUtil.editPost
+* ApiUtil.destroyPost
+* ApiUtil.fetchAllComments
+* ApiUtil.fetchSingleComment
+* ApiUtil.createComment
+* ApiUtil.editComment
+* ApiUtil.destroyComment
 
 ## Gems/Libraries

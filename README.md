@@ -38,7 +38,7 @@ front end, I will begin by setting up a full JSON API for the profile page.
 
 [Details][phase-one]
 
-### Phase 2: Flux Architecture and Note CRUD (2.5 days)
+### Phase 2: Flux Architecture and Post CRUD (2.5 days)
 
 Phase 2 is focused on setting up Flux, the React Router, and the React view
 structure for the main application. After the basic Flux architecture has been
@@ -51,16 +51,16 @@ styling.
 
 [Details][phase-two]
 
-### Phase 3: Searching and adding friends (1 day)
-
-Users can search for friends using a search box, from a collection of preseeded friends. Once the search is implemented, I will extend this to a fuzzy search that matches names.
-
-[Details][phase-three]
-
-### Phase 4: Walls and Comments (2 days)
+### Phase 3: Walls and Comments (2 days)
 
 Phase 3 adds a wall. Walls belong to a Profile page, which has
 its own `Index` view. Create JSON API for Comments. Comments can be left on walls and pictures, edited, and deleted. Friends can be tagged in pictures.
+
+[Details][phase-three]
+
+### Phase 4: Searching and adding friends (1 day)
+
+Users can search for friends using a search box, from a collection of preseeded friends. Once the search is implemented, I will extend this to a fuzzy search that matches names.
 
 [Details][phase-four]
 
