@@ -1,6 +1,6 @@
 App
-  ProfileIndex(Index Route)
-    ProfileForm
+  UserIndex(Index Route)
+    UserForm
   PostsIndex
     PostForm
     PostIndexItem
