@@ -19,4 +19,4 @@
 [new-session]: ./wireframes/new-session.png
 [profile]: ./wireframes/profile.png
 [search]: ./wireframes/search.png
-[component-hierarchy]: ./wireframes/component_hierarchy.png
+[component-hierarchy]: ./wireframes/component-hierarchy.png
