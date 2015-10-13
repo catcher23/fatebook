@@ -1,9 +1,9 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>Users#new</h1>
+<p>Find me in app/views/users/new.html.erb</p>
 
-Sign In Username Password
-<form action = "<%=session_url%>" method = "post">
+Sign Up Username Password
+<form action = "<%=users_url%>" method = "post">
 <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
 <input type="string" name="user[username]" id="Username" value="">
 <input type="string" name="user[password]" id="Password" value="">
-<input type="submit" value="Sign In">
+<input type="submit"  value="Sign Up">

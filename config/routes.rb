@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  root 'static_pages#root'
 
-  get 'sessions/create'
+  namespace :api, defaults: {format: :json} do
+    resources :users, only: [:index, :show]
+  end
 
-  get 'sessions/destroy'
-
-  get 'static_pages/index'
-
-  get 'static_pages/create'
-
-  root to: 'static_pages#root'
+  resource :session, only: [:new, :create, :destroy]
+  resources :users, only: [:new, :create]
 
 end
