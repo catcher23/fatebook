@@ -4,7 +4,7 @@ root.ApiUtil = {
     $.ajax({
       url: "/session/",
       method: "DELETE",
-      success: function(stuff) {
+      success: function() {
         root.location = "/";
       }
     });

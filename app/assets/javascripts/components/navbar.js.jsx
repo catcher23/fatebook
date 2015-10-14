@@ -13,6 +13,7 @@
     },
 
     render: function() {
+      var that = this;
       var current_user = current_user;
       return (
 <div className='topbar'>
@@ -30,13 +31,18 @@
 
           <li>
             <SearchBar />
+
           </li>
-        <li><a href ="#home">current_user</a></li>
+
+        <li><a href ="#home">{window.CURRENT_USER_USERNAME}</a></li>
         </ul>
       </div>
     </div>
     </div>
+
       );
+
+
     }
   });
 }(this));

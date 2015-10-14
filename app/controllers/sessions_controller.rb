@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
     flash[:notices] ||= []
     flash[:notices] << "Logged Out"
     render json: obj
+
   end
 
 end

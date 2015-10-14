@@ -24,6 +24,7 @@
 
   <% if current_user %>
     <script>window.CURRENT_USER_ID = <%= current_user.id %></script>
+    <script>window.CURRENT_USER_USERNAME = "<%= current_user.username %>"</script>
     <%= current_user.username %>
     <%= button_to "Sign Out", session_url, method: :delete %>
   <% else %>

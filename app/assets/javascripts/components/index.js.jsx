@@ -4,7 +4,7 @@ window.Index = React.createClass({
       <div>
         <div className="human-index">
           <NavBar />
-          
+
         </div>
         {this.props.children}
       </div>
