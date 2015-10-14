@@ -24,16 +24,12 @@
             onClick={this.handleLogoutClick}>
         <a href ="#">Logout</a>
           </li>
-
           <li onClick={this.handleHomeClick}>
             <a href ="#home">Home</a>
           </li>
-
           <li>
             <SearchBar />
-
           </li>
-
         <li><a href ="#home">{window.CURRENT_USER_USERNAME}</a></li>
         </ul>
       </div>

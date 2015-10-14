@@ -1,4 +1,4 @@
-class Api::HumansController < ApplicationController
+class Api::HumanController < ApplicationController
   def create
     @human = Human.new(human_params)
 
@@ -27,7 +27,7 @@ class Api::HumansController < ApplicationController
 
   def human_params
     params.require(:human).permit(
-      :image_url, :attack, :defense, :name, :poke_type, moves: []
+      :id, :fname, :lname, :email, :birthdate, :address, :phone, :screenname, :image_url
     )
   end
 end

@@ -1,10 +1,22 @@
 ActiveRecord::Base.transaction do
   human = {
     "1"=>{
-      "name"=>"Arjen Robben",
+      "fname"=>"Arjen Robben",
+      "lname"=>"Arjen Robben",
+      "email"=>"Arjen Robben",
+      "birthdate"=>"Arjen Robben",
+      "address"=>"Arjen Robben",
+      "phone"=>"Arjen Robben",
+      "screenname"=>"Arjen Robben",
     },
     "2"=>{
-      "name"=>"Neo",
+      "fname"=>"Neo",
+      "lname"=>"Neo",
+      "email"=>"Neo",
+      "birthdate"=>"Neo",
+      "address"=>"Neo",
+      "phone"=>"Neo",
+      "screenname"=>"Neo",
     },
   }
   human = human.map do |num, stats|
@@ -14,8 +26,10 @@ ActiveRecord::Base.transaction do
       num = "0#{num}"
     end
 
-    stats["image_url"] = "/assets/human_snaps/#{num}.jpg"
+    stats["image_url"] = "/assets/profile_pics/#{num}.jpg"
     stats
   end
+
+    Human.create!(human.shuffle)
 
 end

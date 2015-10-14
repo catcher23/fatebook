@@ -1,11 +1,11 @@
-(function(root) {
-root.ApiUtil = {
+
+window.ApiUtil = {
   logout: function() {
     $.ajax({
       url: "/session/",
       method: "DELETE",
       success: function() {
-        root.location = "/";
+        window.location = "/";
       }
     });
   },
@@ -40,4 +40,3 @@ root.ApiUtil = {
     });
   }
 };
-}(this));
