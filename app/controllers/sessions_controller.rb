@@ -16,7 +16,10 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to new_session_url
+    obj = User.new
+    flash[:notices] ||= []
+    flash[:notices] << "Logged Out"
+    render json: obj
   end
 
 end

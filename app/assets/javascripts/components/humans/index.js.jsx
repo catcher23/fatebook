@@ -1,13 +1,30 @@
-window.Index = React.createClass({
+window.HumansIndex = React.createClass({
+  getInitialState: function () {
+    return { humans: HumanStore.all() };
+  },
+
+  _onChange: function () {
+    this.setState({ humans: HumanStore.all() });
+  },
+
+  componentDidMount: function () {
+    HumanStore.addHumansIndexChangeListener(this._onChange);
+    HumanStore.addHumanDetailChangeListener(this._onChange);
+    ApiUtil.fetchAllHumans();
+  },
+
+  compomentWillUnmount: function () {
+    HumanStore.removeHumansIndexChangeListener(this._onChange);
+    HumanStore.removeHumanDetailChangeListener(this._onChange);
+  },
+
   render: function () {
     return(
-      <div>
-        <div className="human-index">
-          <NavBar />
-          <SearchBar />
-        </div>
-        {this.props.children}
-      </div>
+      <ul>
+        {this.state.humans.map(function (human) {
+          return <HumanIndexItem key={human.id} human={human} />;
+        })}
+      </ul>
     );
   }
 });

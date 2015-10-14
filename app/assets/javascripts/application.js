@@ -16,5 +16,6 @@
 //= require react
 //= require ReactRouter.min
 //= require flux
+//= require fatebook
 //= require eventemitter
 //= require_tree .

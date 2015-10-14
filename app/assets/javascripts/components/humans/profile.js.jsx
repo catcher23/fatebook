@@ -1,5 +1,4 @@
-window.HumanDetail
- = React.createClass({
+window.HumanDetail = React.createClass({
   getStateFromStore: function () {
     return { human: HumanStore.find(parseInt(this.props.params.humanId)) };
   },
@@ -17,14 +16,12 @@ window.HumanDetail
   },
 
   componentDidMount: function () {
-    HumanStore.addHumanDetail
-    ChangeListener(this._onChange);
+    HumanStore.addHumanDetailChangeListener(this._onChange);
     ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
   },
 
   componentWillUnmount: function () {
-    HumanStore.removeHumanDetail
-    ChangeListener(this._onChange);
+    HumanStore.removeHumanDetailChangeListener(this._onChange);
   },
 
   render: function () {

@@ -2,9 +2,8 @@
 <html>
 <head>
   <title>Fatebook</title>
-  <link rel="stylesheet" type="text/css" href="bootstrap.css">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUB-MDiEeW0QSYRYhPM_-TZFsrsmA55G8">
@@ -17,7 +16,14 @@
     <% end %>
   <% end %>
 
-  <% if logged_in? %>
+  <% if flash[:notices] %>
+    <% flash[:notices].each do |notice| %>
+      <%= notice %>
+    <% end %>
+  <% end %>
+
+  <% if current_user %>
+    <script>window.CURRENT_USER_ID = <%= current_user.id %></script>
     <%= current_user.username %>
     <%= button_to "Sign Out", session_url, method: :delete %>
   <% else %>

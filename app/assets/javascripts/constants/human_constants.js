@@ -1,0 +1,4 @@
+window.HumanConstants = {
+  HUMANS_RECEIVED: "HUMANS_RECEIVED",
+  HUMAN_RECEIVED: "HUMAN_RECEIVED",
+};

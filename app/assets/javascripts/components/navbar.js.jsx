@@ -1,34 +1,42 @@
-var NavBar = React.createClass({
-      getInitialState: function(){
-          return { focused: 0 };
-      },
-      clicked: function(index){
-          // The click handler will update the state with
-          // the index of the focused menu entry
-          this.setState({focused: index});
-      },
-      render: function() {
-          // Here we will read the items property, which was passed
-          // as an attribute when the component was created
-          var self = this;
-          // The map method will loop over the array of menu entries,
-          // and will return a new array with <li> elements.
-          return (
-              <div>
-                  <ul>{ ['Home', 'Search', 'Username', 'Logout'].map(function(m, index){
-                      var style = '';
-                      if(self.state.focused == index){
-                          style = 'focused';
-                      }
-                      // Notice the use of the bind() method. It makes the
-                      // index available to the clicked function:
-                      return <li className={style} onClick={self.clicked.bind(self, index)}>{m}</li>;
-                  }) }
-                  </ul>
-                  <p>Selected: {['Home', 'Search', 'Username', 'Logout'][this.state.focused]}</p>
-              </div>
-          );
-      }
-    });
+(function(root) {
+  'use strict';
 
-    // Render the menu component on the page, and pass an array with menu options
+  root.NavBar = React.createClass({
+    mixins: [ReactRouter.History],
+
+    handleLogoutClick: function() {
+      root.ApiUtil.logout();
+    },
+
+    handleHomeClick: function() {
+      this.history.pushState(null, "/");
+    },
+
+    render: function() {
+      var current_user = current_user;
+      return (
+<div className='topbar'>
+<div className='topbar-inner'>
+  <div className='container canvas'>
+        <ul className="nav">
+          <li
+            onClick={this.handleLogoutClick}>
+        <a href ="#">Logout</a>
+          </li>
+
+          <li onClick={this.handleHomeClick}>
+            <a href ="#home">Home</a>
+          </li>
+
+          <li>
+            <SearchBar />
+          </li>
+        <li><a href ="#home">current_user</a></li>
+        </ul>
+      </div>
+    </div>
+    </div>
+      );
+    }
+  });
+}(this));
