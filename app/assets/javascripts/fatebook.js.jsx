@@ -1,9 +1,9 @@
 $(function () {
-  if (window.CURRENT_USER_ID) {
-    var root = document.getElementById("content");
     var Router = ReactRouter.Router;
     var Route = ReactRouter.Route;
     var IndexRoute = ReactRouter.IndexRoute;
+
+    var root = document.getElementById("content");
 
   React.render((
     <Router>
@@ -13,5 +13,4 @@ $(function () {
       </Route>
     </Router>
   ), root);
-  }
 });

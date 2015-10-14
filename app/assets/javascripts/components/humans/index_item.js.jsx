@@ -7,8 +7,7 @@ window.HumanIndexItem = React.createClass({
   render: function () {
     return(
       <li onClick={this.showDetail} className="human-list-item">
-        <p>Name: {this.props.human.fname} {this.props.human.lname}</p>
-        <p>Location:</p>
+        <p>Name: {this.props.human.fname} {this.props.human.lname}  </p>
       </li>
     );
   }

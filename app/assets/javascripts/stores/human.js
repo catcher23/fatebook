@@ -1,5 +1,5 @@
 (function () {
-  var HUMAN_INDEX_CHANGE_EVENT = "humansIndexChange";
+  var HUMANS_INDEX_CHANGE_EVENT = "humansIndexChange";
   var HUMAN_DETAIL_CHANGE_EVENT = "humanDetailChange";
 
   var _humans = [];
@@ -42,18 +42,18 @@
     },
 
     addHumansIndexChangeListener: function (callback) {
-      this.on(HUMAN_INDEX_CHANGE_EVENT, callback);
+      this.on(HUMANS_INDEX_CHANGE_EVENT, callback);
     },
 
     removeHumansIndexChangeListener: function (callback) {
-      this.removeListener(HUMAN_INDEX_CHANGE_EVENT, callback);
+      this.removeListener(HUMANS_INDEX_CHANGE_EVENT, callback);
     },
 
     dispatcherID: AppDispatcher.register(function (payload) {
       switch(payload.actionType) {
         case HumanConstants.HUMANS_RECEIVED:
           resetHumans(payload.humans);
-          HumanStore.emit(HUMAN_INDEX_CHANGE_EVENT);
+          HumanStore.emit(HUMANS_INDEX_CHANGE_EVENT);
           break;
         case HumanConstants.HUMAN_RECEIVED:
           resetHuman(payload.human);

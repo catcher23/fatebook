@@ -29,10 +29,12 @@ window.HumanDetail = React.createClass({
 
     return(
       <div>
-        <div className="profile">
-          {this.state.human.id}
-          {this.state.human.image_url}
+        <div className="detail">
+
           <img src={this.state.human.image_url} />
+            {['id', 'fname', 'lname', 'email', 'birthdate', 'address'].map(function (attr) {
+              return <p key={attr}>{attr}: {this.state.human[attr]}</p>;
+            }.bind(this))}
         </div>
       </div>
     );

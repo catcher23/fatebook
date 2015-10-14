@@ -2845,3 +2845,11 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
 }
+
+.content-header {
+  position: relative;
+  height: 200px;
+  background: url("http://www.lifewithcats.tv/wp-content/uploads/2015/04/vcvxvcxvcx.jpg");
+  background-size: cover;
+  border-bottom: 1px solid #ccc;
+}

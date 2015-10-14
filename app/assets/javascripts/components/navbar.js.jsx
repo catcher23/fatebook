@@ -14,11 +14,10 @@
 
     render: function() {
       var that = this;
-      var current_user = current_user;
       return (
-<div className='topbar'>
-<div className='topbar-inner'>
-  <div className='container canvas'>
+      <div className='topbar'>
+      <div className='topbar-inner'>
+        <div className='container canvas'>
         <ul className="nav">
           <li
             onClick={this.handleLogoutClick}>
