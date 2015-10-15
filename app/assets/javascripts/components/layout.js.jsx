@@ -23,7 +23,7 @@ var Layout = React.createClass({
     </div>
 
     <ul class="profile-nav">
-      <li><a href="#">Wall</a></li>
+      <li><a href="#">Location</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Friends</a></li>
       <li><a href="#">Photos</a></li>

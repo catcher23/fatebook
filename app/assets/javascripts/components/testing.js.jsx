@@ -49,7 +49,7 @@
     <main className="content group">
 
       <header className="content-header">
-        <h1>Thomas Anderson</h1>
+        <h1>{nameNow}</h1>
         <button className="content-header-add-friend">Add Friend</button>
       </header>
 
@@ -61,9 +61,9 @@
         </a>
 
         <div className="profile-info">
-          <h2>Thomas Anderson</h2>
+          <h2>{nameNow}</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            {attrs}
           </p>
         </div>
 
