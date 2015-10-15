@@ -43,7 +43,7 @@ window.SearchBar = React.createClass({
           type="text"
           value={this.state.searchString}
           onChange={this.handleChange} placeholder="Find Human" />
-        <ul>
+        <ul className="tabs">
 
           {
             filteredObjs.map(function(human){

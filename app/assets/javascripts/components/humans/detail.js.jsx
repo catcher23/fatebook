@@ -26,13 +26,13 @@ window.HumanDetail = React.createClass({
 
   render: function () {
     if(this.state.human === undefined) { return <div></div>; }
-
+      imageNow = this.state.human.image_url;
     return(
       <div>
         <div className="detail">
-
-          <img src={this.state.human.image_url} />
-            {['id', 'fname', 'lname', 'email', 'birthdate', 'address'].map(function (attr) {
+          <Testing />
+          <img src={imageNow} />
+            {['id', 'fname', 'lname', 'email', 'birthdate', 'address', 'screenname'].map(function (attr) {
               return <p key={attr}>{attr}: {this.state.human[attr]}</p>;
             }.bind(this))}
         </div>

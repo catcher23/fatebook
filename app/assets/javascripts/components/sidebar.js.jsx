@@ -1,7 +1,7 @@
 (function(root) {
   'use strict';
 
-  root.NavBar = React.createClass({
+  root.SideBar = React.createClass({
     mixins: [ReactRouter.History],
 
     handleLogoutClick: function() {
@@ -15,10 +15,9 @@
     render: function() {
       var that = this;
       return (
-      <div className='topbar'>
-      <div className='topbar-inner'>
-        <div className='container canvas'>
-        <ul className="nav">
+
+        <div className='container-fluid'>
+        <ul className="sidebar">
           <li
             onClick={this.handleLogoutClick}>
         <a href ="#">Logout</a>
@@ -26,14 +25,11 @@
           <li onClick={this.handleHomeClick}>
             <a href ="#home">Home</a>
           </li>
-          <li>
-          
-          </li>
+      
         <li><a href ="#home">{window.CURRENT_USER_USERNAME}</a></li>
         </ul>
       </div>
-    </div>
-    </div>
+
 
       );
 

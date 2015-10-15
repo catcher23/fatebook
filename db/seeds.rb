@@ -21,11 +21,11 @@ ActiveRecord::Base.transaction do
     "3"=>{
       "fname"=>"Andres",
       "lname"=>"Iniesta",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
+      "email"=>"ainiesta@email.com",
+      "birthdate"=>"11 May 1984",
+      "address"=>"Calle Andres Iniesta, 2 Fuentealbilla (Albacete) 02260 Spain",
+      "phone"=>"+29 19 62934322",
+      "screenname"=>"AIniesta8",
     },
     "4"=>{
       "fname"=>"Sergio",

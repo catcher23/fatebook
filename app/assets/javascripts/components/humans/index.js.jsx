@@ -21,9 +21,7 @@ window.HumansIndex = React.createClass({
   render: function () {
     return(
       <ul>
-        {this.state.humans.map(function (human) {
-          return <HumanIndexItem key={human.id} human={human} />;
-        })}
+        
       </ul>
     );
   }
