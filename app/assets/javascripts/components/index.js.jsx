@@ -3,8 +3,8 @@ window.Index = React.createClass({
     return(
       <div>
         <div className="human-index">
-          <NavBar />
           <HumansIndex />
+          <NavBar />
         </div>
         {this.props.children}
       </div>

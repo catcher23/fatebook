@@ -1,4 +1,8 @@
-var SearchBar = React.createClass({
+window.SearchBar = React.createClass({
+  mixins: [ReactRouter.History],
+  findHuman: function () {
+    this.history.pushState(null, '/human/' + key, {});
+  },
   getInitialState: function(){
     return { searchString: '' };
   },
@@ -6,34 +10,32 @@ var SearchBar = React.createClass({
     // If you comment out this line, the text box will not change its value.
     // This is because in React, an input cannot change independently of the value
     // that was assigned to it. In our case this is this.state.searchString.
+
     this.setState({ searchString: e.target.value });
   },
   render: function() {
-    var libraries = [
-        { name: 'Thomas Anderson'},
-        { name: 'Morpheus'},
-        { name: 'Trinity'},
-        { name: 'Arjen Robben'},
-        { name: 'Andres Iniesta'},
-        { name: 'Sergio Aguero'},
-        { name: 'Alexis Sanchez'},
-        { name: 'Arturo Vidal'},
-        { name: 'Lionel Messi'},
-        { name: 'Carlos Tevez'},
-        { name: 'Cristiano Ronaldo'},
-        { name: 'Anthony Martial'},
-        { name: 'Wayne Rooney'},
-        { name: 'Robert Lewandowski'},
 
-    ];
+    var libraries = [];
+    for (var i = 0; i < HumanStore.all().length; i++) {
+      libraries.push(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname));
+    }
+
         searchString = this.state.searchString.trim().toLowerCase();
 
       // We are searching. Filter the results.
-      filtered = libraries.filter(function(l){
+      filtered = libraries.filter(function(name){
         if(searchString.length > 0){
-          return l.name.toLowerCase().match( searchString );
+          return name.toLowerCase().match( searchString );
         }
       });
+
+      var filteredObjs = [];
+      for (i = 0; i < HumanStore.all().length; i++) {
+        if (filtered.indexOf(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname)) != -1) {
+          filteredObjs.push(HumanStore.all()[i]);
+        }
+        }
+
 
     return (
       <div>
@@ -44,8 +46,8 @@ var SearchBar = React.createClass({
         <ul>
 
           {
-            filtered.map(function(l){
-              return <li><a href={l.name}>{l.name}</a></li>;
+            filteredObjs.map(function(human){
+              return <HumanIndexItem key={human.id} human={human} />;
             })
           }
         </ul>

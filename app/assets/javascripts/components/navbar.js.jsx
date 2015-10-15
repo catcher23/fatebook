@@ -9,7 +9,7 @@
     },
 
     handleHomeClick: function() {
-      this.history.pushState(null, "/");
+      this.history.pushState(null, "/",{});
     },
 
     render: function() {
