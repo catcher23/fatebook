@@ -16,7 +16,8 @@ $(function () {
     });
     var routes = (
         <Route path="/" component={App}>
-            <Route path="humans/:humanId" component={HumanDetail}>
+            <Route path="users/:userId" component={UserShow}/>
+            <Route path="humans/:humanId" component={HumanShow}>
             <Route path="note" components={NoteForm} />
             </Route>
         </Route>

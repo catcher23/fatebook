@@ -1,4 +1,4 @@
-window.HumanDetail = React.createClass({
+window.HumanShow = React.createClass({
   getStateFromStore: function () {
     return { human: HumanStore.find(parseInt(this.props.params.humanId)) };
   },
