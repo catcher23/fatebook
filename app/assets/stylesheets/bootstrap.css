@@ -233,7 +233,7 @@ li:hover .header-notifications {
 .content-header {
   position: relative;
   height: 200px;
-  background: url("../../shared/img/cats.jpg");
+  background: url("http://www.madtomatoe.com/wp-content/uploads/2010/11/matrix-animated-image.gif");
   background-size: cover;
   border-bottom: 1px solid #ccc;
 }
@@ -253,8 +253,8 @@ li:hover .header-notifications {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  color: #000;
-  background: #fff;
+  color: #eee;
+  background: green;
   font-weight: bold;
   padding: 10px 20px;
   border: 1px solid #000;
@@ -262,7 +262,8 @@ li:hover .header-notifications {
 }
 
 .content-header-add-friend:hover {
-  background: #eee;
+  color: green;
+  background: #7FFF00;
 }
 
 /* PHASE 6: Sidebar */

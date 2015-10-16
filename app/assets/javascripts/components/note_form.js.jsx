@@ -4,6 +4,7 @@ var NoteForm = React.createClass({
     return { title: "", body: "" };
   },
   navigateToHumanShow: function () {
+
     var humanUrl = "/humans/" + this.props.params.humanId;
     this.props.history.pushState(null, humanUrl);
   },
@@ -12,6 +13,7 @@ var NoteForm = React.createClass({
     this.navigateToHumanShow();
   },
   handleSubmit: function(event){
+    debugger;
     event.preventDefault();
     var note = $.extend(
       {},
@@ -23,24 +25,28 @@ var NoteForm = React.createClass({
   },
   render: function () {
     return (
-      <div className="note-form">
-        <form onSubmit={this.handleSubmit}>
-          <label>Title</label>
-          <br/>
-          <input type="string" valueLink={this.linkState('title')}/>
-          <br/>
+      <form className="form group" onSubmit={this.handleSubmit}>
 
-          <label>Comment</label>
-          <br/>
-          <textarea
-            cols='30'
-            rows='10'
-            valueLink={this.linkState('body')}></textarea>
-          <br/>
-          <input type="submit"/>
-        </form>
-        <button onClick={this.handleCancel}>Cancel</button>
-      </div>
+        <a href="#" className="form-thumb thumb" title="Thomas Anderson">
+          <img src="" />
+        </a>
+
+        <fieldset className="form-fieldset">
+          <div className="input">
+            <label for="form-title">Title</label>
+            <input id="form-title" type="text" valueLink={this.linkState('title')}/>
+          </div>
+
+          <div className="input">
+            <label for="form-textarea">Body</label>
+            <textarea id="form-textarea" valueLink={this.linkState('body')}></textarea>
+          </div>
+          <div type="submit" className="submit">
+            <button>Leave Note</button>
+            <span className="button-alternative" onClick={this.handleCancel}>or <strong>Cancel</strong></span>
+          </div>
+        </fieldset>
+      </form>
     );
  }
 });
