@@ -12,7 +12,7 @@ window.ApiUtil = {
 
   fetchAllHumans: function () {
     $.ajax({
-      url: "api/human",
+      url: "api/humans",
       success: function (humans) {
         ApiActions.receiveAllHumans(humans);
       }
@@ -21,7 +21,7 @@ window.ApiUtil = {
 
   fetchSingleHuman: function (id) {
     $.ajax({
-      url: "api/human/" + id,
+      url: "api/humans/" + id,
       success: function (human) {
         ApiActions.receiveSingleHuman(human);
       }
@@ -30,7 +30,7 @@ window.ApiUtil = {
 
   createHuman: function (human, callback) {
     $.ajax({
-      url: "api/human",
+      url: "api/humans",
       method: "POST",
       data: {human: human},
       success: function (human) {
@@ -38,5 +38,11 @@ window.ApiUtil = {
         callback && callback(human.id);
       }
     });
-  }
+  },
+
+  createNote: function(data) {
+  $.post('api/reviews', { note: data }, function (human) {
+    ApiActions.receiveAllHumans([human]);
+  });
+}
 };

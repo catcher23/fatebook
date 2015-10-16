@@ -1,16 +1,25 @@
 $(function () {
+    var root = document.getElementById("content");
+    var RouteHandler = ReactRouter.RouteHandler;
     var Router = ReactRouter.Router;
     var Route = ReactRouter.Route;
     var IndexRoute = ReactRouter.IndexRoute;
-
-    var root = document.getElementById("content");
-
-  React.render((
-    <Router>
-      <Route path="/" component={Index}>
-      <Route path="human/:humanId" component={HumanDetail} />
-
-      </Route>
-    </Router>
-  ), root);
+    var App = React.createClass({
+      render: function(){
+        return (
+          <div>
+            <Index />
+            {this.props.children}
+          </div>
+        );
+      }
+    });
+    var routes = (
+        <Route path="/" component={App}>
+            <Route path="humans/:humanId" component={HumanDetail}>
+            <Route path="note" components={NoteForm} />
+            </Route>
+        </Route>
+    );
+  React.render(<Router>{routes}</Router>, root);
 });

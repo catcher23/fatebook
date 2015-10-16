@@ -1,4 +1,4 @@
-class Api::HumanController < ApplicationController
+class Api::HumansController < ApplicationController
   def create
     @human = Human.new(human_params)
 

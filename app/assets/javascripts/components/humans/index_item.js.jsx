@@ -2,7 +2,7 @@ window.HumanIndexItem = React.createClass({
   mixins: [ReactRouter.History],
   showDetail: function () {
 
-    this.history.pushState(null, '/human/' + this.props.human.id, {});
+    this.history.pushState(null, '/humans/' + this.props.human.id, {});
   },
 
   render: function () {
