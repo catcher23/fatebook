@@ -1,30 +1,30 @@
 (function(root) {
   'use strict';
 
-  root.Testing = React.createClass({
+  root.UserLayout = React.createClass({
     mixins: [ReactRouter.History],
 
     render: function() {
       var that = this;
       return (
-        <html>
-          <head>
+        <div>
+          <div>
             <title>Fatebook</title>
-          </head>
-          <body>
+          </div>
+          <div>
             <header className="header">
               <NavBar />
             </header>
             <main className="content group">
-              <ContentHeader />
-              <SideBar />
+              <UserContentHeader />
+              <UserSideBar />
             <section className="content-main">
               <NoteForm />
             </section>
             </main>
             <Footer />
-          </body>
-          </html>
+          </div>
+        </div>
           );
         }
       });

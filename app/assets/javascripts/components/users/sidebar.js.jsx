@@ -1,7 +1,7 @@
 (function(root) {
   'use strict';
 
-  root.SideBar = React.createClass({
+  root.UserSideBar = React.createClass({
 
     render: function() {
       var that = this;
@@ -10,13 +10,12 @@
 
           <a href="#" className="profile-picture">
             <strong className="online">Online</strong>
-            <img src={imageNow} />
+            <img src={"http://www.robohash.org/"+window.CURRENT_USER_USERNAME} />
           </a>
 
           <div className="profile-info">
-            <h2>{nameNow}</h2>
+            <h2>{window.CURRENT_USER_USERNAME}</h2>
             <p>
-              {attrs}
             </p>
           </div>
 

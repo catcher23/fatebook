@@ -13,7 +13,7 @@ var NoteForm = React.createClass({
     this.navigateToHumanShow();
   },
   handleSubmit: function(event){
-    debugger;
+  
     event.preventDefault();
     var note = $.extend(
       {},

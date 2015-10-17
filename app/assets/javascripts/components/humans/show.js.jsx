@@ -26,15 +26,14 @@ window.HumanShow = React.createClass({
 
   render: function () {
     if(this.state.human === undefined) { return <div></div>; }
-      imageNow = this.state.human.image_url;
-      nameNow = this.state.human.fname + ' ' + this.state.human.lname;
+       human = this.state.human;
       attrs =    ['id', 'fname', 'lname', 'email', 'birthdate', 'address', 'screenname'].map(function (attr) {
           return <p key={attr}>{this.state.human[attr]}</p>;
         }.bind(this));
     return(
       <div>
         <div className="detail">
-          <Testing />
+          <HumanLayout />
         </div>
       </div>
     );

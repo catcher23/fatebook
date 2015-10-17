@@ -31,7 +31,7 @@ window.SearchBar = React.createClass({
 
       var filteredObjs = [];
       for (i = 0; i < HumanStore.all().length; i++) {
-        if (filtered.indexOf(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname)) != -1) {
+        if (filtered.indexOf(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname)) !== -1) {
           filteredObjs.push(HumanStore.all()[i]);
         }
         }
