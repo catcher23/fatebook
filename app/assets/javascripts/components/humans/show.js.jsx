@@ -1,41 +1,63 @@
-window.HumanShow = React.createClass({
-  getStateFromStore: function () {
-    return { human: HumanStore.find(parseInt(this.props.params.humanId)) };
-  },
+(function(root) {
+  'use strict';
 
-  _onChange: function () {
-    this.setState(this.getStateFromStore());
-  },
+  root.HumanShow= React.createClass({
+    mixins: [ReactRouter.History],
 
-  getInitialState: function () {
-    return this.getStateFromStore();
-  },
+    getStateFromStore: function () {
+      return { human: HumanStore.find(parseInt(this.props.params.humanId)) };
+    },
 
-  componentWillReceiveProps: function (newProps) {
-    ApiUtil.fetchSingleHuman(parseInt(newProps.params.humanId));
-  },
+    _onChange: function () {
+      this.setState(this.getStateFromStore());
+    },
 
-  componentDidMount: function () {
-    HumanStore.addHumanDetailChangeListener(this._onChange);
-    ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
-  },
+    getInitialState: function () {
+      return this.getStateFromStore();
+    },
 
-  componentWillUnmount: function () {
-    HumanStore.removeHumanDetailChangeListener(this._onChange);
-  },
+    componentWillReceiveProps: function (newProps) {
+      ApiUtil.fetchSingleHuman(parseInt(newProps.params.humanId));
+    },
 
-  render: function () {
-    if(this.state.human === undefined) { return <div></div>; }
-       human = this.state.human;
-      attrs =    ['id', 'fname', 'lname', 'email', 'birthdate', 'address', 'screenname'].map(function (attr) {
-          return <p key={attr}>{this.state.human[attr]}</p>;
-        }.bind(this));
-    return(
-      <div>
-        <div className="detail">
-          <HumanLayout />
+    componentDidMount: function () {
+      HumanStore.addHumanDetailChangeListener(this._onChange);
+      ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
+    },
+
+    componentWillUnmount: function () {
+      HumanStore.removeHumanDetailChangeListener(this._onChange);
+    },
+
+    render: function() {
+      if(this.state.human === undefined) { return <div></div>; }
+
+      window.human = this.state.human;
+      return (
+        <div>
+          <div>
+            <title>Fatebook</title>
+          </div>
+            <HumansIndex />
+            <SearchBar />
+          <div>
+            <header className="header">
+              <NavBar />
+            </header>
+            <main className="content group">
+              <HumanContentHeader />
+              <HumanSideBar />
+            <section className="content-main">
+              <NoteForm />
+              <Notes />
+            </section>
+            </main>
+            <Footer />
+          </div>
+
         </div>
-      </div>
-    );
-  }
-});
+
+          );
+        }
+      });
+}(this));

@@ -8,7 +8,6 @@ $(function () {
       render: function(){
         return (
           <div>
-            <Index />
             {this.props.children}
           </div>
         );
@@ -16,6 +15,7 @@ $(function () {
     });
     var routes = (
         <Route path="/" component={App}>
+          <IndexRoute component={UserShow}/>
             <Route path="users/:userId" component={UserShow}/>
             <Route path="humans/:humanId" component={HumanShow}>
             <Route path="note" components={NoteForm} />

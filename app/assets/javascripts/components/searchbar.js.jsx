@@ -7,12 +7,13 @@ window.SearchBar = React.createClass({
     return { searchString: '' };
   },
   handleChange: function(e){
-    // If you comment out this line, the text box will not change its value.
-    // This is because in React, an input cannot change independently of the value
-    // that was assigned to it. In our case this is this.state.searchString.
-
     this.setState({ searchString: e.target.value });
   },
+  clearBar: function(e){
+   this.setState({searchString: ''});
+  },
+
+
   render: function() {
 
     var libraries = [];
@@ -43,18 +44,15 @@ window.SearchBar = React.createClass({
           type="text"
           value={this.state.searchString}
           onChange={this.handleChange} placeholder="Find Human" />
-        <ul className="tabs">
-
+        <ul className="tabs"><li onClick={this.clearBar}>
           {
             filteredObjs.map(function(human){
-              return <HumanIndexItem key={human.id} human={human} />;
+              return <HumanIndexItem key={human.id} human={human}  />;
             })
           }
+        </li>
         </ul>
       </div>
     );
   }
 });
-
-
-// Render the SearchExample component on the page

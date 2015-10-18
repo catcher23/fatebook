@@ -1,13 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Fatebook</title>
-  <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= csrf_meta_tags %>
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUB-MDiEeW0QSYRYhPM_-TZFsrsmA55G8">
  </script>
+
+ <script type="text/javascript">
+   $(function(){
+
+     $('#midground').css({backgroundPosition: '0px 0px'});
+     $('#foreground').css({backgroundPosition: '0px 0px'});
+     $('#background').css({backgroundPosition: '0px 0px'});
+
+     $('#midground').animate({
+       backgroundPosition:"(0px 20000px)"
+     }, 240000, 'linear');
+
+     $('#foreground').animate({
+       backgroundPosition:"(0px 20000px)"
+     }, 120000, 'linear');
+
+     $('#background').animate({
+       backgroundPosition:"(0px 20000px)"
+     }, 480000, 'linear');
+
+   });
+ </script>
+
 </head>
 <body>
   <% if flash[:errors] %>

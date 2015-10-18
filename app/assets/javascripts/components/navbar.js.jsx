@@ -14,13 +14,17 @@
 
     render: function() {
 
+      var userUrl = "/#/users/" + CURRENT_USER_ID;
+
       return (
         <nav className="header-nav group">
           <h1 className="header-logo" onClick={this.handleHomeClick}>
             <a href="#">Fatebook</a>
           </h1>
           <ul className="header-list group">
-            <li><a href ="#home">{window.CURRENT_USER_USERNAME}</a></li>
+            <li>
+              <a href ={userUrl}>{window.CURRENT_USER_USERNAME}</a>
+            </li>
             <li>
               <a href="#">Notifications <strong className="badge">3</strong></a>
               <ul className="header-notifications">

@@ -4,7 +4,7 @@
   root.HumanSideBar = React.createClass({
 
     render: function() {
-      var that = this;
+
       return (
         <section className="content-sidebar">
 
@@ -16,7 +16,15 @@
           <div className="profile-info">
             <h2>{human.fname + ' ' + human.lname}</h2>
             <p>
-              {attrs}
+              <ul>
+              <li>
+              <b>Date of Birth</b>: {human.birthdate}
+              </li>
+              <br></br>
+              <li>
+              <b>Address</b>: {human.address}
+              </li>
+              </ul>
 
             </p>
           </div>

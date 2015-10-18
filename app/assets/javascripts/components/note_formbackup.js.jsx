@@ -1,38 +1,32 @@
 (function(root) {
   'use strict';
 
-  root.NoteForm = React.createClass({
-    mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
-
+  root.NoteFormbackup = React.createClass({
+    mixins: [React.addons.LinkedStateMixin, ReactRouter.history],
     getInitialState: function () {
       return { title: "", body: "" };
     },
-
     navigateToHumanShow: function () {
 
-      var humanUrl = "/humans/" + human.id;
-
-      this.history.pushState(null, humanUrl, {});
+      var humanUrl = "/humans/" + CURRENT_USER_ID;
+      this.props.history.pushState(null, humanUrl);
     },
-
     handleCancel: function(event){
       event.preventDefault();
       this.navigateToHumanShow();
     },
     handleSubmit: function(event){
-
       event.preventDefault();
-      var note = $.extend({}, this.state, { human_id: human.id }
+      var note = $.extend(
+        {},
+        this.state,
+        { human_id: CURRENT_USER_ID }
       );
-
       ApiUtil.createNote(note);
-      this.setState({ title: "", body: "" });
       this.navigateToHumanShow();
     },
-
     render: function () {
       return (
-        <div>
         <form className="form group" onSubmit={this.handleSubmit}>
 
           <a href="#" className="form-thumb thumb" title="Thomas Anderson">
@@ -55,7 +49,6 @@
             </div>
           </fieldset>
         </form>
-        </div>
       );
    }
   });
