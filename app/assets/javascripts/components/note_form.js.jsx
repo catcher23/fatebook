@@ -9,10 +9,9 @@
     },
 
     navigateToHumanShow: function () {
-
       var humanUrl = "/humans/" + human.id;
-
       this.history.pushState(null, humanUrl, {});
+
     },
 
     handleCancel: function(event){
@@ -32,7 +31,7 @@
 
     render: function () {
       return (
-        <div>
+
         <form className="form group" onSubmit={this.handleSubmit}>
 
           <a href="#" className="form-thumb thumb" title="Thomas Anderson">
@@ -55,7 +54,10 @@
             </div>
           </fieldset>
         </form>
-        </div>
+
+
+        
+
       );
    }
   });

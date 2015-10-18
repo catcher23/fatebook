@@ -41,8 +41,8 @@ window.ApiUtil = {
   },
 
   createNote: function(data) {
-  $.post('api/notes', { note: data }, function (human) {
-    ApiActions.receiveAllHumans([human]);
+  $.post('api/notes', { note: data }, function (humans) {
+    ApiActions.receiveAllHumans(humans);
   });
 }
 };

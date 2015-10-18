@@ -4,10 +4,13 @@
   root.Notes = React.createClass({
 
     render: function () {
+      var notes = human.notes || [];
       return (
         <div>
-{human.notes}
-</div>
+        {notes.map(function (note) {
+          return <Note {...note} />;
+        })}
+      </div>
       );
    }
   });
