@@ -9,24 +9,24 @@
 
 ## Flux
 ### Views (React Components)
-* PostsIndex
-  - PostIndexItem
-* PostForm
+* Notes
+  - Note
+* NoteForm
 
 ### Stores
 * Post
 
 ### Actions
-* ApiActions.receiveAllPosts
-* ApiActions.receiveSinglePost
-* ApiActions.deletePost
+* ApiActions.receiveAllNotes
+* ApiActions.receiveSingleNote
+* ApiActions.deleteNote
 
 ### ApiUtil
-* ApiUtil.fetchAllPosts
-* ApiUtil.fetchSinglePost
-* ApiUtil.createPost
-* ApiUtil.editPost
-* ApiUtil.destroyPost
+* ApiUtil.fetchAllNotes
+* ApiUtil.fetchSingleNote
+* ApiUtil.createNote
+* ApiUtil.editNote
+* ApiUtil.destroyNote
 
 ## Gems/Libraries
 * Flux Dispatcher

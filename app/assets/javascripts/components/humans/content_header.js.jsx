@@ -5,7 +5,7 @@ var HumanContentHeader = React.createClass({
       <header className="content-header">
 
         <h1>{human.fname + ' ' + human.lname}</h1>
-        <button className="content-header-add-friend">Add Friend</button>
+        <button className="content-header-add-friend">Track</button>
       </header>
     );
   }

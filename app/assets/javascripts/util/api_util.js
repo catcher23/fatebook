@@ -40,9 +40,46 @@ window.ApiUtil = {
     });
   },
 
-  createNote: function(data) {
+  createHumanNote: function(data) {
   $.post('api/notes', { note: data }, function (humans) {
     ApiActions.receiveAllHumans(humans);
   });
 }
+
+fetchAllUsers: function () {
+  $.ajax({
+    url: "api/users",
+    success: function (users) {
+      ApiActions.receiveAllUsers(users);
+    }
+  });
+},
+
+fetchSingleUser: function (id) {
+  $.ajax({
+    url: "api/users/" + id,
+    success: function (user) {
+      ApiActions.receiveSingleUser(user);
+    }
+  });
+},
+
+createUser: function (user, callback) {
+  $.ajax({
+    url: "api/users",
+    method: "POST",
+    data: {user: user},
+    success: function (user) {
+      ApiActions.receiveSingleUser(user);
+      callback && callback(user.id);
+    }
+  });
+},
+
+createNote: function(data) {
+$.post('api/notes', { note: data }, function (users) {
+  ApiActions.receiveAllUsers(users);
+});
+}
+
 };

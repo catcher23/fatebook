@@ -12,7 +12,6 @@
             <title>Fatebook</title>
           </div>
             <HumansIndex history={this.history}/>
-          
           <div>
             <header className="header">
               <NavBar />

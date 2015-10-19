@@ -6,7 +6,7 @@
 * Comment
 
 ### Controllers
-* Api::PostsController (create, destroy, index, show, update)
+* Api::NoteController (create, destroy, index, show, update)
 * Api::CommentsController (create, destroy, index, show, update)
 
 ### Views

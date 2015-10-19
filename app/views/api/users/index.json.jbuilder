@@ -1,2 +1,3 @@
-<h1>Api::Users#index</h1>
-<p>Find me in app/views/api/users/index.html.erb</p>
+json.array!(@user) do |user|
+  json.partial!('user', user: user)
+end

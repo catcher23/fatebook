@@ -53,9 +53,7 @@
            </main>
            <Footer />
          </div>
-
        </div>
-
          );
        }
      });
