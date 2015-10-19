@@ -19,7 +19,7 @@
                     </p>
                     <footer className="post-footer group">
                       <ul className="post-footer-info group">
-                        <li><a href="#">Sennacy</a></li>
+                        <li><a href="#">{this.props.user_id}</a></li>
                         <li><time datetime="2015-01-05">3 hours ago</time></li>
                         <li>541 views</li>
                       </ul>

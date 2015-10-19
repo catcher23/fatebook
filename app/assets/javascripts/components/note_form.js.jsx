@@ -5,7 +5,7 @@
     mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
     getInitialState: function () {
-      return { title: "", body: "" };
+      return { title: "", body: ""  };
     },
 
     navigateToHumanShow: function () {
@@ -21,7 +21,7 @@
     handleSubmit: function(event){
 
       event.preventDefault();
-      var note = $.extend({}, this.state, { human_id: human.id }
+      var note = $.extend({}, this.state, { human_id: human.id, user_id: CURRENT_USER_ID }
       );
 
       ApiUtil.createNote(note);
@@ -56,7 +56,7 @@
         </form>
 
 
-        
+
 
       );
    }

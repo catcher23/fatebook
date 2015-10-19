@@ -1,8 +1,6 @@
 window.SearchBar = React.createClass({
   mixins: [ReactRouter.History],
-  findHuman: function () {
-    this.history.pushState(null, '/human/' + key, {});
-  },
+
   getInitialState: function(){
     return { searchString: '' };
   },
