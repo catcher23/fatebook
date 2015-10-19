@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   validates :username, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: {minimum: 5, allow_nil: true}
   has_many :notes
+  has_many :trackees, through: :tracks, source: :human
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

@@ -44,7 +44,7 @@ window.ApiUtil = {
   $.post('api/notes', { note: data }, function (humans) {
     ApiActions.receiveAllHumans(humans);
   });
-}
+},
 
 fetchAllUsers: function () {
   $.ajax({

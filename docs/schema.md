@@ -8,6 +8,13 @@ body        | text      | not null
 user_id     | integer   | not null, foreign key (references users), indexed
 human_id   | integer   | not null, foreign key (references person), indexed
 
+## tracks
+column name | data type | details
+------------|-----------|-----------------------
+
+tracker_id     | integer   | not null, indexed
+trackee_id   | integer   | not null, indexed
+
 
 ## comments
 column name | data type | details
