@@ -35,17 +35,16 @@ window.SearchBar = React.createClass({
         }
         }
 
-
     return (
-      <div>
+      <div id='searchbar'>
         <input
           type="text"
           value={this.state.searchString}
           onChange={this.handleChange} placeholder="Find Human" />
-        <ul className="tabs"><li onClick={this.clearBar}>
+          <ul className="searchresults"><li onClick={this.clearBar}>
           {
             filteredObjs.map(function(human){
-              return <HumanIndexItem key={human.id} human={human}  />;
+            return <HumanIndexItem key={human.id} human={human}/>;
             })
           }
         </li>

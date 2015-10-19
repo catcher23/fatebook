@@ -21,4 +21,5 @@
 //= require flux
 //= require fatebook
 //= require eventemitter
+//= require bootstrap
 //= require_tree .

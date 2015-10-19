@@ -4,7 +4,7 @@
   root.Notes = React.createClass({
 
     render: function () {
-      var notes = human.notes || [];
+      var notes = human.notes.reverse() || [];
       return (
         <div>
         {notes.map(function (note) {

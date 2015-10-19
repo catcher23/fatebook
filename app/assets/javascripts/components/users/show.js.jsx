@@ -12,7 +12,7 @@
             <title>Fatebook</title>
           </div>
             <HumansIndex history={this.history}/>
-            <SearchBar />
+          
           <div>
             <header className="header">
               <NavBar />

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
   <title>Fatebook</title>
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag    'application', media: 'all'%>
@@ -10,27 +10,6 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUB-MDiEeW0QSYRYhPM_-TZFsrsmA55G8">
  </script>
 
- <script type="text/javascript">
-   $(function(){
-
-     $('#midground').css({backgroundPosition: '0px 0px'});
-     $('#foreground').css({backgroundPosition: '0px 0px'});
-     $('#background').css({backgroundPosition: '0px 0px'});
-
-     $('#midground').animate({
-       backgroundPosition:"(0px 20000px)"
-     }, 240000, 'linear');
-
-     $('#foreground').animate({
-       backgroundPosition:"(0px 20000px)"
-     }, 120000, 'linear');
-
-     $('#background').animate({
-       backgroundPosition:"(0px 20000px)"
-     }, 480000, 'linear');
-
-   });
- </script>
 
 </head>
 <body>
@@ -49,8 +28,6 @@
   <% if current_user %>
     <script>window.CURRENT_USER_ID = <%= current_user.id %></script>
     <script>window.CURRENT_USER_USERNAME = "<%= current_user.username %>"</script>
-    <%= current_user.username %>
-    <%= button_to "Sign Out", session_url, method: :delete %>
   <% else %>
     <%= link_to "Sign In", new_session_url %>
     <%= link_to "Sign Up", new_user_url %>

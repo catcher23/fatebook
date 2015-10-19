@@ -30,34 +30,33 @@
     },
 
     render: function() {
-      if(this.state.human === undefined) { return <div></div>; }
+     if(this.state.human === undefined) { return <div></div>; }
 
-      window.human = this.state.human;
-      return (
-        <div>
-          <div>
-            <title>Fatebook</title>
-          </div>
-            <HumansIndex />
-            <SearchBar />
-          <div>
-            <header className="header">
-              <NavBar />
-            </header>
-            <main className="content group">
-              <HumanContentHeader />
-              <HumanSideBar />
-            <section className="content-main">
-              <NoteForm />
-              <Notes />
-            </section>
-            </main>
-            <Footer />
-          </div>
+     window.human = this.state.human;
+     return (
+       <div>
+         <div>
+           <title>Fatebook</title>
+         </div>
+           <HumansIndex />
+         <div>
+           <header className="header">
+             <NavBar />
+           </header>
+           <main className="content group">
+             <HumanContentHeader />
+             <HumanSideBar />
+           <section className="content-main">
+             <NoteForm />
+             <Notes />
+           </section>
+           </main>
+           <Footer />
+         </div>
 
-        </div>
+       </div>
 
-          );
-        }
-      });
+         );
+       }
+     });
 }(this));

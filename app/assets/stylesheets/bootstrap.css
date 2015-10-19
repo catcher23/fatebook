@@ -88,6 +88,12 @@ body {
   font-weight: 700;
 }
 
+.header-searchbar {
+  float: left;
+  border-right: 1px solid #ccc;
+  font-weight: 700;
+}
+
 .header-logo:hover {
   background: #000;
 }
@@ -702,4 +708,25 @@ li:hover .header-notifications {
 
 	border-left: 10px solid rgba(255,255,255,0.2);
 	border-right: 10px solid rgba(255,255,255,0.2);
+}
+
+.searchresults {
+  position: absolute;
+  top: 42px;
+    left: 360px;
+width:206px;
+  color: lightgreen;
+  background-color: black;
+}
+
+.searchbar {
+  position: relative;
+}
+
+.searchresult {
+  display: block;
+}
+
+.searchresult:hover {
+  background-color: white;
 }
