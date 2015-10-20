@@ -10,7 +10,7 @@
 
           <a href="#" className="profile-picture">
             <strong className="online">Online</strong>
-            <img src={"http://www.robohash.org/"+window.CURRENT_USER_USERNAME} />
+            <img src={"https://www.robohash.org/"+window.CURRENT_USER_USERNAME} />
           </a>
 
           <div className="profile-info">
