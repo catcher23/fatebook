@@ -6,6 +6,13 @@ window.ApiActions = {
     });
   },
 
+    receiveAllUsers: function (users) {
+      AppDispatcher.dispatch({
+        actionType: UserConstants.USERS_RECEIVED,
+        users: users
+      });
+    },
+
   receiveSingleHuman: function (human) {
     AppDispatcher.dispatch({
       actionType: HumanConstants.HUMAN_RECEIVED,

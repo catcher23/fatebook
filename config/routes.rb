@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show]
     resources :humans
     resources :notes, only: [:create]
+    resources :tracks, only: [:create]
   end
 
   resource :session, only: [:new, :create, :destroy]

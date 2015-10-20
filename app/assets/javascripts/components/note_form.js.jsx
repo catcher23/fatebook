@@ -23,9 +23,7 @@
       event.preventDefault();
       var note = $.extend({}, this.state, { human_id: human.id, user_id: CURRENT_USER_ID }
       );
-
       ApiUtil.createNote(note);
-      this.setState({ title: "", body: "" });
       this.navigateToHumanShow();
     },
 

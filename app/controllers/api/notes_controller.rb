@@ -2,7 +2,7 @@ class Api::NotesController < ApplicationController
   def create
     note = Note.new(note_params)
     humans = Human.all
-
+    users = User.all
     if note.save
       render json: humans, include: :notes
     else

@@ -19,6 +19,7 @@ $(function () {
             <Route path="users/:userId" component={UserShow}/>
             <Route path="humans/:humanId" component={HumanShow}>
             <Route path="note" components={NoteForm} />
+            <Route path="track" components={HumanContentHeader} />
             </Route>
         </Route>
     );

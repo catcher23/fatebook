@@ -77,8 +77,14 @@ createUser: function (user, callback) {
 },
 
 createNote: function(data) {
-$.post('api/notes', { note: data }, function (users) {
-  ApiActions.receiveAllUsers(users);
+$.post('api/notes', { note: data }, function (humans) {
+  ApiActions.receiveAllHumans(humans);
+});
+},
+
+createTrack: function(data) {
+$.post('api/tracks', { track: data }, function (humans) {
+  ApiActions.receiveAllHumans(humans);
 });
 }
 
