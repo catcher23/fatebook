@@ -1,17 +1,18 @@
 (function(root) {
   'use strict';
 
-  root.UserShow = React.createClass({
-    mixins: [ReactRouter.History],
+  root.UserShow= React.createClass({
+
 
     render: function() {
-      var that = this;
-      return (
+    
+     return (
+
         <div>
           <div>
             <title>Fatebook</title>
           </div>
-            <HumansIndex history={this.history}/>
+            <UsersIndex history={this.history}/>
           <div>
             <header className="header">
               <NavBar />
@@ -20,7 +21,6 @@
               <UserContentHeader />
               <UserSideBar />
             <section className="content-main">
-              <NoteForm />
             </section>
             </main>
             <Footer />

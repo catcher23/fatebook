@@ -2,9 +2,9 @@
   'use strict';
 
   root.UserSideBar = React.createClass({
-
     render: function() {
       var that = this;
+      
       return (
         <section className="content-sidebar">
 

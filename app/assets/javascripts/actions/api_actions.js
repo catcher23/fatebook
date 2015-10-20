@@ -18,5 +18,12 @@ window.ApiActions = {
       actionType: HumanConstants.HUMAN_RECEIVED,
       human: human
     });
-  }
+  },
+
+  receiveSingleUser: function (user) {
+    AppDispatcher.dispatch({
+      actionType: UserConstants.USER_RECEIVED,
+      user: user
+    });
+  },
 };

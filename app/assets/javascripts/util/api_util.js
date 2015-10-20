@@ -12,19 +12,27 @@ window.ApiUtil = {
 
   fetchAllHumans: function () {
     $.ajax({
-      url: "/api/humans",
-       headers: {'X-Requested-With': 'XMLHttpRequest'},
+      url: "api/humans",
+
        crossDomain: false,
       success: function (humans) {
         ApiActions.receiveAllHumans(humans);
       }
     });
   },
+fetchSingleUser: function (id) {
+  $.ajax({
+    url: "api/users/" + id,
+    success: function (user) {
+      ApiActions.receiveSingleUser(user);
+    }
+  });
+},
 
   fetchSingleHuman: function (id) {
     $.ajax({
-      url: "/api/humans/" + id,
-       headers: {'X-Requested-With': 'XMLHttpRequest'},
+      url: "api/humans/" + id,
+
       success: function (human) {
         ApiActions.receiveSingleHuman(human);
       }
@@ -34,7 +42,7 @@ window.ApiUtil = {
   createHuman: function (human, callback) {
     $.ajax({
       url: "api/humans",
-       headers: {'X-Requested-With': 'XMLHttpRequest'},
+
       method: "POST",
       data: {human: human},
       success: function (human) {
@@ -52,27 +60,18 @@ window.ApiUtil = {
 
 fetchAllUsers: function () {
   $.ajax({
-    url: "/api/users",
-     headers: {'X-Requested-With': 'XMLHttpRequest'},
+    url: "api/users/",
+
     success: function (users) {
       ApiActions.receiveAllUsers(users);
     }
   });
 },
 
-fetchSingleUser: function (id) {
-  $.ajax({
-    url: "/api/users/" + id,
-     headers: {'X-Requested-With': 'XMLHttpRequest'},
-    success: function (user) {
-      ApiActions.receiveSingleUser(user);
-    }
-  });
-},
 
 createUser: function (user, callback) {
   $.ajax({
-    url: "/api/users",
+    url: "/api/users/",
     method: "POST",
     data: {user: user},
     success: function (user) {
@@ -103,7 +102,7 @@ $.destroy('/api/track', { track: data }, function (humans) {
 destroyTrack: function(data) {
   $.ajax({
     url: "/api/tracks/" + data.trackee_id,
-    headers: {'X-Requested-With': 'XMLHttpRequest'},
+
     dataType: "json",
     method: "DELETE",
     success: function (humans) {
