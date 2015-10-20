@@ -116,7 +116,7 @@ ActiveRecord::Base.transaction do
       num = "0#{num}"
     end
 
-    stats["image_url"] = "/assets/profile_pics/#{num}.png"
+    stats["image_url"] = "http://flathash.com/" + stats['fname'] + stats['lname']
     stats
   end
 
