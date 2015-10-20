@@ -14,6 +14,7 @@ window.ApiUtil = {
     $.ajax({
       url: "/api/humans",
        headers: {'X-Requested-With': 'XMLHttpRequest'},
+       crossDomain: false,
       success: function (humans) {
         ApiActions.receiveAllHumans(humans);
       }
