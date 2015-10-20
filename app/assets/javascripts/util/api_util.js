@@ -86,6 +86,23 @@ createTrack: function(data) {
 $.post('api/tracks', { track: data }, function (humans) {
   ApiActions.receiveAllHumans(humans);
 });
-}
+},
+
+destroyTrasck: function(data) {
+$.destroy('api/track', { track: data }, function (humans) {
+  ApiActions.receiveAllHumans(humans);
+});
+},
+
+destroyTrack: function(data) {
+  $.ajax({
+    url: "api/tracks/" + data.trackee_id,
+    dataType: "json",
+    method: "DELETE",
+    success: function (humans) {
+    ApiActions.receiveAllHumans(humans);
+    }
+  });
+},
 
 };

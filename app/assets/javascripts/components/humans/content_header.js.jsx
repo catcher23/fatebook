@@ -11,17 +11,20 @@ var HumanContentHeader = React.createClass({
 
     var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id }
     );
-
+    
+    if (trackStatus === "Track") {
     ApiUtil.createTrack(track);
+  } else {
+    ApiUtil.destroyTrack(track);
+  }
     this.navigateToHumanShow();
-
   },
 
 
   render: function () {
 
     trackStatus = "Untrack";
-  if (human.tracks.toString() === "") {trackStatus = 'Track';}
+    if (human.tracks.toString() === "") {trackStatus = 'Track';}
 
     return(
       <header className="content-header">
