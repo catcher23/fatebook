@@ -13,6 +13,7 @@ window.ApiUtil = {
   fetchAllHumans: function () {
     $.ajax({
       url: "/api/humans",
+       headers: {'X-Requested-With': 'XMLHttpRequest'},
       success: function (humans) {
         ApiActions.receiveAllHumans(humans);
       }
@@ -22,6 +23,7 @@ window.ApiUtil = {
   fetchSingleHuman: function (id) {
     $.ajax({
       url: "/api/humans/" + id,
+       headers: {'X-Requested-With': 'XMLHttpRequest'},
       success: function (human) {
         ApiActions.receiveSingleHuman(human);
       }
@@ -31,6 +33,7 @@ window.ApiUtil = {
   createHuman: function (human, callback) {
     $.ajax({
       url: "api/humans",
+       headers: {'X-Requested-With': 'XMLHttpRequest'},
       method: "POST",
       data: {human: human},
       success: function (human) {
@@ -49,6 +52,7 @@ window.ApiUtil = {
 fetchAllUsers: function () {
   $.ajax({
     url: "/api/users",
+     headers: {'X-Requested-With': 'XMLHttpRequest'},
     success: function (users) {
       ApiActions.receiveAllUsers(users);
     }
@@ -58,6 +62,7 @@ fetchAllUsers: function () {
 fetchSingleUser: function (id) {
   $.ajax({
     url: "/api/users/" + id,
+     headers: {'X-Requested-With': 'XMLHttpRequest'},
     success: function (user) {
       ApiActions.receiveSingleUser(user);
     }
@@ -97,6 +102,7 @@ $.destroy('/api/track', { track: data }, function (humans) {
 destroyTrack: function(data) {
   $.ajax({
     url: "/api/tracks/" + data.trackee_id,
+    headers: {'X-Requested-With': 'XMLHttpRequest'},
     dataType: "json",
     method: "DELETE",
     success: function (humans) {
