@@ -12,7 +12,7 @@ window.ApiUtil = {
 
   fetchAllHumans: function () {
     $.ajax({
-      url: "api/humans",
+      url: "/api/humans",
       success: function (humans) {
         ApiActions.receiveAllHumans(humans);
       }
@@ -21,7 +21,7 @@ window.ApiUtil = {
 
   fetchSingleHuman: function (id) {
     $.ajax({
-      url: "api/humans/" + id,
+      url: "/api/humans/" + id,
       success: function (human) {
         ApiActions.receiveSingleHuman(human);
       }
@@ -48,7 +48,7 @@ window.ApiUtil = {
 
 fetchAllUsers: function () {
   $.ajax({
-    url: "api/users",
+    url: "/api/users",
     success: function (users) {
       ApiActions.receiveAllUsers(users);
     }
@@ -57,7 +57,7 @@ fetchAllUsers: function () {
 
 fetchSingleUser: function (id) {
   $.ajax({
-    url: "api/users/" + id,
+    url: "/api/users/" + id,
     success: function (user) {
       ApiActions.receiveSingleUser(user);
     }
@@ -66,7 +66,7 @@ fetchSingleUser: function (id) {
 
 createUser: function (user, callback) {
   $.ajax({
-    url: "api/users",
+    url: "/api/users",
     method: "POST",
     data: {user: user},
     success: function (user) {
@@ -77,26 +77,26 @@ createUser: function (user, callback) {
 },
 
 createNote: function(data) {
-$.post('api/notes', { note: data }, function (humans) {
+$.post('/api/notes', { note: data }, function (humans) {
   ApiActions.receiveAllHumans(humans);
 });
 },
 
 createTrack: function(data) {
-$.post('api/tracks', { track: data }, function (humans) {
+$.post('/api/tracks', { track: data }, function (humans) {
   ApiActions.receiveAllHumans(humans);
 });
 },
 
 destroyTrasck: function(data) {
-$.destroy('api/track', { track: data }, function (humans) {
+$.destroy('/api/track', { track: data }, function (humans) {
   ApiActions.receiveAllHumans(humans);
 });
 },
 
 destroyTrack: function(data) {
   $.ajax({
-    url: "api/tracks/" + data.trackee_id,
+    url: "/api/tracks/" + data.trackee_id,
     dataType: "json",
     method: "DELETE",
     success: function (humans) {
