@@ -28,10 +28,13 @@
     },
 
     render: function () {
+      
+      var userImage = "http://www.robohash.com/" + CURRENT_USER_USERNAME;
+      var userUrl = "/#/users/" + CURRENT_USER_ID
       return (
         <form className="form group" onSubmit={this.handleSubmit}>
-          <a href="#" className="form-thumb thumb" title="Thomas Anderson">
-            <img src="" />
+          <a href={userUrl} className="form-thumb thumb" title={CURRENT_USER_USERNAME}>
+            <img src={userImage} />
           </a>
           <fieldset className="form-fieldset">
             <div className="input">

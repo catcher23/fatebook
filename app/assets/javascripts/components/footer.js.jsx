@@ -6,10 +6,11 @@ var Footer = React.createClass({
           &copy; 2015 Danny Lau
         </small>
         <ul className="footer-links group">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Terms</a></li>
-          <li><a href="#">Privacy</a></li>
+          <li>Home</li>
+          <li>About</li>
+          <li>Terms</li>
+          <li>Privacy</li>
+
         </ul>
       </footer>
     );

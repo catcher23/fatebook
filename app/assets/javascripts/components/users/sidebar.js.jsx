@@ -1,43 +1,34 @@
 (function(root) {
   'use strict';
-
-
   root.UserSideBar = React.createClass({
-
-
     render: function() {
-
-
+      var humanUrl = '';
       return (
         <section className="content-sidebar">
 
           <a href="#" className="profile-picture">
             <strong className="online">Online</strong>
-            <img src={"https://www.robohash.org/"+window.CURRENT_USER_USERNAME} />
+            <img src={"https://www.robohash.org/"+user.username} />
           </a>
-
           <div className="profile-info">
-            <h2>{window.CURRENT_USER_USERNAME}</h2>
+            <h2>{user.username}</h2>
             <p>
             </p>
           </div>
-
           <ul className="profile-nav">
-            <li><a href="#">Wall</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Friends</a></li>
-            <li><a href="#">Photos</a></li>
+            <li>Wall</li>
+            <li>About</li>
+            <li>Friends</li>
+            <li>Photos</li>
           </ul>
-
-
           <ul className="profile-friends group">
+            Tracked Humans:
             { user.trackees.map(function (trackee) {
-
-              return <li><a href=""  className="thumb">
+              humanUrl = "/#/humans/" + trackee.id;
+              return <li><a href={humanUrl}  className="thumb">
                 <img src = {
-                    trackee.image_url
+                  trackee.image_url
                 }
-
             />
               </a>
             </li>;

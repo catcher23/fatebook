@@ -4,7 +4,8 @@
   root.HumanSideBar = React.createClass({
 
     render: function() {
-
+var humanUrl = '';
+var humanImgUrl = '';
       return (
         <section className="content-sidebar">
 
@@ -30,40 +31,26 @@
           </div>
 
           <ul className="profile-nav">
-            <li><a href="#">Wall</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Friends</a></li>
-            <li><a href="#">Photos</a></li>
+            <li>Wall</li>
+            <li>About</li>
+            <li>Friends</li>
+            <li>Photos</li>
           </ul>
 
           <ul className="profile-friends group">
-            <li><a href="#" className="thumb" title="Thomas Anderson">
-              <img src="" />
-            </a></li>
-          <li><a href="#" className="thumb" title="Jonathan">
-              <img src="" />
-            </a></li>
-          <li><a href="#" className="thumb" title="Tommy">
-              <img src="" />
-            </a></li>
-          <li><a href="#" className="thumb" title="Constance">
-              <img src="" />
-            </a></li>
-          <li><a href="#" className="thumb" title="Ned">
-              <img src="" />
-            </a></li>
-          <li><a href="#" className="thumb" title="Kush">
-              <img src="" />
-            </a></li>
-          <li><a href="#" className="thumb" title="CJ">
-              <img src="" />
-            </a></li>
-          <li><a href="#" className="thumb" title="Jeff">
-              <img src="" />
-            </a></li>
-          <li><a href="#" className="thumb" title="Simon">
-              <img src="" />
-            </a></li>
+            Tracked by:
+            <br></br>
+            { human.trackers.map(function (tracker) {
+              humanUrl = "/#/users/" + tracker.id;
+              humanImgUrl = "http://www.robohash.com/" + tracker.username;
+              return <li><a href={humanUrl}  className="thumb">
+                <img src = {
+                  humanImgUrl
+                }
+            />
+              </a>
+            </li>;
+            })}
           </ul>
         </section>
       );

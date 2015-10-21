@@ -9,7 +9,7 @@
     },
 
     handleHomeClick: function() {
-      this.history.pushState(null, "/",{});
+      this.history.pushState(null, "'/#/users/' + CURRENT_USER_ID",{});
     },
 
     render: function() {
@@ -18,8 +18,8 @@
 
       return (
          <nav className="header-nav group">
-           <h1 className="header-logo" onClick={this.handleHomeClick}>
-             <a href="#">Fatebook</a>
+           <h1 className="header-logo" >
+             <a href={userUrl}>Fatebook</a>
 
            </h1>
            <h1 className="header-searchbar">
@@ -33,9 +33,9 @@
              <li>
                <a href="#">Notifications <strong className="badge">3</strong></a>
                <ul className="header-notifications">
-                 <li><a href="#">Constance likes your photo.</a></li>
-                 <li><a href="#">Tommy left you a comment.</a></li>
-                 <li><a href="#">Jonathan is now following you.</a></li>
+                 <li><a href="#">Neo likes your photo.</a></li>
+                 <li><a href="#">Trinity left you a comment.</a></li>
+                 <li><a href="#">Morpheus is now following you.</a></li>
                </ul>
              </li>
              <li onClick={this.handleLogoutClick}>

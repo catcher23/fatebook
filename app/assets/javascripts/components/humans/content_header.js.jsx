@@ -11,7 +11,7 @@ var HumanContentHeader = React.createClass({
 
     var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id }
     );
-    
+
     if (trackStatus === "Track") {
     ApiUtil.createTrack(track);
   } else {
@@ -22,9 +22,14 @@ var HumanContentHeader = React.createClass({
 
 
   render: function () {
-
-    trackStatus = "Untrack";
-    if (human.tracks.toString() === "") {trackStatus = 'Track';}
+trackStatus = '';
+    if (human.tracks.length === 0) {
+      trackStatus = 'Track';
+    } else if (human.tracks[0].tracker_id !== CURRENT_USER_ID) {
+      trackStatus = 'Track';
+    } else {
+      trackStatus = 'Untrack';
+    }
 
     return(
       <header className="content-header">

@@ -1,6 +1,47 @@
-Sign In Username Password
-<form action = "<%=session_url%>" method = "post">
-<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-<input type="string" name="user[username]" id="Username" value="">
-<input type="password" name="user[password]" id="Password" value="">
-<input type="submit" value="Sign In">
+
+
+<body id="bootstrap-js">
+
+   <div class="container canvas">
+
+   <div class="topbar" data-scrollspy="scrollspy">
+     <div class="topbar-inner">
+       <div class="container canvas">
+         <a class="brand">Fatebook</a>
+         <ul class="nav">
+
+           <li><form action = "<%=session_url%>" method = "post">
+              <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+                Name
+                <input type="string" name="user[username]" id="Username" value="">
+                Password
+              <input type="password" name="user[password]" id="Password" value=""></li>
+              <li><input type="submit" class="btn primary medium"  value="Sign In"></li>
+            </form>
+
+         </ul>
+       </div>
+     </div>
+   </div>
+
+<section id="overview">
+
+     <!-- Main hero unit for a primary marketing message or call to action -->
+     <div class="hero-unit">
+       <h1></h1>
+       <p>
+         <form action = "<%=users_url%>" method = "post">
+         <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+           Username
+         <input type="string" name="user[username]" id="Username" value="">
+         Password
+         <input type="password" name="user[password]" id="Password" value="">
+
+         <input type="submit" class="btn primary  medium"  value="Sign Up">
+         </form>
+       <p>
+
+     </div>
+</section>
+</div>
+</body>
