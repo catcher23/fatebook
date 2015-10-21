@@ -21,16 +21,16 @@
     handleSubmit: function(event){
 
       event.preventDefault();
-      var note = $.extend({}, this.state, { human_id: human.id, user_id: CURRENT_USER_ID }
+      var note = $.extend({}, this.state, { human_id: human.id, user_id: CURRENT_USER_ID, username: CURRENT_USER_USERNAME, user_image_url: CURRENT_USER_IMG }
       );
       ApiUtil.createNote(note);
       this.navigateToHumanShow();
     },
 
     render: function () {
-      
+
       var userImage = "http://www.robohash.com/" + CURRENT_USER_USERNAME;
-      var userUrl = "/#/users/" + CURRENT_USER_ID
+      var userUrl = "/#/users/" + CURRENT_USER_ID;
       return (
         <form className="form group" onSubmit={this.handleSubmit}>
           <a href={userUrl} className="form-thumb thumb" title={CURRENT_USER_USERNAME}>

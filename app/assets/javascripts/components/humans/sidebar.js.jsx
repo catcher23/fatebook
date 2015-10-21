@@ -10,7 +10,7 @@ var humanImgUrl = '';
         <section className="content-sidebar">
 
           <a href="#" className="profile-picture">
-            <strong className="online">Online</strong>
+            <strong className="online">Human</strong>
             <img src={human.image_url} />
           </a>
 

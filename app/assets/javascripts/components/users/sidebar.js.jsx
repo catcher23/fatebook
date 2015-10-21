@@ -7,7 +7,7 @@
         <section className="content-sidebar">
 
           <a href="#" className="profile-picture">
-            <strong className="online">Online</strong>
+            <strong className="online">Machine</strong>
             <img src={"https://www.robohash.org/"+user.username} />
           </a>
           <div className="profile-info">
