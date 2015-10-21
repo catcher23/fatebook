@@ -10,8 +10,8 @@ window.UsersIndex = React.createClass({
   componentDidMount: function () {
     UserStore.addUsersIndexChangeListener(this._onChange);
     UserStore.addUserDetailChangeListener(this._onChange);
-    ApiUtil.fetchAllUsers();
     ApiUtil.fetchAllHumans();
+    ApiUtil.fetchAllUsers();
   },
 
   compomentWillUnmount: function () {
@@ -20,6 +20,7 @@ window.UsersIndex = React.createClass({
   },
 
   render: function () {
+
     return(
       <ul>
 

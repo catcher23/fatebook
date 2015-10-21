@@ -29,19 +29,15 @@
 
     render: function () {
       return (
-
         <form className="form group" onSubmit={this.handleSubmit}>
-
           <a href="#" className="form-thumb thumb" title="Thomas Anderson">
             <img src="" />
           </a>
-
           <fieldset className="form-fieldset">
             <div className="input">
               <label for="form-title">Title</label>
               <input id="form-title" type="text" valueLink={this.linkState('title')}/>
             </div>
-
             <div className="input">
               <label for="form-textarea">Body</label>
               <textarea id="form-textarea" valueLink={this.linkState('body')}></textarea>
@@ -52,10 +48,6 @@
             </div>
           </fieldset>
         </form>
-
-
-
-
       );
    }
   });
