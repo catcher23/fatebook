@@ -6,139 +6,70 @@
     };
   }
 
-  var CENTER = {lat: 37.7758, lng: -122.435};
-
   root.Map = React.createClass({
+
     componentDidMount: function(){
       console.log('map mounted');
       var map = React.findDOMNode(this.refs.map);
       var mapOptions = {
-        center: this.centerHumanCoords(),
-        zoom: 13
+        center: {lat: 51.5087531, lng: -0.1281153},
+        zoom: 13,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       this.map = new google.maps.Map(map, mapOptions);
-      this.registerListeners();
-      this.markers = [];
-
+       this.getDirections(this.map);
     },
-    centerHumanCoords: function () {
 
-      if (user.trackees[0] && user.trackees[0].lng) {
-        var human = user.trackees[0];
-        return { lat: human.lat, lng: human.lng };
-      } else {
-        return CENTER;
-      }
-    },
-    componentDidUpdate: function (oldProps) {
-     this._onChange();
-    },
-    _onChange: function(){
-      var humans = user.trackees;
-      var toAdd = [];
-      var toRemove = this.markers.slice(0);
-      humans.forEach(function(human, idx){
-      idx = -1;
-        //check if human is already on map as a marker
-        for(var i = 0; i < toRemove.length; i++){
-          if(toRemove[i].humanId == human.id){
-            idx = i;
-            break;
-          }
-        }
-        if(idx === -1){
-          //if it's not already on the map, we need to add a marker
-          toAdd.push(human);
-        } else {
-          //if it IS already on the map AND in the store, we don't need
-          //to remove it
-          toRemove.splice(idx, 1);
-        }
-      });
-
-    var that = this;
-setInterval(something, 1300);
-  function something() {
-    var i = 0;
-
-      var interval = setInterval(function () {
-        that.createMarkerFromHuman(toAdd[i]);
-        console.log('create');
-        i++;
-          if (i >= toAdd.length) clearInterval(interval);
-      }, 500);
-
-      var j = 0;
-      var linterval = setInterval(function () {
-        that.removeMarker(toAdd[j]);
-        console.log('delete');
-        j++;
-
-            if (j >= toAdd.length) clearInterval(linterval);
-          }, 1000);
-  }
-
-
-
-
-
-
-
-
-      /* toRemove.forEach(this.removeMarker); */
-
-      if (this.props.singleHuman) {
-        this.map.setOptions({draggable: false});
-        this.map.setCenter(this.centerHumanCoords());
-      }
-    },
     componentWillUnmount: function(){
       console.log("map UNmounted");
     },
-    registerListeners: function(){
-      var that = this;
-      google.maps.event.addListener(this.map, 'idle', function() {
-        var bounds = that.map.getBounds();
-        var northEast = _getCoordsObj(bounds.getNorthEast());
-        var southWest = _getCoordsObj(bounds.getSouthWest());
-        //actually issue the request
-        var bounds = {
-          northEast: northEast,
-          southWest: southWest
-        };
-        FilterActions.updateBounds(bounds);
-      });
-      google.maps.event.addListener(this.map, 'click', function(event) {
-        var coords = { lat: event.latLng.lat(), lng: event.latLng.lng() };
-        that.props.onMapClick(coords);
-      });
+
+    moveMarker: function (map, marker, latlng) {
+        marker.setPosition(latlng);
+        map.panTo(latlng);
     },
-    createMarkerFromHuman: function (human) {
 
-      var that = this;
-      var pos = new google.maps.LatLng(human.lat, human.lng);
-      var marker = new google.maps.Marker({
-        position: pos,
-        map: this.map,
-        humanId: human.id
-      });
-      marker.addListener('click', function () {
-        that.props.onMarkerClick(human)
-      });
-      this.markers.push(marker);
-    },
-    removeMarker: function(marker){
+    autoRefresh: function(map, pathCoords) {
+    var i, route, marker;
 
-      for(var i = 0; i < this.markers.length; i++){
+    route = new google.maps.Polyline({
+        path: [],
+        geodesic : true,
+        strokeColor: 'green',
+        strokeOpacity: 2.0,
+        strokeWeight: 5,
+        editable: false,
+        map:map
+    });
 
-        if (this.markers[i].humanId === marker.id){
+var that = this;
+    marker=new google.maps.Marker({map:map, icon:"http://maps.google.com/mapfiles/ms/micons/green.png"});
 
-          this.markers[i].setMap(null);
-          this.markers.splice(i, 1);
-          break;
+  for (i = 0; i < pathCoords.length; i++) {
+      setTimeout(function(coords) {
+          route.getPath().push(coords);
+          that.moveMarker(map, marker, coords);
+      }, 3000 * i, pathCoords[i]);
+  }
+},
+
+getDirections: function(map) {
+    var directionsService = new google.maps.DirectionsService();
+
+    var request = {
+        origin: new google.maps.LatLng(37.774929, -122.419416),
+        destination: new google.maps.LatLng(37.548270, -121.988572),
+
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    var that = this;
+    directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            that.autoRefresh(map, result.routes[0].overview_path);
         }
-      }
-    },
+    });
+},
+
     render: function(){
       return ( <div className="half" ref="map">Map</div>);
     }

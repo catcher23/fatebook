@@ -49,6 +49,7 @@
            <section className="content-main">
              <NoteForm />
              <Notes />
+             <Map />
            </section>
            </main>
            <Footer />
