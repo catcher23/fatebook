@@ -55,7 +55,7 @@
               <UserContentHeader />
               <UserSideBar  />
             <section className="content-main">
-              <UserMap />
+              <Map />
             </section>
             </main>
             <Footer />

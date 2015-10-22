@@ -14,5 +14,12 @@
 
  */
 
- @import "bootstrap-sprockets";
+@import "bootstrap-sprockets";
 @import "bootstrap";
+
+.half {
+  width: 620px;
+  height: 500px;
+  float: left;
+  position: relative;
+}

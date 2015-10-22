@@ -8,7 +8,7 @@
 
           <a href="#" className="profile-picture">
             <strong className="online">Machine</strong>
-            <img src={"https://www.robohash.org/"+user.username} />
+            <img src={user.image_url} />
           </a>
           <div className="profile-info">
             <h2>{user.username}</h2>

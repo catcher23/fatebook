@@ -98,6 +98,8 @@ ActiveRecord::Base.transaction do
       "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
       "phone"=>"+49 89 69931222",
       "screenname"=>"ARobben10",
+      "lat"=>37.7758,
+      "lng"=>-122.435,
     },
     "12"=>{
       "fname"=>"Robert",
@@ -107,6 +109,8 @@ ActiveRecord::Base.transaction do
       "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
       "phone"=>"+49 89 69931222",
       "screenname"=>"ARobben10",
+      "lat"=>37.7658,
+      "lng"=>-122.445,
     },
   }
   human = human.map do |num, stats|
