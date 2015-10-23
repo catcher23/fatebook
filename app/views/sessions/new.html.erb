@@ -28,8 +28,15 @@
 
      <!-- Main hero unit for a primary marketing message or call to action -->
      <div class="hero-unit">
-       <h1></h1>
-       <p>
+       <div class='left'>
+         <h2>Track humans and find them in the world on Fatebook</h2>
+         <ul>
+           <li>Add humans to your tracklist</li>
+           <li>Post notes on human pages</li>
+           <li>Know their current location in the world</li>
+         </ul>
+       </div>
+       <div class='right'>
          <form action = "<%=users_url%>" method = "post">
          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
            Username
@@ -39,8 +46,7 @@
 
          <input type="submit" class="btn primary  medium"  value="Sign Up">
          </form>
-       <p>
-
+       </div>
      </div>
 </section>
 </div>

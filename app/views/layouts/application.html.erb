@@ -19,7 +19,11 @@
 
   <% if flash[:notices] %>
     <% flash[:notices].each do |notice| %>
-      <%= notice %>
+    <div class="alert-message success">
+      <a class="close" href="#">×</a>
+      <p><%= notice %></p>
+    </div>
+
     <% end %>
   <% end %>
 
@@ -27,9 +31,6 @@
     <script>window.CURRENT_USER_ID = <%= current_user.id %></script>
     <script>window.CURRENT_USER_USERNAME = "<%= current_user.username %>"</script>
     <script>window.CURRENT_USER_IMG= "<%= current_user.image_url %>"</script>
-  <% else %>
-    <%= link_to "Sign In", new_session_url %>
-    <%= link_to "Sign Up", new_user_url %>
   <%end %>
 <%= yield %>
 
