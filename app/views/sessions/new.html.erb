@@ -10,13 +10,13 @@
          <a class="brand">Fatebook</a>
          <ul class="nav">
 
-           <li><form action = "<%=session_url%>" method = "post">
+           <li class='white'><form action = "<%=session_url%>" method = "post">
               <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
                 Name
                 <input type="string" name="user[username]" id="Username" value="">
                 Password
-              <input type="password" name="user[password]" id="Password" value=""></li>
-              <li><input type="submit" class="btn primary medium"  value="Sign In"></li>
+              <input type="password" name="user[password]" id="Password" value="">
+              <input type="submit" class="btn primary medium"  value="Sign In"></li>
             </form>
 
          </ul>
