@@ -1,4 +1,6 @@
 (function(root){
+
+
   function _getCoordsObj(latLng) {
     return {
       lat: latLng.lat(),
@@ -13,8 +15,8 @@
       var map = React.findDOMNode(this.refs.map);
       var mapOptions = {
         center: {lat: 51.5087531, lng: -0.1281153},
-        zoom: 13,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.TERRAIN
       };
       this.map = new google.maps.Map(map, mapOptions);
        this.getDirections(this.map);
@@ -54,11 +56,18 @@ var that = this;
 },
 
 getDirections: function(map) {
+  function getRand(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+  var olat = getRand(37.7, 37.782);
+  var olng = getRand(-122.5, -122.38);
+  var dlat = getRand(37.7, 37.782);
+  var dlng = getRand(-122.5, -122.38);
     var directionsService = new google.maps.DirectionsService();
 
     var request = {
-        origin: new google.maps.LatLng(37.774929, -122.419416),
-        destination: new google.maps.LatLng(37.548270, -121.988572),
+        origin: new google.maps.LatLng(olat, olng),
+        destination: new google.maps.LatLng(dlat, dlng),
 
         travelMode: google.maps.TravelMode.DRIVING
     };

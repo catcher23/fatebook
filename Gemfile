@@ -16,6 +16,8 @@ gem 'flux-rails-assets'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
+gem 'faker'
+gem 'ffaker'
 
 group :development, :test do
   gem 'byebug'

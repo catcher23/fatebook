@@ -32,16 +32,16 @@
       var userImage = "http://www.robohash.com/" + CURRENT_USER_USERNAME;
       var userUrl = "/#/users/" + CURRENT_USER_ID;
       return (
-        <form className="form group" onSubmit={this.handleSubmit}>
+        <form className="form2 group" onSubmit={this.handleSubmit}>
           <a href={userUrl} className="form-thumb thumb" title={CURRENT_USER_USERNAME}>
             <img src={userImage} />
           </a>
           <fieldset className="form-fieldset">
-            <div className="input">
+            <div className="input2">
               <label for="form-title">Title</label>
               <input id="form-title" type="text" valueLink={this.linkState('title')}/>
             </div>
-            <div className="input">
+            <div className="input2">
               <label for="form-textarea">Body</label>
               <textarea id="form-textarea" valueLink={this.linkState('body')}></textarea>
             </div>

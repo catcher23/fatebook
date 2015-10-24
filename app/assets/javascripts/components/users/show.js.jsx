@@ -46,7 +46,7 @@
           <div>
             <title>Fatebook</title>
           </div>
-            <UsersIndex history={this.history}/>
+            <UsersIndex />
           <div>
             <header className="header">
               <NavBar />

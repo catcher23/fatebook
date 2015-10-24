@@ -33,7 +33,11 @@ window.SearchBar = React.createClass({
         if (filtered.indexOf(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname)) !== -1) {
           filteredObjs.push(HumanStore.all()[i]);
         }
+        if (filteredObjs.length == 8) {
+          break;
         }
+      }
+
 
     return (
       <div id='searchbar'>

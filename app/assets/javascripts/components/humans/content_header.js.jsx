@@ -32,7 +32,7 @@ trackStatus = '';
     }
 
     return(
-      <header className="content-header">
+      <header className="content-header2">
 
         <h1>{human.fname + ' ' + human.lname}</h1>
         <button className="content-header-add-friend" onClick={this.handleTrackClick}>{trackStatus}</button>

@@ -1,129 +1,46 @@
-ActiveRecord::Base.transaction do
-  human = {
-    "1"=>{
-      "fname"=>"Arjen",
-      "lname"=>"Robben",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
-    },
-    "2"=>{
-      "fname"=>"Thomas",
-      "lname"=>"Anderson",
-      "email"=>"tanderson@email.com",
-      "birthdate"=>"13 September 1971",
-      "address"=>"Capital City USA",
-      "phone"=>"20 39 20312044",
-      "screenname"=>"NeoAnderson",
-    },
-    "3"=>{
-      "fname"=>"Andres",
-      "lname"=>"Iniesta",
-      "email"=>"ainiesta@email.com",
-      "birthdate"=>"11 May 1984",
-      "address"=>"Calle Andres Iniesta, 2 Fuentealbilla (Albacete) 02260 Spain",
-      "phone"=>"+29 19 62934322",
-      "screenname"=>"AIniesta8",
-    },
-    "4"=>{
-      "fname"=>"Sergio",
-      "lname"=>"Aguero",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
-    },
-    "5"=>{
-      "fname"=>"Alexis",
-      "lname"=>"Sanchez",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
-    },
-    "6"=>{
-      "fname"=>"Arturo",
-      "lname"=>"Vidal",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
-    },
-    "7"=>{
-      "fname"=>"Lionel",
-      "lname"=>"Messi",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
-    },
-    "8"=>{
-      "fname"=>"Carlos",
-      "lname"=>"Tevez",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
-    },
-    "9"=>{
-      "fname"=>"Cristiano",
-      "lname"=>"Ronaldo",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
-    },
-    "10"=>{
-      "fname"=>"Anthony",
-      "lname"=>"Martial",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
-    },
-    "11"=>{
-      "fname"=>"Wayne",
-      "lname"=>"Rooney",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
-      "lat"=>37.7758,
-      "lng"=>-122.435,
-    },
-    "12"=>{
-      "fname"=>"Robert",
-      "lname"=>"Lewandowski",
-      "email"=>"arobben@email.com",
-      "birthdate"=>"23 January 1984",
-      "address"=>"Werner-Heisenberg-Allee 25, 80939 München, Germany",
-      "phone"=>"+49 89 69931222",
-      "screenname"=>"ARobben10",
-      "lat"=>37.7658,
-      "lng"=>-122.445,
-    },
-  }
-  human = human.map do |num, stats|
-    if num.length == 1
-      num = "00#{num}"
-    elsif num.length == 2
-      num = "0#{num}"
-    end
 
-    stats["image_url"] = "http://flathash.com/" + stats['fname'] + stats['lname']
-    stats
+ActiveRecord::Base.transaction do
+require 'ffaker'
+  100.times do
+    flag = true
+    while flag == true
+      flag = false
+      fname = Faker::Name.first_name
+      if fname.last == 'a' ||
+        fname[-2..-1] == 'ie' ||
+        fname.last == 'y' ||
+        fname.last == 'e' ||
+        fname.last == 'i' ||
+        fname[-2..-1] == 'in' ||
+        fname[-2..-1] == 'en' ||
+        fname[-2..-1] == 'on' ||
+        fname[-2..-1] == 'an' ||
+        fname[-2..-1] == 'yn' ||
+        fname[-2..-1] == 'ah' ||
+        fname[-2..-1] == 'et' ||
+        fname[-2..-1] == 'th'
+        flag = true
+      end
+    end
+    lname = Faker::Name.last_name
+    name = fname + lname
+    address = "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state}"
+    Human.create!(
+     {
+      fname: fname,
+      lname: lname,
+      email: Faker::Internet.free_email(name),
+      birthdate: Faker::Date.between(35200.days.ago, 10800.days.ago),
+      address: address,
+      phone: Faker::PhoneNumber.cell_phone,
+      screenname: Faker::Internet.user_name(name),
+      image_url: "http://flathash.com/" + (name)
+    }
+    )
+
   end
 
-    Human.create!(human.shuffle)
-
+  def range (max,min)
+      rand * (max-min) + min
+  end
 end

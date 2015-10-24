@@ -1,53 +1,70 @@
-
-
-<body id="bootstrap-js">
-
-   <div class="container canvas">
-
-   <div class="topbar" data-scrollspy="scrollspy">
-     <div class="topbar-inner">
-       <div class="container canvas">
-         <a class="brand">Fatebook</a>
+<body>
+   <div class="topbar">
+     <div class="fill">
+       <div class="container">
+         <a class="brand" href="#"><b>fatebook</b></a>
          <ul class="nav">
-
-           <li class='white'><form action = "<%=session_url%>" method = "post">
-              <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-                Name
-                <input type="string" name="user[username]" id="Username" value="">
-                Password
-              <input type="password" name="user[password]" id="Password" value="">
-              <input type="submit" class="btn primary medium"  value="Sign In"></li>
-            </form>
-
          </ul>
+         <form action="<%=session_url%>" method = "post" class="pull-right">
+           <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+           <input class="input-medium" type="text" placeholder="Username" name="user[username]" id="Username">
+           <input class="input-medium" type="password" placeholder="Password" name="user[password]" id="Password">
+           <button class="btn" type="submit">Sign in</button>
+         </form>
+
        </div>
      </div>
    </div>
 
-<section id="overview">
+   <div class="container">
 
-     <!-- Main hero unit for a primary marketing message or call to action -->
-     <div class="hero-unit">
-       <div class='left'>
-         <h2>Track humans and find them in the world on Fatebook</h2>
-         <ul>
-           <li>Add humans to your tracklist</li>
-           <li>Post notes on human pages</li>
-           <li>Know their current location in the world</li>
-         </ul>
-       </div>
-       <div class='right'>
-         <form action = "<%=users_url%>" method = "post">
+     <div class="content2">
+
+       <div class="row">
+         <div class="span10">
+<br><br><br><br><br>
+   <h1>Robots can track humans <br>in the world on Fatebook</h1><br>
+<table>
+        <tbody>
+          <tr>
+            <td><img src="https://scontent.fsjc1-3.fna.fbcdn.net/hphotos-xaf1/t39.2365-6/851585_216271631855613_2121533625_n.png"/></td>
+            <td><b>Add humans</b> and track them</td>
+          </tr>
+          <tr>
+            <td><img src="https://scontent.fsjc1-3.fna.fbcdn.net/hphotos-xap1/t39.2365-6/851565_602269956474188_918638970_n.png"/></td>
+            <td><b>Post notes</b> on human pages</td>
+          </tr>
+          <tr>
+            <td><img src="https://scontent.fsjc1-3.fna.fbcdn.net/hphotos-xap1/t39.2365-6/851558_160351450817973_1678868765_n.png"/></td>
+            <td><b>Track humans</b> in the world</td>
+          </tr>
+        </tbody>
+      </table>
+
+         </div>
+         <div class="span4">
+           <br><br><br><br><br>
+           <h1>Sign Up</h1>
+           <br>
+           <p>It's free and always will be.</p>
+           <br>
+           <form action = "<%=users_url%>" method = "post">
          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
            Username
+
          <input type="string" name="user[username]" id="Username" value="">
+         <br><br>
          Password
          <input type="password" name="user[password]" id="Password" value="">
-
+      <br><br>
          <input type="submit" class="btn primary  medium"  value="Sign Up">
          </form>
+         </div>
        </div>
      </div>
-</section>
-</div>
-</body>
+
+     <footer><br>
+       <p>&copy; Danny Lau 2015</p>
+     </footer>
+   </div> <!-- /container -->
+ </body>

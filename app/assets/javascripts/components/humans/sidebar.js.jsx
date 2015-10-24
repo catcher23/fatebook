@@ -31,10 +31,10 @@ var humanImgUrl = '';
           </div>
 
           <ul className="profile-nav">
-            <li>Wall</li>
-            <li>About</li>
-            <li>Friends</li>
-            <li>Photos</li>
+            <li>
+              return <NoteIndexItem />
+            </li>
+
           </ul>
 
           <ul className="profile-friends group">
