@@ -8,7 +8,7 @@ var HumanContentHeader = React.createClass({
   },
   handleTrackClick: function () {
     event.preventDefault();
-
+flag = false;
     var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id }
     );
 

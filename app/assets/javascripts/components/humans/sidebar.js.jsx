@@ -17,7 +17,7 @@ var humanUrl = '';
 
           <div className="profile-info">
             <h2>{human.fname + ' ' + human.lname}</h2>
-
+            <br></br>
               <ul>
               <li>
               <b>Date of Birth</b>: {human.birthdate}
@@ -42,6 +42,7 @@ var humanUrl = '';
 
           <ul className="profile-friends group">
             Tracked by:
+            <br></br>
             { human.trackers.map(function (tracker) {
               humanUrl = "/#/users/" + tracker.id;
 

@@ -24,6 +24,7 @@
     componentDidMount: function () {
       HumanStore.addHumanDetailChangeListener(this._onChange);
       ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
+
     },
 
     componentWillUnmount: function () {

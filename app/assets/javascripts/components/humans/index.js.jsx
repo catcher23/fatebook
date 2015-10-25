@@ -5,12 +5,14 @@ window.HumansIndex = React.createClass({
 
   _onChange: function () {
     this.setState({ humans: HumanStore.all() });
+  
   },
 
   componentDidMount: function () {
     HumanStore.addHumansIndexChangeListener(this._onChange);
     HumanStore.addHumanDetailChangeListener(this._onChange);
     ApiUtil.fetchAllHumans();
+
   },
 
   compomentWillUnmount: function () {

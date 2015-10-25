@@ -8,9 +8,12 @@ window.NoteIndexItem = React.createClass({
   },
 
   render: function () {
+    var noteUrl = '/#/humans/' + this.props.human.id + '/note';
     return (
       <li onClick={this.showDetail} className="human-list-item">
-        Notes
+        <a href={noteUrl}>
+          Notes
+        </a>
       </li>
     );
   }

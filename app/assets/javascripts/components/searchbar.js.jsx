@@ -9,11 +9,12 @@ window.SearchBar = React.createClass({
   },
   clearBar: function(e){
    this.setState({searchString: ''});
+flag = true;
   },
 
 
   render: function() {
-
+var flag = false;
     var libraries = [];
     for (var i = 0; i < HumanStore.all().length; i++) {
       libraries.push(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname));
@@ -47,8 +48,10 @@ window.SearchBar = React.createClass({
           onChange={this.handleChange} placeholder="Find Human" />
           <ul className="searchresults"><li onClick={this.clearBar}>
           {
-            filteredObjs.map(function(hm){
-            return <HumanIndexItem key={hm.id} hm={hm}/>;
+            filteredObjs.map(function(human){
+
+              var humanUrl = "/#/humans/" + human.id;
+            return <li><a href={humanUrl}>{human.fname+' '+human.lname}</a></li>;
             })
           }
         </li>

@@ -1,17 +1,12 @@
 (function(root){
 
 
-  function _getCoordsObj(latLng) {
-    return {
-      lat: latLng.lat(),
-      lng: latLng.lng()
-    };
-  }
-
   root.Map = React.createClass({
 
     componentDidMount: function(){
+
       console.log('map mounted');
+
       var map = React.findDOMNode(this.refs.map);
       var mapOptions = {
         center: {lat: 51.5087531, lng: -0.1281153},
@@ -22,6 +17,13 @@
        this.getDirections(this.map);
     },
 
+    componentWillUpdate: function () {
+
+if (flag) {
+      this.componentDidMount();
+}
+
+  },
     componentWillUnmount: function(){
       console.log("map UNmounted");
     },
