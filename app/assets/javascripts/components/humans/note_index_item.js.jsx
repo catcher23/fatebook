@@ -3,15 +3,14 @@ window.NoteIndexItem = React.createClass({
 
   showDetail: function () {
 
-    this.history.pushState(null, '/humans/' + this.props.human.id, {});
+    this.history.pushState(null, '/humans/' + this.props.human.id + '/note', {});
 
   },
 
   render: function () {
-
-    return(
+    return (
       <li onClick={this.showDetail} className="human-list-item">
-       Notes
+        Notes
       </li>
     );
   }

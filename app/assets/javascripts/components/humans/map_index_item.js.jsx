@@ -1,4 +1,4 @@
-window.HumanIndexItem = React.createClass({
+window.MapIndexItem = React.createClass({
   mixins: [ReactRouter.History],
 
   showDetail: function () {
@@ -8,10 +8,12 @@ window.HumanIndexItem = React.createClass({
   },
 
   render: function () {
-var userUrl = "/#/humans/" + this.props.human.id;
-    return(
+var humanUrl = '/#/humans/' + this.props.human.id;
+    return (
       <li onClick={this.showDetail} className="human-list-item">
-        <a href={userUrl}>{this.props.human.fname} {this.props.human.lname}  </a>
+            <a href={humanUrl}>
+              Map
+            </a>
       </li>
     );
   }

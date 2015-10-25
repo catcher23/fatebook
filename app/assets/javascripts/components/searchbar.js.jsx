@@ -47,8 +47,8 @@ window.SearchBar = React.createClass({
           onChange={this.handleChange} placeholder="Find Human" />
           <ul className="searchresults"><li onClick={this.clearBar}>
           {
-            filteredObjs.map(function(human){
-            return <HumanIndexItem key={human.id} human={human}/>;
+            filteredObjs.map(function(hm){
+            return <HumanIndexItem key={hm.id} hm={hm}/>;
             })
           }
         </li>

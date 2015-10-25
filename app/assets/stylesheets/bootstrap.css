@@ -3427,7 +3427,7 @@ border-bottom: 1px solid #ccc;
 }
 
 .profile-nav > li:first-child {
-border-top: 1px solid #ccc;
+
 }
 
 .profile-nav a {
@@ -3675,7 +3675,7 @@ margin: 0 0 0 10px;
 
 [class*="icon-"] {
 display: inline-block;
-background-image: url("http://findicons.com/files/icons/1331/matrix_rebooted/128/connect.png");
+background-image: url("");
 background-size: 25px 250px;
 background-repeat: no-repeat;
 vertical-align: bottom;

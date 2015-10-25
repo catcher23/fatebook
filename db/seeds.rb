@@ -25,6 +25,13 @@ require 'ffaker'
     lname = Faker::Name.last_name
     name = fname + lname
     address = "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state}"
+    def range (min, max)
+      rand * (max-min) + min
+    end
+    olat = range(37.7, 37.782);
+    olng = range(-122.5, -122.38);
+    dlat = range(37.7, 37.782);
+    dlng = range(-122.5, -122.38);
     Human.create!(
      {
       fname: fname,
@@ -34,7 +41,11 @@ require 'ffaker'
       address: address,
       phone: Faker::PhoneNumber.cell_phone,
       screenname: Faker::Internet.user_name(name),
-      image_url: "http://flathash.com/" + (name)
+      image_url: "http://flathash.com/" + (name),
+      lat: olat,
+      lng: olng,
+      dlat: dlat,
+      dlng: dlng
     }
     )
 

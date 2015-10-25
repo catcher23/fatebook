@@ -21,7 +21,7 @@ window.HumansIndex = React.createClass({
   render: function () {
     return(
       <ul>
-        
+
       </ul>
     );
   }

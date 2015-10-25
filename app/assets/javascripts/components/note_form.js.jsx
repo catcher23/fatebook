@@ -9,7 +9,7 @@
     },
 
     navigateToHumanShow: function () {
-      var humanUrl = "/humans/" + human.id;
+      var humanUrl = "/humans/" + human.id + '/note';
       this.history.pushState(null, humanUrl, {});
 
     },

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022011107) do
+ActiveRecord::Schema.define(version: 20151024233039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20151022011107) do
     t.string   "image_url"
     t.float    "lat"
     t.float    "lng"
+    t.float    "dlat"
+    t.float    "dlng"
   end
 
   create_table "notes", force: :cascade do |t|

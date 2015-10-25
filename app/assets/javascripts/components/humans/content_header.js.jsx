@@ -1,5 +1,5 @@
 var HumanContentHeader = React.createClass({
-  mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
+  mixins: [ReactRouter.History],
 
   navigateToHumanShow: function () {
     var humanUrl = "/humans/" + human.id;
@@ -34,7 +34,7 @@ trackStatus = '';
     return(
       <header className="content-header2">
 
-        <h1>{human.fname + ' ' + human.lname}</h1>
+        <h1>{human.fname+' '+human.lname}</h1>
         <button className="content-header-add-friend" onClick={this.handleTrackClick}>{trackStatus}</button>
       </header>
     );

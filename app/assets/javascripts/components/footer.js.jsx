@@ -1,5 +1,6 @@
 var Footer = React.createClass({
   render: function () {
+    
     return(
       <footer className="footer group">
         <small className="footer-copy">

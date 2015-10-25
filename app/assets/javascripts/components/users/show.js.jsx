@@ -35,6 +35,7 @@
 
 
     render: function() {
+
       if(this.state.user === undefined) { return <div></div>; }
       window.user = this.state.user;
 

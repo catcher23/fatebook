@@ -6,7 +6,7 @@
       return (
         <section className="content-sidebar">
 
-          <a href="#" className="profile-picture">
+          <a className="profile-picture">
             <strong className="online">Machine</strong>
             <img src={user.image_url} />
           </a>
