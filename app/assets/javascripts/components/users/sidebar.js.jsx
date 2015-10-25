@@ -23,9 +23,10 @@
           </ul>
           <ul className="profile-friends group">
             Tracked Humans:
+            <br></br>
             { user.trackees.map(function (trackee) {
               humanUrl = "/#/humans/" + trackee.id;
-              return <li><a href={humanUrl}  className="thumb">
+              return <li><a href={humanUrl}className="thumb">
                 <img src = {
                   trackee.image_url
                 }

@@ -3467,11 +3467,11 @@ box-shadow: 0 1px 0 0 #070;
 .profile-friends > li {
 float: left;
 width: 60px;
-margin: 0 0 10px 0;
+margin: 6px 6px 0px 0px;
 }
 
 .profile-friends > li:nth-child(3n-1) {
-margin: 0 10px 10px 10px;
+
 }
 
 .thumb {
