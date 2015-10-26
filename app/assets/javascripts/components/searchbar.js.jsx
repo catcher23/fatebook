@@ -51,7 +51,7 @@ var flag = false;
             filteredObjs.map(function(human){
 
               var humanUrl = "/#/humans/" + human.id;
-            return <li><a href={humanUrl}>{human.fname+' '+human.lname}</a></li>;
+            return <li className='result'><a href={humanUrl}>{human.fname+' '+human.lname}</a></li>;
             })
           }
         </li>

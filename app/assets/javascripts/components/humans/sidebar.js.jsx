@@ -33,10 +33,11 @@ var humanUrl = '';
 
           <ul className="profile-nav">
             <li>
-              <a><MapIndexItem human={human}/></a>
+              <MapIndexItem human={human}/>
             </li>
+            <br></br>
             <li>
-              <a><NoteIndexItem human={human}/></a>
+              <NoteIndexItem human={human}/>
             </li>
           </ul>
 

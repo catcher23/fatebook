@@ -2964,6 +2964,11 @@ height: 45px;
   opacity: 0.8
 }
 
+.searchresults .result:hover {
+  background-color: lightgreen;
+}
+
+
 .searchbar {
   position: relative;
 }
@@ -3207,8 +3212,8 @@ border-right: 1px solid #ccc;
 font-weight: 700;
 }
 
-.header-logo:hover {
-background: #000;
+.header-logo > a:hover {
+color: white;
 }
 
 .header-list {
@@ -3447,7 +3452,7 @@ font-weight: 700;
 }
 
 .profile-nav a:hover {
-background: #eee;
+background: lightgreen;
 }
 
 /* PHASE 7: Online */

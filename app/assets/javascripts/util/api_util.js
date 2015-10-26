@@ -90,6 +90,7 @@ $.post('/api/notes', { note: data }, function (humans) {
 createTrack: function(data) {
 $.post('/api/tracks', { track: data }, function (humans) {
   ApiActions.receiveAllHumans(humans);
+  trackStatus = 'Untrack';
 });
 },
 
@@ -102,6 +103,7 @@ destroyTrack: function(data) {
     method: "DELETE",
     success: function (humans) {
     ApiActions.receiveAllHumans(humans);
+    trackStatus = 'Track';
     }
   });
 },

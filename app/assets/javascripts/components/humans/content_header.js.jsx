@@ -13,8 +13,10 @@ var HumanContentHeader = React.createClass({
     );
 
     if (trackStatus === "Track") {
+      trackStatus = "Tracking";
       ApiUtil.createTrack(track);
     } else {
+      trackStatus = "Untracking";
       ApiUtil.destroyTrack(track);
     }
       this.navigateToHumanShow();
@@ -31,11 +33,18 @@ var HumanContentHeader = React.createClass({
       trackStatus = 'Untrack';
     }
 
+    disabledStatus = '';
+    if (trackStatus == 'Tracking' || trackStatus == 'Untracking') {
+      disabledStatus = true;
+    } else {
+      disabledStatus = false;
+    }
+
     return(
       <header className="content-header2">
 
         <h1>{human.fname+' '+human.lname}</h1>
-        <button className="content-header-add-friend" onClick={this.handleTrackClick}>{trackStatus}</button>
+        <button type='button' disabled = {disabledStatus} className="content-header-add-friend" onClick={this.handleTrackClick}>{trackStatus}</button>
       </header>
     );
   }
