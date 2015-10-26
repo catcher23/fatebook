@@ -12,8 +12,8 @@ class UsersController < ApplicationController
       login(@user)
       redirect_to "/#/users/#{current_user.id}"
     else
-      flash.now[:errors] = @user.errors.full_messages
-      render :new
+      flash[:errors] = @user.errors.full_messages
+      redirect_to new_session_url
     end
   end
 

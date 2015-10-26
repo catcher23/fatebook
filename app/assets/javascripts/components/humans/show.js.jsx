@@ -53,7 +53,7 @@
              <HumanContentHeader />
              <HumanSideBar />
            <section className="content-main">
-             <Map />
+             <HumanMap />
            </section>
            </main>
            <Footer />

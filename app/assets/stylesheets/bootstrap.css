@@ -2942,16 +2942,14 @@ height: 45px;
    }
 
 
-
-
-
 .searchresults {
   position: absolute;
-  top: 34px;
-
-width:206px;
+  top: 30px;
+  border-radius: 5px;
+  width:210px;
   color: lightgreen;
   background-color: black;
+  opacity: 0.8
 }
 
 .searchbar {
@@ -3482,7 +3480,11 @@ height: 58px;
 border: 1px solid green;
 border-radius: 5px;
 }
-
+.thumb:hover{
+border-radius: 0px;
+border: 1px solid lightgreen;
+border-radius: 5px;
+}
 .thumb:after {
 content: attr(title);
 display: none;
@@ -3512,13 +3514,16 @@ border-left: 5px solid transparent;
 
 .thumb:hover:before,
 .thumb:hover:after {
-display: block;
+
 }
 
 .thumb > img {
 border-radius: 5px;
 }
 
+.thumb > img:hover {
+
+}
 /* PHASE 9: Forms */
 
 .form2 {

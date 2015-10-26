@@ -61,5 +61,7 @@
           break;
       }
     })
+
   });
+  HumanStore._maxListeners = 100;
  })();

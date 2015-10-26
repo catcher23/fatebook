@@ -1,7 +1,7 @@
 (function(root){
 
 
-  root.Map = React.createClass({
+  root.HumanMap = React.createClass({
 
     componentDidMount: function(){
 
@@ -19,9 +19,9 @@
 
     componentWillUpdate: function () {
 
-if (flag) {
+      if (flag) {
       this.componentDidMount();
-}
+    }
 
   },
     componentWillUnmount: function(){
@@ -41,13 +41,32 @@ if (flag) {
         geodesic : true,
         strokeColor: 'green',
         strokeOpacity: 2.0,
-        strokeWeight: 5,
+        strokeWeight: 0,
         editable: false,
         map:map
     });
 
 var that = this;
-    marker=new google.maps.Marker({map:map, icon:"http://maps.google.com/mapfiles/ms/micons/green.png"});
+
+var humanImg = {
+
+  url: human.image_url,
+
+ scaledSize: new google.maps.Size(38, 38)
+};
+var humanName = human.fname+' '+human.lname;
+
+var infowindow = new google.maps.InfoWindow({
+    content: humanName
+  });
+  marker=new google.maps.Marker({
+      map:map,
+      icon:humanImg,
+
+    });
+    marker.addListener('mouseover', function() {
+        infowindow.open(map, marker);
+      });
 
   for (i = 0; i < pathCoords.length; i++) {
       setTimeout(function(coords) {
