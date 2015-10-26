@@ -2152,9 +2152,11 @@ footer {
 .alert-message.danger,
 .btn.error,
 .alert-message.error {
-  padding-top: 48px;
+  padding-top: 46px;
   position:fixed;
     width:100%;
+    text-align: center;
+    color: lime green;
   background-color: #ffebe8;
   background-repeat: repeat-x;
   background-image: -khtml-gradient(linear, left top, left bottom, from(#ffebe8), to(#ffebe8));
@@ -2169,9 +2171,11 @@ footer {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
 .btn.success, .alert-message.success {
-  padding-top: 48px;
+  padding-top: 46px;
   position:fixed;
   width:100%;
+  text-align: center;
+  color:limegreen;
   background-color: #eceff6;
   background-repeat: repeat-x;
   background-image: -khtml-gradient(linear, left top, left bottom, from(#eceff6), to(#eceff6));
@@ -2242,18 +2246,18 @@ footer {
   outline: 1px dotted #666;
 }
 .btn.primary {
-  color: #ffffff;
-  background-color: #3b5998;
+  color: white;
+  background-color: green;
   background-repeat: repeat-x;
   background-image: -khtml-gradient(linear, left top, left bottom, from(#627aad), to(#3b5998));
-  background-image: -moz-linear-gradient(top, #627aad, #3b5998);
-  background-image: -ms-linear-gradient(top, #627aad, #3b5998);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #627aad), color-stop(100%, #3b5998));
-  background-image: -webkit-linear-gradient(top, #627aad, #3b5998);
-  background-image: -o-linear-gradient(top, #627aad, #3b5998);
-  background-image: linear-gradient(top, #627aad, #3b5998);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#627aad', endColorstr='#3b5998', GradientType=0);
-  border-color: #3b5998 #3b5998 #263961;
+  background-image: -moz-linear-gradient(top, green, forestgreen);
+  background-image: -ms-linear-gradient(top, green, forestgreen);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, green), color-stop(100%, forestgreen));
+  background-image: -webkit-linear-gradient(top, green, forestgreen);
+  background-image: -o-linear-gradient(top, green, forestgreen);
+  background-image: linear-gradient(top, green, forestgreen);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='green', endColorstr='forestgreen', GradientType=0);
+  border-color: forestgreen forestgreen #263961;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
 .btn.success {
@@ -3400,7 +3404,7 @@ color: #eee;
 background: green;
 font-weight: bold;
 padding: 10px 20px;
-border: 1px solid #000;
+border: 1px solid lightgreen;
 border-radius: 5px;
 }
 
@@ -3482,7 +3486,7 @@ box-shadow: 0 1px 0 0 #070;
 .profile-friends > li {
 float: left;
 width: 60px;
-margin: 6px 6px 0px 0px;
+margin: 5px 5px 0px 0px;
 }
 
 .profile-friends > li:nth-child(3n-1) {

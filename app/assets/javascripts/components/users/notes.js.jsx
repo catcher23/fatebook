@@ -5,7 +5,7 @@
 
     render: function () {
 
-      var notes = user.notes.reverse() || [];
+      var notes = user.notes|| [];
       return (
         <div>
 
