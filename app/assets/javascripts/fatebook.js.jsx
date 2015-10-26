@@ -22,6 +22,7 @@ $(function () {
     var routes = (
         <Route path="/" component={App}>
             <Route path="/users/:userId" component={UserShow}/>
+            <Route path="/users/:userId/note" component={UserShow2} />
             <Route path="/humans/:humanId" component={HumanShow} />
             <Route path="/humans/:humanId/note" component={HumanShow2} />
             <Route path="/track" components={HumanContentHeader} />

@@ -52,11 +52,6 @@ fetchSingleUser: function (id) {
     });
   },
 
-  createHumanNote: function(data) {
-  $.post('api/notes', { note: data }, function (humans) {
-    ApiActions.receiveAllHumans(humans);
-  });
-},
 
 fetchAllUsers: function () {
   $.ajax({
@@ -81,12 +76,17 @@ createUser: function (user, callback) {
   });
 },
 
-createNote: function(data) {
-$.post('/api/notes', { note: data }, function (humans) {
-  ApiActions.receiveAllHumans(humans);
-});
+  createNote: function(data) {
+  $.post('/api/notes', { note: data }, function (humans) {
+    ApiActions.receiveAllHumans(humans);
+  });
 },
 
+  createUserNote: function(data) {
+  $.post('api/notes', { note: data }, function (users) {
+    ApiActions.receiveAllUsers(users);
+  });
+},
 createTrack: function(data) {
 $.post('/api/tracks', { track: data }, function (humans) {
   ApiActions.receiveAllHumans(humans);

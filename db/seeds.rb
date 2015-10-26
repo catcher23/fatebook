@@ -1,6 +1,35 @@
 
 ActiveRecord::Base.transaction do
 require 'ffaker'
+
+User.create!(
+ {
+  username: 'danny',
+  password: 'qwerty',
+  image_url: "http://robohash.com/danny",
+}
+)
+
+usernames = []
+50.times do
+
+  while true
+    username = Faker::Lorem.word.capitalize
+    if !usernames.include?(username)
+      usernames << username
+      break
+    end
+  end
+  User.create!(
+   {
+    username: username,
+    password: 'password',
+    image_url: "http://robohash.com/" + (username),
+  }
+  )
+
+end
+
   100.times do
     flag = true
     while flag == true
@@ -50,6 +79,14 @@ require 'ffaker'
     )
 
   end
+4.times do
+  User.all.each do |user|
+    human = Human.all.sample
+    if !user.trackees.include?(human)
+      user.trackees <<  human
+    end
+  end
+end
 
   def range (max,min)
       rand * (max-min) + min

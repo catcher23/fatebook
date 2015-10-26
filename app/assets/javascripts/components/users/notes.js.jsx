@@ -1,15 +1,16 @@
 (function(root) {
   'use strict';
 
-  root.Notes = React.createClass({
+  root.UserNotes = React.createClass({
 
     render: function () {
-      var notes = human.notes.reverse() || [];
+
+      var notes = user.notes.reverse() || [];
       return (
         <div>
 
         {notes.map(function (note) {
-          return <Note {...note} />;
+        return <UserNote {...note} />;
         })}
       </div>
       );

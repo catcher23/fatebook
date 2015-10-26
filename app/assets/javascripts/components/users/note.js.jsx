@@ -1,7 +1,7 @@
 (function(root) {
   'use strict';
 
-  root.Note = React.createClass({
+  root.UserNote = React.createClass({
 
     render: function () {
       function timeSince(date) {
@@ -31,27 +31,27 @@
           }
           return Math.floor(seconds) + " seconds";
       }
-      var user_img_url = this.props.user_image_url;
-      var userUrl = "/#/users/" + this.props.user_id;
+      var human_img_url = this.props.human_image_url;
+      var humanUrl = "/#/humans/" + this.props.human_id;
 
-  
+
       return (
 
               <div classNameName="posts">
                 <article className="post group">
-                  <a href={userUrl} className="post-thumb thumb" title={this.props.username}>
-                    <img src={user_img_url}/>
+                  <a href={humanUrl} className="post-thumb thumb" title={this.props.username}>
+                    <img src={human_img_url}/>
                   </a>
                   <div className="post-body">
-                    <h2><a href={userUrl}>{this.props.title}</a></h2>
+                    <h2><a href={humanUrl}>{this.props.title}</a></h2>
 
                     <p>
                     {this.props.body}
                     </p>
                     <footer className="post-footer group">
                       <ul className="post-footer-info group">
-                        <li><a href={userUrl}>{this.props.username}</a></li>
-                        <li><time datetime="2015-01-05">{timeSince(Date.parse(this.props.created_at))} ago</time></li>
+                        <li><a href={humanUrl}>Left for {this.props.fname} {this.props.lname} {timeSince(Date.parse(this.props.created_at))} ago</a></li>
+
 
                       </ul>
                       <ul className="post-footer-tools group">

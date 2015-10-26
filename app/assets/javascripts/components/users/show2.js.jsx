@@ -1,7 +1,7 @@
 (function(root) {
   'use strict';
 
-  root.UserShow= React.createClass({
+  root.UserShow2= React.createClass({
     mixins: [ReactRouter.History],
 
     getStateFromStore: function () {
@@ -54,7 +54,7 @@
               <UserContentHeader />
               <UserSideBar  />
             <section className="content-main">
-              <UserMap />
+              <UserNotes/>
             </section>
             </main>
             <Footer />

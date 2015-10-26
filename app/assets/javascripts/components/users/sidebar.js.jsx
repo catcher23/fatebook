@@ -16,7 +16,13 @@
             </p>
           </div>
           <ul className="profile-nav">
-          
+            <li>
+              <UserMapIndexItem user={user}/>
+            </li>
+            <br></br>
+            <li>
+              <UserNoteIndexItem user={user}/>
+            </li>
           </ul>
           <ul className="profile-friends group">
             Tracked Humans:

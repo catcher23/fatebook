@@ -4,6 +4,7 @@ class Api::NotesController < ApplicationController
     humans = Human.all
     users = User.all
     if note.save
+      render json: users, include: :notes
       render json: humans, include: :notes
     else
       render json: note, status: :unprocessable_entity
@@ -13,6 +14,6 @@ class Api::NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:title, :body, :human_id, :user_id, :username, :user_image_url)
+    params.require(:note).permit(:human_image_url, :fname, :lname, :title, :body, :human_id, :user_id, :username, :user_image_url, :created_at)
   end
 end

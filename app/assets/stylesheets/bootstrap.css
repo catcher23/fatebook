@@ -3499,7 +3499,7 @@ border-radius: 5px;
 }
 .thumb:hover{
 border-radius: 0px;
-border: 2px solid lightgreen;
+border: 1px solid lightgreen;
 border-radius: 5px;
 }
 .thumb:after {
