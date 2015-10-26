@@ -16,10 +16,7 @@
             </p>
           </div>
           <ul className="profile-nav">
-            <li>Wall</li>
-            <li>About</li>
-            <li>Friends</li>
-            <li>Photos</li>
+          
           </ul>
           <ul className="profile-friends group">
             Tracked Humans:

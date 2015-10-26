@@ -8,21 +8,21 @@ var HumanContentHeader = React.createClass({
   },
   handleTrackClick: function () {
     event.preventDefault();
-flag = false;
+    flag = false;
     var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id }
     );
 
     if (trackStatus === "Track") {
-    ApiUtil.createTrack(track);
-  } else {
-    ApiUtil.destroyTrack(track);
-  }
-    this.navigateToHumanShow();
-  },
+      ApiUtil.createTrack(track);
+    } else {
+      ApiUtil.destroyTrack(track);
+    }
+      this.navigateToHumanShow();
+    },
 
 
   render: function () {
-trackStatus = '';
+    trackStatus = '';
     if (human.tracks.length === 0) {
       trackStatus = 'Track';
     } else if (human.tracks[0].tracker_id !== CURRENT_USER_ID) {

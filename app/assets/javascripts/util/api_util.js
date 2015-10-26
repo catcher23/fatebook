@@ -93,11 +93,6 @@ $.post('/api/tracks', { track: data }, function (humans) {
 });
 },
 
-destroyTrasck: function(data) {
-$.destroy('/api/track', { track: data }, function (humans) {
-  ApiActions.receiveAllHumans(humans);
-});
-},
 
 destroyTrack: function(data) {
   $.ajax({

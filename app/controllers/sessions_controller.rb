@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
-  
+
       @user = User.find_by_credentials(
       params[:user][:username],
       params[:user][:password]
@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
       redirect_to "/#/users/#{current_user.id}"
     else
       flash.now[:errors] = ["Incorrect Credentials"]
+
       render :new
     end
   end
