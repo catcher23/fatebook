@@ -5,7 +5,7 @@
     mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
     getInitialState: function () {
-       
+
       return { title: "", body: ""  };
     },
 
@@ -57,7 +57,7 @@
             </div>
             <div type="submit" className="submit">
               <button>Leave Note</button>
-              <span className="button-alternative" onClick={this.handleSubmit}>or <strong>Cancel</strong></span>
+              <span className="button-alternative" onClick={this.handleSubmit}></span>
             </div>
           </fieldset>
         </form>

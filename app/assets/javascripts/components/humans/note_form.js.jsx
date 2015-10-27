@@ -47,7 +47,7 @@
             </div>
             <div type="submit" className="submit">
               <button>Leave Note</button>
-              <span className="button-alternative" onClick={this.handleCancel}>or <strong>Cancel</strong></span>
+              <span className="button-alternative" onClick={this.handleCancel}></span>
             </div>
           </fieldset>
         </form>
