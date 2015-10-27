@@ -5,11 +5,13 @@
     mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
 
     getInitialState: function () {
+       
       return { title: "", body: ""  };
     },
 
     navigateToUserShow: function () {
       var userUrl = "/users/" + user.id + '/note';
+
       this.history.pushState(null, userUrl, {});
 
     },
@@ -24,7 +26,15 @@
       var note = $.extend({}, this.state, {  user_id: CURRENT_USER_ID, username: CURRENT_USER_USERNAME, user_image_url: CURRENT_USER_IMG }
       );
       ApiUtil.createUserNote(note);
+
       this.navigateToUserShow();
+    },
+
+    clearBar: function(e){
+     this.setState({
+       title: '',
+       body: ''
+     });
     },
 
     render: function () {
@@ -47,7 +57,7 @@
             </div>
             <div type="submit" className="submit">
               <button>Leave Note</button>
-              <span className="button-alternative" onClick={this.handleCancel}>or <strong>Cancel</strong></span>
+              <span className="button-alternative" onClick={this.handleSubmit}>or <strong>Cancel</strong></span>
             </div>
           </fieldset>
         </form>
