@@ -25,13 +25,21 @@ var HumanContentHeader = React.createClass({
 
   render: function () {
     trackStatus = '';
+
+
     if (human.tracks.length === 0) {
       trackStatus = 'Track';
-    } else if (human.tracks[0].tracker_id !== CURRENT_USER_ID) {
-      trackStatus = 'Track';
     } else {
-      trackStatus = 'Untrack';
+      for (var z = 0; z < human.tracks.length; z++) {
+        if (human.tracks[z].tracker_id !== CURRENT_USER_ID) {
+          trackStatus = 'Track';
+        }
+        else {
+          trackStatus = 'Untrack';
+        }
+      }
     }
+
 
     disabledStatus = '';
     if (trackStatus == 'Tracking' || trackStatus == 'Untracking') {

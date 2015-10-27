@@ -27,15 +27,15 @@
 <table>
         <tbody>
           <tr>
-            <td><img src="https://scontent.fsjc1-3.fna.fbcdn.net/hphotos-xaf1/t39.2365-6/851585_216271631855613_2121533625_n.png"/></td>
+            <td><img src="http://res.cloudinary.com/danlau168/image/upload/v1445906007/imageedit_2_7342259515_uq5sx3.png"/></td>
             <td><b>Add humans</b> and track them</td>
           </tr>
           <tr>
-            <td><img src="https://scontent.fsjc1-3.fna.fbcdn.net/hphotos-xap1/t39.2365-6/851565_602269956474188_918638970_n.png"/></td>
+            <td><img src="http://res.cloudinary.com/danlau168/image/upload/v1445906007/imageedit_4_2205994676_ssuada.png"/></td>
             <td><b>Post notes</b> on human pages</td>
           </tr>
           <tr>
-            <td><img src="https://scontent.fsjc1-3.fna.fbcdn.net/hphotos-xap1/t39.2365-6/851558_160351450817973_1678868765_n.png"/></td>
+            <td><img src="http://res.cloudinary.com/danlau168/image/upload/v1445906007/imageedit_8_5418815504_ftkalr.png"/></td>
             <td><b>Track humans</b> in the world</td>
           </tr>
         </tbody>
@@ -51,19 +51,26 @@
            <form action = "<%=users_url%>" method = "post">
          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
            Username
-
          <input type="string" name="user[username]" id="Username" value="">
          <br><br>
          Password
          <input type="password" name="user[password]" id="Password" value="">
-      <br><br>
+         <br><br>
          <input type="submit" class="btn primary  medium"  value="Sign Up">
          </form>
+         <form className='guest' action = "<%=session_url%>" method = "post">
+       <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+       <input type="hidden" name="user[username]" id="Username" value="Guest Robot">
+       <input type="hidden" name="user[password]" id="Password" value="password">
+       <input type="submit" class="btn primary medium"  value="Guest Login">
+       </form>
+
          </div>
+
        </div>
      </div>
 
-     <footer><br>
+     <footer class='copyright'><br>
        <p>&copy; Danny Lau 2015</p>
      </footer>
    </div> <!-- /container -->

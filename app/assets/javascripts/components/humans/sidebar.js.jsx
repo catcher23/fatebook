@@ -16,15 +16,26 @@ var humanUrl = '';
           </a>
 
           <div className="profile-info">
-            <h2>{human.fname + ' ' + human.lname}</h2>
-            <br></br>
+            
               <ul>
               <li>
-              <b>Date of Birth</b>: {human.birthdate}
+              <b>Date of Birth</b>: <br></br>{human.birthdate}
               </li>
               <br></br>
               <li>
-              <b>Address</b>: {human.address}
+              <b>Address</b>: <br></br>{human.address}
+              </li>
+                <br></br>
+              <li>
+              <b>Email</b>: <br></br>{human.email}
+              </li>
+                <br></br>
+              <li>
+              <b>Phone</b>: <br></br>{human.phone}
+              </li>
+                <br></br>
+              <li>
+              <b>Screen Name</b>: <br></br>{human.screenname}
               </li>
               </ul>
 
@@ -51,7 +62,7 @@ var humanUrl = '';
                 <img src = {
                   tracker.image_url
                 }
-            />
+            /><span>{tracker.username}</span>
               </a>
             </li>;
             })}

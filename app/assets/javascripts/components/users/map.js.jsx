@@ -24,7 +24,7 @@
       var map = React.findDOMNode(this.refs.map);
       var mapOptions = {
         center: {lat: 37.750516, lng: -122.440224},
-        zoom: 12,
+        zoom: 11,
         mapTypeId: google.maps.MapTypeId.TERRAIN
       };
       this.map = new google.maps.Map(map, mapOptions);
@@ -71,10 +71,13 @@
 
         marker.addListener('mouseover', function() {
             infowindow.open(map, marker);
+            $(".gm-style-iw:contains(" + humanName + ")").css("left", function() {
+              return ($(this).parent().width() - $(this).width())/1.2;
+              }).next("div").remove();
           });
 
           marker.addListener('mouseout', function() {
-              infowindow.open(map, marker);
+              infowindow.close(map, marker);
             });
 
       for (i = 0; i < pathCoords.length; i++) {

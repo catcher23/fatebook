@@ -34,7 +34,9 @@
                   trackee.image_url
                 }
             />
+          <span>{trackee.fname+ ' ' + trackee.lname}</span>
               </a>
+
             </li>;
             })}
           </ul>

@@ -66,6 +66,13 @@ var infowindow = new google.maps.InfoWindow({
     });
     marker.addListener('mouseover', function() {
         infowindow.open(map, marker);
+        $(".gm-style-iw:contains(" + humanName + ")").css("left", function() {
+          return ($(this).parent().width() - $(this).width())/1.2;
+          }).next("div").remove();
+      });
+
+      marker.addListener('mouseout', function() {
+          infowindow.close(map, marker);
       });
 
   for (i = 0; i < pathCoords.length; i++) {

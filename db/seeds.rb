@@ -10,6 +10,14 @@ User.create!(
 }
 )
 
+User.create!(
+ {
+  username: 'Guest Robot',
+  password: 'password',
+  image_url: "http://robohash.com/Guest Robot",
+}
+)
+
 usernames = []
 50.times do
 
@@ -20,6 +28,11 @@ usernames = []
       break
     end
   end
+
+if username.length > 14
+  username = username.slice(0,14)
+end
+
   User.create!(
    {
     username: username,
@@ -52,6 +65,12 @@ end
       end
     end
     lname = Faker::Name.last_name
+    if fname.length > 6
+      fname = fname.slice(0,6)
+    end
+    if lname.length > 7
+      lname = lname.slice(0,7)
+    end
     name = fname + lname
     address = "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state}"
     def range (min, max)
@@ -86,6 +105,28 @@ end
       user.trackees <<  human
     end
   end
+end
+200.times do
+human = Human.all.sample
+user = User.all.sample
+words = [Faker::Hacker.adjective, Faker::Hacker.noun, Faker::Hacker.verb, Faker::Hacker.ingverb]
+words2 = [Faker::Hacker.adjective, Faker::Hacker.noun, Faker::Hacker.verb, Faker::Hacker.ingverb]
+word = words.sample.capitalize
+word2 = words2.sample
+
+Note.create!(
+ {
+  title: "#{word} #{word2}",
+  body: Faker::Hacker.say_something_smart.capitalize,
+  human_id: human.id,
+  user_id: user.id,
+  user_image_url: user.image_url,
+  human_image_url: human.image_url,
+  fname: human.fname,
+  lname: human.lname,
+  username: user.username
+}
+)
 end
 
   def range (max,min)
