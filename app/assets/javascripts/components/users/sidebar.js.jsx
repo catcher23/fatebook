@@ -12,8 +12,16 @@
           </a>
           <div className="profile-info">
             <h2>{user.username}</h2>
-            <p>
-            </p>
+              <ul>
+                <br></br>
+              <li>
+              <b>Title</b>: <br></br>{user.title}
+              </li>
+              <br></br>
+              <li>
+              <b>Subsector</b>: <br></br>{user.division}
+              </li>
+              </ul>
           </div>
           <ul className="profile-nav">
             <li>

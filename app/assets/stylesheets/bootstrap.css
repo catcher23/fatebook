@@ -2905,12 +2905,12 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
      margin: -20px -20px 20px;
    }
 
-   /* Styles you shouldn't keep as they are for displaying this base example only */
+
    .content .span10,
    .content .span4 {
      min-height: 500px;
    }
-   /* Give a quick and non-cross-browser friendly divider */
+
    .content .span4 {
      margin-left: 0;
      padding-left: 56px;
@@ -3159,10 +3159,7 @@ input[type="text"],
 input[type="submit"],
 textarea,
 button {
-/*
-Get rid of native styling. Read more here:
-http://css-tricks.com/almanac/properties/a/appearance/
-*/
+
 -webkit-appearance: none;
 -moz-appearance: none;
 }
@@ -3180,7 +3177,7 @@ display: block;
 clear: both;
 }
 
-/* PHASE 1: Header */
+/* Header */
 
 body{
 font-family: "Roboto", sans-serif;
@@ -3236,7 +3233,7 @@ border-left: 1px solid #ccc;
 background: lightgreen;
 }
 
-/* PHASE 2: Notifications */
+/* Notifications */
 
 .badge {
 display: inline;
@@ -3287,7 +3284,7 @@ color: #000;
 background: #eee;
 }
 
-/* PHASE 3: Layout */
+/* Layout */
 
 .content {
 position: relative;
@@ -3324,7 +3321,7 @@ min-height: 200px;
 padding: 20px;
 }
 
-/* PHASE 4: Footer */
+/* Footer */
 
 .footer {
 width: 900px;
@@ -3364,7 +3361,7 @@ padding: 0 0 0 20px;
 color: #000;
 }
 
-/* PHASE 5: Cats */
+/* Content Header */
 
 .content-header {
 position: relative;
@@ -3421,7 +3418,7 @@ color: green;
 background: #7FFF00;
 }
 
-/* PHASE 6: Sidebar */
+/* Sidebar */
 
 .profile-picture {
 display: block;
@@ -3476,7 +3473,7 @@ color: green
 background: lightgreen;
 }
 
-/* PHASE 7: Online */
+/* Online */
 
 .profile-picture {
 overflow: hidden;
@@ -3498,7 +3495,7 @@ transform: rotate(-45deg) translateX(-25%);
 box-shadow: 0 1px 0 0 #070;
 }
 
-/* PHASE 8: Thumbs */
+/* Thumbs */
 
 .profile-friends > li {
 float: left;
@@ -3580,7 +3577,7 @@ li  .info:hover{z-index:25; background-color:#ff0}
 
 li .info span{display: none}
 
-li .info:hover span{ /*the span will display just on :hover state*/
+li .info:hover span{ /*span will display on :hover */
     display:block;
     position:absolute;
     top:2em; left:2em; width:15em;
@@ -3600,7 +3597,7 @@ border-radius: 5px;
 .thumb > img:hover {
 
 }
-/* PHASE 9: Forms */
+/* Forms */
 
 .form2 {
 margin: 0 0 20px 0;
@@ -3688,7 +3685,7 @@ cursor: pointer;
 color: #f00;
 }
 
-/* PHASE 10: Posts */
+/* Posts */
 
 .posts {
 margin: 20px 0 0 0;
@@ -3752,7 +3749,7 @@ float: left;
 margin: 0 0 0 10px;
 }
 
-/* PHASE 11: Icons */
+/* Icons */
 
 [class*="icon-"] {
 display: inline-block;
@@ -3811,7 +3808,7 @@ background-position: 0 -150px;
 background-position: 0 -200px;
 }
 
-/* PHASE 12: Modal */
+/* Modal */
 
 .modal {
 display: none;

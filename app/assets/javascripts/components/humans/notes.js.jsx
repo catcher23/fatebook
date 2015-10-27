@@ -7,7 +7,6 @@
       var notes = human.notes || [];
       return (
         <div>
-
         {notes.map(function (note) {
           return <Note {...note} />;
         })}

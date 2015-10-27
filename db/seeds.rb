@@ -7,6 +7,8 @@ User.create!(
   username: 'danny',
   password: 'qwerty',
   image_url: "http://robohash.com/danny",
+  title: 'Admin',
+  division: 'Governance',
 }
 )
 
@@ -15,6 +17,8 @@ User.create!(
   username: 'Guest Robot',
   password: 'password',
   image_url: "http://robohash.com/Guest Robot",
+  title: 'Esteemed Guest',
+  division: 'Demonstration',
 }
 )
 
@@ -38,6 +42,8 @@ end
     username: username,
     password: 'password',
     image_url: "http://robohash.com/" + (username),
+    title: Faker::Name.title,
+    division: Faker::Company.buzzword.capitalize + ' Group',
   }
   )
 
@@ -93,7 +99,7 @@ end
       lat: olat,
       lng: olng,
       dlat: dlat,
-      dlng: dlng
+      dlng: dlng,
     }
     )
 
@@ -106,7 +112,7 @@ end
     end
   end
 end
-200.times do
+150.times do
 human = Human.all.sample
 user = User.all.sample
 words = [Faker::Hacker.adjective, Faker::Hacker.noun, Faker::Hacker.verb, Faker::Hacker.ingverb]
@@ -124,11 +130,33 @@ Note.create!(
   human_image_url: human.image_url,
   fname: human.fname,
   lname: human.lname,
-  username: user.username
+  username: user.username,
+  created_at: Faker::Time.between(DateTime.now - 50, DateTime.now),
 }
 )
+
+
 end
 
+  50.times do
+  human = Human.all.sample
+  user = User.all.sample
+  word = Faker::Company.buzzword
+  word2 = Faker::Company.buzzword
+    Note.create!(
+     {
+      title: "#{word} #{word2}",
+      body: Faker::Company.bs,
+      human_id: human.id,
+      user_id: user.id,
+      user_image_url: user.image_url,
+      human_image_url: human.image_url,
+      fname: human.fname,
+      lname: human.lname,
+      username: user.username
+    }
+    )
+  end
   def range (max,min)
       rand * (max-min) + min
   end

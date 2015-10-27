@@ -5,7 +5,7 @@
 
     render: function () {
 
-      var notes = user.notes|| [];
+      var notes = user.notes || [];
       return (
         <div>
 

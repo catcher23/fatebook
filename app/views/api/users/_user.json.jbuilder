@@ -1,6 +1,6 @@
 json.extract!(
   user,
-  :id, :username, :trackees, :image_url
+  :id, :username, :trackees, :image_url, :title, :division
 )
 
 json.notes do
