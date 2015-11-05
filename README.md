@@ -1,8 +1,8 @@
 # Fatebook
 
-[Heroku link][heroku]
+[Live][live]
 
-[heroku]: https://vast-brushlands-6199.herokuapp.com/
+[live]: www.fatebook.xyz
 
 ## Minimum Viable Product
 
@@ -13,7 +13,7 @@ and React.js. Fatebook allows users to:
 
 - [ ] Create an account
 - [ ] Log in / Log out
-  [ ] Enable a machine to look on their note and comment history
+- [ ] Enable a machine to look on their note and comment history
 - [ ] Create and edit a person profile
 - [ ] Add and delete people's connections
 - [ ] Post notes/issues on people's walls
