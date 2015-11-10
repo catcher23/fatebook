@@ -3328,8 +3328,8 @@ padding: 20px;
 .footer {
 width: 900px;
 margin: 0 auto 50px auto;
-background: #fff;
-color: #aaa;
+background: green;
+color: white;
 font-size: 14px;
 border-left: 1px solid #ccc;
 border-right: 1px solid #ccc;

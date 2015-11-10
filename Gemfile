@@ -18,6 +18,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
 gem 'faker'
 gem 'ffaker'
+gem 'dynopoker'
 
 group :development, :test do
   gem 'byebug'
