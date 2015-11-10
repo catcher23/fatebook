@@ -22,11 +22,8 @@ var HumanContentHeader = React.createClass({
       this.navigateToHumanShow();
     },
 
-
   render: function () {
     trackStatus = '';
-
-
     if (human.tracks.length === 0) {
       trackStatus = 'Track';
     } else {

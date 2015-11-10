@@ -2113,9 +2113,11 @@ a.menu:after, .dropdown-toggle:after {
   line-height: 21px;
 }
 footer {
+  color: white;
   margin-top: 13px;
   padding-top: 13px;
   border-top: 1px solid #eee;
+  background:green;
 }
 .page-header {
   margin-bottom: 13px;
