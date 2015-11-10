@@ -6,7 +6,7 @@ User.create!(
  {
   username: 'danny',
   password: 'qwerty',
-  image_url: "http://robohash.com/danny?bgset=any",
+  image_url: "http://robohash.org/danny?bgset=any",
   title: 'Admin',
   division: 'Governance',
 }
@@ -16,7 +16,7 @@ User.create!(
  {
   username: 'Guest Robot',
   password: 'password',
-  image_url: "http://robohash.com/Guest Robot?bgset=any",
+  image_url: "http://robohash.org/Guest Robot?bgset=any",
   title: 'Esteemed Guest',
   division: 'Demonstration',
 }
@@ -41,7 +41,7 @@ end
    {
     username: username,
     password: 'password',
-    image_url: "http://robohash.com/" + (username)+ '?bgset=any',
+    image_url: "http://robohash.org/" + (username)+ '?bgset=any',
     title: Faker::Name.title,
     division: Faker::Company.buzzword.capitalize + ' Group',
   }
@@ -95,7 +95,7 @@ end
       address: address,
       phone: Faker::PhoneNumber.cell_phone,
       screenname: Faker::Internet.user_name(name),
-      image_url: "http://flathash.com/" + (name) +'?bgset=any',
+      image_url: "http://flathash.org/" + (name) +'?bgset=any',
       lat: olat,
       lng: olng,
       dlat: dlat,
