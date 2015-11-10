@@ -1,4 +1,4 @@
-\# PostgreSQL. Versions 8.2 and up are supported.
+# PostgreSQL. Versions 8.2 and up are supported.
 #
 # Install the pg driver:
 #   gem install pg
@@ -24,8 +24,6 @@ default: &default
 development:
   <<: *default
   database: Facer_development
-
-
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
