@@ -3331,9 +3331,10 @@ margin: 0 auto 50px auto;
 background: #006400;
 color: white;
 font-size: 14px;
-border-left: 1px solid #ccc;
-border-right: 1px solid #ccc;
-border-bottom: 1px solid #ccc;
+border-left: 1px solid white;
+border-right: 1px solid white;
+border-bottom: 1px solid white;
+border-top: 1px solid white;
 border-bottom-left-radius: 5px;
 border-bottom-right-radius: 5px;
 }
