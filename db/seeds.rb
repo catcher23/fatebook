@@ -95,7 +95,7 @@ end
       address: address,
       phone: Faker::PhoneNumber.cell_phone,
       screenname: Faker::Internet.user_name(name),
-      image_url: "http://flathash.org/" + (name) +'?bgset=any',
+      image_url: "http://flathash.com/" + (name) +'?bgset=any',
       lat: olat,
       lng: olng,
       dlat: dlat,
