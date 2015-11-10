@@ -10,7 +10,7 @@ window.HumanIndexItem = React.createClass({
     return(
       <li onClick={this.showDetail} className="human-list-item">
         <a href={userUrl}>{this.props.human.fname} {this.props.human.lname}  </a>
-      </li>mo
+      </li>
     );
   }
 });
