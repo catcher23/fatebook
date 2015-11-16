@@ -43,7 +43,6 @@
             { user.trackees.map(function (trackee) {
               humanUrl = "/#/humans/" + trackee.id;
               return <li><a href={humanUrl} className="thumb">
-                <div className="friend-thumb-fader"></div>
                 <img src = {trackee.image_url}/>
                 <span>{trackee.fname + ' ' + trackee.lname}</span>
                   </a>

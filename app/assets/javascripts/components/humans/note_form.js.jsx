@@ -24,6 +24,7 @@
       var note = $.extend({}, this.state, { human_image_url: human.image_url, fname: human.fname, lname: human.lname, human_id: human.id, user_id: CURRENT_USER_ID, username: CURRENT_USER_USERNAME, user_image_url: CURRENT_USER_IMG }
       );
       ApiUtil.createNote(note);
+      this.setState({title: "", body: ""  });
       this.navigateToHumanShow();
     },
 

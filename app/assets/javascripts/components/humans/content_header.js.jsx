@@ -14,9 +14,12 @@ var HumanContentHeader = React.createClass({
 
     if (trackStatus === "Track") {
       trackStatus = "Tracking";
+          disabledStatus = true;
       ApiUtil.createTrack(track);
     } else {
       trackStatus = "Untracking";
+      debugger;
+          disabledStatus = true;
       ApiUtil.destroyTrack(track);
     }
       this.navigateToHumanShow();
@@ -33,6 +36,7 @@ var HumanContentHeader = React.createClass({
         }
         else {
           trackStatus = 'Untrack';
+          break;
         }
       }
     }
