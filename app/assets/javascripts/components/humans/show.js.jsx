@@ -41,7 +41,7 @@
      return (
        <div>
          <div>
-           <title>Facer</title>
+           <title>Fatebook</title>
          </div>
            <HumansIndex />
 

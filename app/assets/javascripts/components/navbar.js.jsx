@@ -19,7 +19,7 @@
       return (
          <nav className="header-nav group">
            <h1 className="header-logo" >
-             <a>Facer</a>
+             <a>Fatebook</a>
 
            </h1>
            <h1 className="header-searchbar">
