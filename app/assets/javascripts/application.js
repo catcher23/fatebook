@@ -19,7 +19,7 @@
 //= require react
 //= require ReactRouter.min
 //= require flux
-//= require fatebook
+//= require facer
 //= require eventemitter
 //= require bootstrap
 //= require_tree .

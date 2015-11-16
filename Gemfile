@@ -19,6 +19,7 @@ gem 'figaro'
 gem 'faker'
 gem 'ffaker'
 gem 'dynopoker'
+gem 'image_suckr'
 
 group :development, :test do
   gem 'byebug'

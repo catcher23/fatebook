@@ -43,7 +43,7 @@
 
         <div>
           <div>
-            <title>Fatebook</title>
+            <title>Facer</title>
           </div>
             <UsersIndex />
           <div>
@@ -52,6 +52,7 @@
             </header>
             <main className="content group">
               <UserContentHeader />
+              <UserRibbon />
               <UserSideBar  />
             <section className="content-main">
               <UserMap />

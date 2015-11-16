@@ -91,6 +91,7 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
+    image_suckr (0.2.0)
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -231,6 +232,7 @@ DEPENDENCIES
   ffaker
   figaro
   flux-rails-assets
+  image_suckr
   jbuilder (~> 2.0)
   jquery-rails
   launchy

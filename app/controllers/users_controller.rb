@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.image_url = "http://www.robohash.com/#{@user.username}"
+    @user.image_url = "http://www.robohash.org/#{@user.username}"
     if @user.save
       login(@user)
       redirect_to "/#/users/#{current_user.id}"

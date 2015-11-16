@@ -41,7 +41,7 @@
      return (
        <div>
          <div>
-           <title>Fatebook</title>
+           <title>Facer</title>
          </div>
            <HumansIndex />
 
@@ -51,6 +51,7 @@
            </header>
            <main className="content group">
              <HumanContentHeader />
+             <HumanRibbon />
              <HumanSideBar />
            <section className="content-main">
              <HumanMap />

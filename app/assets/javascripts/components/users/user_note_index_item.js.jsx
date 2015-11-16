@@ -12,7 +12,7 @@ window.UserNoteIndexItem = React.createClass({
     return (
       <li onClick={this.showDetail} className="user-list-item">
         <a href={noteUrl}>
-          Notes left
+          Notes Left
         </a>
       </li>
     );

@@ -29,7 +29,7 @@
 
     render: function () {
 
-      var userImage = "http://www.robohash.com/" + CURRENT_USER_USERNAME;
+      var userImage = "http://www.robohash.org/" + CURRENT_USER_USERNAME;
       var userUrl = "/#/users/" + CURRENT_USER_ID;
       return (
         <form className="form2 group" onSubmit={this.handleSubmit}>

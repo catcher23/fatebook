@@ -36,23 +36,19 @@
 
 
       return (
-
-              <div classNameName="posts">
+              <div className="posts">
                 <article className="post group">
                   <a href={humanUrl} className="post-thumb thumb" title={this.props.username}>
                     <img src={human_img_url}/>
                   </a>
                   <div className="post-body">
                     <h2><a href={humanUrl}>{this.props.title}</a></h2>
-
                     <p>
                     {this.props.body}
                     </p>
                     <footer className="post-footer group">
                       <ul className="post-footer-info group">
                         <li><a href={humanUrl}>Left for {this.props.fname} {this.props.lname} {timeSince(Date.parse(this.props.created_at))} ago</a></li>
-
-
                       </ul>
                       <ul className="post-footer-tools group">
                         <li><a href="#" className="icon-comment">Comment</a></li>

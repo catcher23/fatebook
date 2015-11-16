@@ -2968,24 +2968,30 @@ height: 45px;
   width:210px;
   color: lightgreen;
   background-color: black;
-  opacity: 0.8
+  opacity: 0.8;
+  z-index: 99
 }
 
 .searchresults .result:hover {
   background-color: lightgreen;
+    z-index: 99
 }
 
 
 .searchbar {
   position: relative;
+    z-index: 99
 }
 
 .searchresult {
+  position: absolute;
   display: block;
+  z-index: 99
 }
 
 .searchresult:hover {
   background-color: white;
+    z-index: 99
 }
 
 .white {
@@ -3289,10 +3295,10 @@ background: #eee;
 .content {
 position: relative;
 margin: 0 auto;
-background: #fff;
+background: #eeeeee;
 width: 900px;
-border-left: 1px solid #ccc;
-border-right: 1px solid #ccc;
+border-left: 0px solid #ccc;
+border-right: 0px solid #ccc;
 border-bottom: 1px solid #ccc;
 }
 
@@ -3303,22 +3309,22 @@ position: absolute;
 top: 0;
 bottom: 0;
 left: 240px;
-width: 1px;
+width: 0px;
 background: #ccc;
 }
 
 .content-sidebar {
 float: left;
-width: 200px;
+width: 249px;
 min-height: 200px;
-padding: 20px;
+padding: 0px;
 }
 
 .content-main {
 float: left;
-width: 620px;
+width: 630px;
 min-height: 200px;
-padding: 20px;
+padding: 10px;
 }
 
 /* Footer */
@@ -3422,11 +3428,15 @@ background: #7FFF00;
 
 .profile-picture {
 display: block;
+height: 210px;
+width: 210px;
 margin-top: -120px;
+margin-left: 20px;
 border: 1px solid lightgreen;
 background: #000;
 border-radius: 5px;
 position: relative;
+
 }
 
 .profile-info {
@@ -3510,8 +3520,8 @@ margin: 5px 5px 0px 0px;
 .thumb {
 display: block;
 position: relative;
-width: 58px;
-height: 58px;
+width: 74px;
+height: 74px;
 border: 1px solid green;
 border-radius: 5px;
 z-index:24;
@@ -3605,6 +3615,8 @@ margin: 0 0 20px 0;
 
 .form-thumb {
 float: left;
+height: 40px;
+width: 40px
 }
 
 .form-fieldset {
@@ -3613,7 +3625,7 @@ margin: 0 0 0 20px;
 padding: 19px;
 width: 500px;
 background: #eee;
-border: 1px solid #ccc;
+border: 1px solid green;
 border-radius: 5px;
 }
 
@@ -3689,16 +3701,23 @@ color: #f00;
 
 .posts {
 margin: 20px 0 0 0;
+background: white;
+margin-left: 10px;
+
 }
 
 .post {
-border-top: 1px solid #ccc;
+border: 1px solid green;
 margin: 20px 0 0 0;
 padding: 20px 0 0 0;
+border-radius: 5px
 }
 
 .post-thumb {
+margin-left: 5px;
 float: left;
+height:40px;
+width:40px
 }
 
 .post-body {
@@ -3870,4 +3889,223 @@ margin: 0 0 20px 0;
 
 .human-list-item:hover {
   color: #3b5998;
+}
+.form-group.search-bar {
+  display: inline-table;
+  margin-bottom: 0;
+  left: 28%;
+  position: absolute;
+  vertical-align: middle;
+}
+
+.btn-default.btn-search {
+  border-radius: 0px 4px 4px 0px;
+  padding-bottom: 1px;
+  padding-top: 2px;
+  margin-top: 5px;
+  height: 24px;
+  float: right;
+}
+
+.navbar-form .form-control {
+  width: 400px;
+  margin-top: 5px;
+  height: 24px;
+  border-right: none;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.basic-info {
+  margin-bottom: 20px;
+}
+
+.basic-info-list {
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+}
+
+ .basic-info > ul {
+   list-style-type: none;
+   background-color: white;
+   width: 100%;
+   border-radius: 4px;
+   border: 1px solid lightgrey;
+   padding: 0 px;
+ }
+
+.basic-info-list > li {
+  font-size: 14px;
+  line-height: 15px;
+  border: none;
+}
+
+.friends-thumbs {
+  display: block;
+  background-color: #F6F7F8;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  height: 30.5%;
+  margin-bottom: 50px;
+}
+
+.friends-thumbs > p {
+  color: #4E5665;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 22px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.friends-thumbs > ul {
+  background: white;
+  padding-top: 4px;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  height: 30.5%;
+  width: 100%;
+  border-radius: 0px 0px 4px 4px;
+}
+
+.friends-thumbs > ul > li {
+  display: inline-block;
+  list-style-type: none;
+  margin-bottom: 5px;
+  height: 30.5%;
+  width: 30.5%;
+  position: relative;
+  padding-left:5px;
+
+}
+.profile-thumbs {
+  font-size:14px;
+  display: block;
+  background-color: #F6F7F8;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  height: 100%;
+  margin-bottom: 18px;
+
+}
+
+.profile-thumbs > p {
+  color: #4E5665;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 22px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.profile-thumbs > ul {
+  background: white;
+  padding-top: 4px;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+
+  width: 100%;
+  border-radius: 0px 0px 4px 4px;
+}
+
+.profile-thumbs > ul > li {
+  display: inline-block;
+  list-style-type: none;
+  margin-bottom: 5px;
+
+  width: 100%;
+  position: relative;
+  padding-left:5px;
+
+}
+
+.friend-thumb-fader {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+
+  background: -webkit-linear-gradient(bottom, rgba(255,0,0,0) 70%, black); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom, rgba(255,0,0,0) 70%, black); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom, rgba(255,0,0,0) 70%, black); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, rgba(255,0,0,0) 70%, black); /* Standard syntax (must be last) */
+}
+
+
+
+.friend-thumbnail > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: inline-block;
+  border: 0px solid white;
+}
+
+.friend-thumb-name {
+  color: white;
+  font-size: 12px;
+  margin-left: 0px;
+  word-wrap: break-word;
+  margin-bottom: 2px;
+  position: absolute;
+  text-shadow: 1px;
+  cursor: pointer;
+  bottom: 0;
+  z-index: 4;
+}
+
+.profile-ribbon {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  display: block;
+
+  height: 40px;
+  width: 100%;
+  bottom: 0;
+  background-color: white;
+}
+
+ul#ribbon {
+
+  display: inline-block;
+  padding: 0;
+}
+
+ul#ribbon > li {
+
+  display: inline-block;
+
+
+}
+
+div.profile-ribbon ul.nav.nav-pills {
+  margin-left: 260px;
+  border-left:1px solid #e9eaed;
+}
+
+div.profile-ribbon ul.nav.nav-pills > li {
+  border-right: 1px solid #e9eaed;
+  border-radius: 0px;
+  margin: 0px;
+
+}
+
+div.profile-ribbon ul.nav.nav-pills > li > a {
+  // border-right: 1px solid #e9eaed;
+  border-radius: 0px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: helvetica, arial, sans-serif;
+
+}
+
+div.profile-ribbon ul.nav.nav-pills > li > a:hover {
+  // border-right: 1px solid #e9eaed;
+  border-radius: 0px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: helvetica, arial, sans-serif;
+  background-color:green;
 }

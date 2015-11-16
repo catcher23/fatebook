@@ -5,7 +5,7 @@ var UserContentHeader = React.createClass({
       <header className="content-header">
 
         <h1>{user.username}</h1>
-
+  
       </header>
     );
   }

@@ -1,13 +1,13 @@
-# Fatebook
+# Facer
 
 [Live][live]
 
-[live]: www.fatebook.xyz
+[live]: www.facer.xyz
 
 ## Minimum Viable Product
 
-Fatebook is a web application inspired by Facebook, allowing machine users to track and socially engineer human interaction within the matrix. It is built using Ruby on Rails
-and React.js. Fatebook allows users to:
+Facer is a web application inspired by Facebook, allowing machine users to track and socially engineer human interaction within the matrix. It is built using Ruby on Rails
+and React.js. Facer allows users to:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 

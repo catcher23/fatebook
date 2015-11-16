@@ -34,10 +34,10 @@
       var user_img_url = this.props.user_image_url;
       var userUrl = "/#/users/" + this.props.user_id;
 
-  
+
       return (
 
-              <div classNameName="posts">
+              <div className="posts">
                 <article className="post group">
                   <a href={userUrl} className="post-thumb thumb" title={this.props.username}>
                     <img src={user_img_url}/>

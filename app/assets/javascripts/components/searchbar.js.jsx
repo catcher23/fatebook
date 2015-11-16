@@ -39,7 +39,6 @@ var flag = false;
         }
       }
 
-
     return (
       <div id='searchbar'>
         <input

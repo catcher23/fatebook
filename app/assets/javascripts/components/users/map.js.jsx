@@ -9,11 +9,7 @@
       var styles = [
   {
     "stylers": [
-      { "hue": "#00ff19" },
-      { "invert_lightness": true },
-      { "lightness": 3 },
-      { "gamma": 1.13 },
-      { "saturation": -32 }
+
     ]
   }
 ];

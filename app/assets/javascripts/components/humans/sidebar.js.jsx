@@ -15,8 +15,13 @@ var humanUrl = '';
             <img src={human.image_url} />
           </a>
 
-          <div className="profile-info">
-            
+
+<br></br>
+
+          <div className = 'profile-thumbs clearfix'>
+            <p id='profile-thumbs-info'>
+                Profile Information
+            </p>
               <ul>
               <li>
               <b>Date of Birth</b>: <br></br>{human.birthdate}
@@ -42,19 +47,13 @@ var humanUrl = '';
 
           </div>
 
-          <ul className="profile-nav">
-            <li>
-              <MapIndexItem human={human}/>
-            </li>
-            <br></br>
-            <li>
-              <NoteIndexItem human={human}/>
-            </li>
-          </ul>
 
-          <ul className="profile-friends group">
-            Tracked by:
-            <br></br>
+          <div className = 'friends-thumbs clearfix'>
+            <p id='friends-thumbs-info'>
+                Tracked by:
+            </p>
+
+          <ul>
             { human.trackers.map(function (tracker) {
               humanUrl = "/#/users/" + tracker.id;
 
@@ -62,11 +61,13 @@ var humanUrl = '';
                 <img src = {
                   tracker.image_url
                 }
-            /><span>{tracker.username}</span>
+                /><span>{tracker.username}</span>
               </a>
             </li>;
             })}
           </ul>
+          </div>
+
         </section>
       );
     }
