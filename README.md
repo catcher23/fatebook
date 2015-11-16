@@ -1,8 +1,8 @@
 # Fatebook
 
-[Live][live]
+[Live][link]
 
-[live]: www.fatebook.xyz
+[link]: http://www.fatebook.xyz
 
 ## Minimum Viable Product
 

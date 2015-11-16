@@ -18,7 +18,6 @@ var HumanContentHeader = React.createClass({
       ApiUtil.createTrack(track);
     } else {
       trackStatus = "Untracking";
-      debugger;
           disabledStatus = true;
       ApiUtil.destroyTrack(track);
     }
