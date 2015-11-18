@@ -20,6 +20,7 @@ gem 'faker'
 gem 'ffaker'
 gem 'dynopoker'
 gem 'image_suckr'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'byebug'
