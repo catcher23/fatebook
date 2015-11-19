@@ -16,11 +16,15 @@ var HumanContentHeader = React.createClass({
       window.trackStatus = "Tracking";
 
           this.disabledStatus = true;
-      ApiUtil.createTrack(track);
+      if (ApiUtil.createTrack(track)) {
+      window.trackStatus = 'Untrack';
+      }
     } else {
       window.trackStatus = "Untracking";
           this.disabledStatus = true;
-      ApiUtil.destroyTrack(track);
+      if (ApiUtil.destroyTrack(track)) {
+        window.trackStatus = 'Track';
+        }
     }
       this.navigateToHumanShow();
     },
