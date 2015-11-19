@@ -90,7 +90,7 @@ createUser: function (user, callback) {
 createTrack: function(data) {
 $.post('/api/tracks', { track: data }, function (humans) {
   ApiActions.receiveAllHumans(humans);
-  trackStatus = 'Untrack';
+  window.trackStatus = 'Untrack';
 });
 },
 
@@ -103,7 +103,7 @@ destroyTrack: function(data) {
     method: "DELETE",
     success: function (humans) {
     ApiActions.receiveAllHumans(humans);
-    trackStatus = 'Track';
+    window.trackStatus = 'Track';
     }
   });
 },

@@ -3234,6 +3234,7 @@ float: right;
 .header-list > li {
 float: left;
 border-left: 0px solid #ccc;
+font-size: 12;
 }
 
 .header-list > li:hover {
@@ -3416,7 +3417,18 @@ color: #eee;
 background: green;
 font-weight: bold;
 padding: 10px 20px;
-border: 1px solid lightgreen;
+border: 1px solid forestgreen;
+border-radius: 5px;
+}
+.content-header-add-friend:disabled {
+position: absolute;
+bottom: 20px;
+right: 20px;
+color: grey;
+background: lightgrey;
+font-weight: bold;
+padding: 10px 20px;
+border: 1px solid forestgreen;
 border-radius: 5px;
 }
 
