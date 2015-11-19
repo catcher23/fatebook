@@ -12,53 +12,47 @@ var HumanContentHeader = React.createClass({
     var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id }
     );
 
-    if (window.trackStatus === "Track") {
-      window.trackStatus = "Tracking";
-
+    if (trackStatus === "Track") {
+      trackStatus = "Tracking";
           disabledStatus = true;
-          console.log('1 disabledStatus = true');
-
       ApiUtil.createTrack(track);
     } else {
-      window.trackStatus = "Untracking";
+      trackStatus = "Untracking";
           disabledStatus = true;
-
-            console.log('2 disabledStatus = true');
       ApiUtil.destroyTrack(track);
     }
       this.navigateToHumanShow();
     },
 
   render: function () {
-    window.trackStatus = window.trackStatus || '';
-    if (window.trackStatus == 'Tracking' || window.trackStatus == 'Untracking') {
-      disabledStatus = true;
-  console.log('3 disabledStatus = true');
-    } else {
-      disabledStatus = false;
-    }
-
-
-
+    trackStatus = '';
     if (human.tracks.length === 0) {
-      window.trackStatus = 'Track';
+      trackStatus = 'Track';
     } else {
       for (var z = 0; z < human.tracks.length; z++) {
         if (human.tracks[z].tracker_id !== CURRENT_USER_ID) {
-          window.trackStatus = 'Track';
+          trackStatus = 'Track';
         }
         else {
-          window.trackStatus = 'Untrack';
+          trackStatus = 'Untrack';
+          break;
         }
       }
     }
-  
+
+
+    disabledStatus = '';
+    if (trackStatus == 'Tracking' || trackStatus == 'Untracking') {
+      disabledStatus = true;
+    } else {
+      disabledStatus = false;
+    }
 
     return(
       <header className="content-header2">
 
         <h1>{human.fname+' '+human.lname}</h1>
-        <button type='button' disabled = {disabledStatus} className="content-header-add-friend" onClick={this.handleTrackClick}>{window.trackStatus}</button>
+        <button type='button' disabled = {disabledStatus} className="content-header-add-friend" onClick={this.handleTrackClick}>{trackStatus}</button>
       </header>
     );
   }

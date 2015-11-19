@@ -1,4 +1,3 @@
-
 window.ApiUtil = {
   logout: function() {
     $.ajax({
@@ -88,9 +87,9 @@ createUser: function (user, callback) {
   });
 },
 createTrack: function(data) {
-$.post('/api/tracks/', { track: data }, function (humans) {
+$.post('/api/tracks', { track: data }, function (humans) {
   ApiActions.receiveAllHumans(humans);
-  window.trackStatus = 'Untrack';
+  trackStatus = 'Untrack';
 });
 },
 
@@ -103,7 +102,7 @@ destroyTrack: function(data) {
     method: "DELETE",
     success: function (humans) {
     ApiActions.receiveAllHumans(humans);
-    window.trackStatus = 'Track';
+    trackStatus = 'Track';
     }
   });
 },
