@@ -88,7 +88,7 @@ createUser: function (user, callback) {
   });
 },
 createTrack: function(data) {
-$.post('/api/tracks', { track: data }, function (humans) {
+$.post('/api/tracks/', { track: data }, function (humans) {
   ApiActions.receiveAllHumans(humans);
   window.trackStatus = 'Untrack';
 });
