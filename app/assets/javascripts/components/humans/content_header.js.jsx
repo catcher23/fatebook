@@ -8,17 +8,24 @@ var HumanContentHeader = React.createClass({
   },
   handleTrackClick: function () {
     event.preventDefault();
+
+    $( ".content-header-add-friend" ).hide();
+    this.disabledStatus = true;
+    setTimeout(function(){
+        $( ".content-header-add-friend" ).show();
+    }, 2000);
+
     flag = false;
     var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id }
     );
 
     if (trackStatus === "Track") {
       trackStatus = "Tracking";
-          disabledStatus = true;
+
       ApiUtil.createTrack(track);
     } else {
       trackStatus = "Untracking";
-          disabledStatus = true;
+
       ApiUtil.destroyTrack(track);
     }
       this.navigateToHumanShow();
@@ -41,18 +48,19 @@ var HumanContentHeader = React.createClass({
     }
 
 
-    disabledStatus = '';
+    this.disabledStatus = '';
     if (trackStatus == 'Tracking' || trackStatus == 'Untracking') {
-      disabledStatus = true;
+      this.disabledStatus = true;
     } else {
-      disabledStatus = false;
+      this.disabledStatus = false;
     }
 
     return(
       <header className="content-header2">
 
         <h1>{human.fname+' '+human.lname}</h1>
-        <button type='button' disabled = {disabledStatus} className="content-header-add-friend" onClick={this.handleTrackClick}>{trackStatus}</button>
+        <button type='button' disabled = {this.disabledStatus} className="content-header-add-friend" onClick={this.handleTrackClick}>{trackStatus}</button>
+
       </header>
     );
   }

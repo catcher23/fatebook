@@ -3420,6 +3420,18 @@ padding: 10px 20px;
 border: 1px solid forestgreen;
 border-radius: 5px;
 }
+
+.content-header-disabled-friend {
+position: absolute;
+bottom: 20px;
+right: 20px;
+color: #eee;
+background: grey;
+font-weight: bold;
+padding: 10px 20px;
+border: 1px solid forestgreen;
+border-radius: 5px;
+}
 .content-header-add-friend:disabled {
 position: absolute;
 bottom: 20px;
