@@ -7,7 +7,7 @@ var Footer = React.createClass({
           &copy; 2015 Danny Lau
         </small>
         <ul className="footer-links group">
-          <li><a href="http://www.github.com/catcher23">My Github</a></li>
+          <li><a href="http://catcher23.github.io/">My Portfolio</a></li>
         </ul>
       </footer>
     );
