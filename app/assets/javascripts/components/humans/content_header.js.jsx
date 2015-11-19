@@ -39,7 +39,7 @@ var HumanContentHeader = React.createClass({
     }
 
 
-if (window.trackStatus !== 'Tracking' && window.trackStatus !== 'Untracking') {
+
     if (human.tracks.length === 0) {
       window.trackStatus = 'Track';
     } else {
@@ -52,7 +52,7 @@ if (window.trackStatus !== 'Tracking' && window.trackStatus !== 'Untracking') {
         }
       }
     }
-  }
+  
 
     return(
       <header className="content-header2">
