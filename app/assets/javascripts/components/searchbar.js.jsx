@@ -44,7 +44,7 @@ var flag = false;
         <input
           type="text"
           value={this.state.searchString}
-          onChange={this.handleChange} placeholder="Find Human" />
+          onChange={this.handleChange} placeholder=" Find Human" />
           <ul className="searchresults"><li onClick={this.clearBar}>
           {
             filteredObjs.map(function(human){

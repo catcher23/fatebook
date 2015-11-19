@@ -2980,7 +2980,7 @@ height: 45px;
 
 .searchbar {
   position: relative;
-    z-index: 99
+    z-index: 99;
 }
 
 .searchresult {
@@ -3043,9 +3043,9 @@ select,
   line-height: 14px;
   color: #666666;
   border: 1px solid #d4dae8;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 select {
   padding: 2px;
@@ -3193,7 +3193,7 @@ background: #eee;
 }
 
 .header {
-background: #006400;
+background: linear-gradient(#006400, forestgreen);
 color: #fff;
 border-bottom: 1px solid #ccc;
 }
@@ -3206,19 +3206,20 @@ padding: 10px 20px;
 .header-nav {
 margin: 0 auto;
 width: 900px;
-border-left: 1px solid #ccc;
-border-right: 1px solid #ccc;
+border-left: 0px solid #ccc;
+border-right: 0px solid #ccc;
 }
 
 .header-logo {
 float: left;
-border-right: 1px solid #ccc;
+border-right: 0px solid #ccc;
 font-weight: 700;
+width:212px;
 }
 
 .header-searchbar {
 float: left;
-border-right: 1px solid #ccc;
+border-right: 0px solid #ccc;
 font-weight: 700;
 }
 
@@ -3232,7 +3233,7 @@ float: right;
 
 .header-list > li {
 float: left;
-border-left: 1px solid #ccc;
+border-left: 0px solid #ccc;
 }
 
 .header-list > li:hover {
@@ -3372,7 +3373,7 @@ color: #000;
 .content-header {
 position: relative;
 height: 200px;
-background: url("http://res.cloudinary.com/danlau168/image/upload/v1447139502/matrixsf2_ohk0rm.jpg");
+background: url("http://res.cloudinary.com/danlau168/image/upload/v1447950892/sf_p4kxqz.jpg");
 background-size: cover;
 border-bottom: 1px solid #ccc;
 }
