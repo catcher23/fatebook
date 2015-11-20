@@ -26,9 +26,10 @@
              <a><SearchBar /></a>
            </h1>
            <ul className="header-list group">
-
+              <li>
+                <a><img className = 'header-img' src = {window.CURRENT_USER_IMG}></img></a>
+              </li>
              <li>
-                <img className = 'header-img' src = {window.CURRENT_USER_IMG}></img>
                <a href ={userUrl}>{window.CURRENT_USER_USERNAME}</a>
              </li>
 

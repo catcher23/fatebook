@@ -537,7 +537,7 @@ a {
   font-weight: inherit;
 }
 a:hover {
-  color: #3b5998;
+  color: chartreuse;
 
 }
 .pull-right {
@@ -3200,7 +3200,8 @@ border-bottom: 1px solid #ccc;
 
 .header a {
 display: block;
-padding: 10px 25px;
+padding: 10px 20px 10px;
+
 
 }
 
@@ -3220,12 +3221,12 @@ width:212px;
 }
 .header-img {
 
-
+border-radius:50%;
 float:left;
-padding-top:6px;
+top:4px;
 position:absolute;
-height:22px;
-width:22px
+height:30px;
+width:30px
 }
 
 .header-searchbar {
@@ -3249,7 +3250,7 @@ font-size: 12;
 }
 
 .header-list > li:hover {
-background: lightgreen;
+color: white;
 }
 
 /* Notifications */
