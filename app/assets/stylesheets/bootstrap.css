@@ -3200,7 +3200,8 @@ border-bottom: 1px solid #ccc;
 
 .header a {
 display: block;
-padding: 10px 20px;
+padding: 10px 25px;
+
 }
 
 .header-nav {
@@ -3211,10 +3212,20 @@ border-right: 0px solid #ccc;
 }
 
 .header-logo {
+font-size: 17px;
 float: left;
 border-right: 0px solid #ccc;
 font-weight: 700;
 width:212px;
+}
+.header-img {
+
+
+float:left;
+padding-top:6px;
+position:absolute;
+height:22px;
+width:22px
 }
 
 .header-searchbar {

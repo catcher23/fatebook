@@ -19,8 +19,8 @@
       return (
          <nav className="header-nav group">
            <h1 className="header-logo" >
-             <a>fatebook</a>
 
+             <a>fatebook</a>
            </h1>
            <h1 className="header-searchbar">
              <a><SearchBar /></a>
@@ -28,10 +28,12 @@
            <ul className="header-list group">
 
              <li>
+                <img className = 'header-img' src = {window.CURRENT_USER_IMG}></img>
                <a href ={userUrl}>{window.CURRENT_USER_USERNAME}</a>
              </li>
 
              <li onClick={this.handleLogoutClick}>
+
                <a href ="#">Logout</a>
              </li>
            </ul>
