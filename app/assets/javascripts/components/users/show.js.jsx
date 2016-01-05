@@ -5,7 +5,7 @@
     mixins: [ReactRouter.History],
 
     getStateFromStore: function () {
-debugger;
+
       return { user: UserStore.find(parseInt(this.props.params.userId)) };
     },
 

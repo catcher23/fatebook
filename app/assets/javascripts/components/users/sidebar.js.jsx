@@ -42,9 +42,8 @@
           <ul>
             { user.trackees.map(function (trackee) {
               humanUrl = "/#/humans/" + trackee.id;
-              return <li><a href={humanUrl} 
-              data-toggle="lightbox" data-gallery="multiimages" data-title="People walking down stairs">
-                <img src = {trackee.image_url} />
+              return <li><a href={humanUrl} className="thumb">
+                <img src = {trackee.image_url}/>
                 <span>{trackee.fname + ' ' + trackee.lname}</span>
                   </a>
 
