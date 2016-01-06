@@ -1,0 +1,35 @@
+{
+  "name": "fatebook",
+  "version": "1.0.0",
+  "description": "[Live][link]",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catcher23/fatebook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/catcher23/fatebook/issues"
+  },
+  "dependencies": {
+  "babel-core": "^6.1.4",
+  "babel-loader": "^6.1.0",
+  "babel-preset-react": "^6.1.4",
+  "flux": "^2.1.1",
+  "history": "^1.13.0",
+  "react": "^0.14.2",
+  "react-addons-linked-state-mixin": "^0.14.2",
+  "react-dom": "^0.14.2",
+  "react-router": "^1.0.0",
+  "webpack": "^1.12.4"
+},
+  "homepage": "https://github.com/catcher23/fatebook#readme"
+}
