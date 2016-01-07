@@ -3,6 +3,7 @@ var React = require('react');
 module.exports = React.createClass({
     render: function() {
       var humanUrl = '';
+      var n = 0;
       return (
         <section className="content-sidebar">
 
@@ -40,9 +41,11 @@ module.exports = React.createClass({
             </p>
 
           <ul>
+
             { user.trackees.map(function (trackee) {
+              n+=1;
               humanUrl = "/#/humans/" + trackee.id;
-              return <li><a href={humanUrl} className="thumb">
+              return <li key={n}><a href={humanUrl} className="thumb">
                 <img src = {trackee.image_url}/>
                 <span>{trackee.fname + ' ' + trackee.lname}</span>
                   </a>

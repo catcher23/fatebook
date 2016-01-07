@@ -37,5 +37,9 @@ var routes = (
 );
 
 document.addEventListener("DOMContentLoaded", function () {
-  ReactDOM.render(<Router>{routes}</Router>, root);
+  ReactDOM.render(
+    <Router>{routes}</Router>,
+      document.getElementById("content")
+
+  );
 });

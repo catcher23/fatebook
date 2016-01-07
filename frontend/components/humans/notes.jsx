@@ -1,5 +1,5 @@
 var React = require('react');
-
+var Note = require('./note.jsx');
 var sortByTime = function(a,b) {
   if (a.created_at < b.created_at)
   return -1;

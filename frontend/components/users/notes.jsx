@@ -1,5 +1,5 @@
 var React = require('react');
-
+var UserNote = require('./note.jsx');
 module.exports = React.createClass({
 
     render: function () {
@@ -15,4 +15,3 @@ module.exports = React.createClass({
       );
    }
   });
-}(this));

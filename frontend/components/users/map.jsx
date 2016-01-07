@@ -1,10 +1,11 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 module.exports = React.createClass({
     componentDidMount: function(){
       console.log('map mounted');
 
-      var styles = [
+var styles = [
   {
     "stylers": [
 
@@ -15,7 +16,7 @@ module.exports = React.createClass({
       var styledMap = new google.maps.StyledMapType(styles,
         {name: "Styled Map"});
 
-      var map = React.findDOMNode(this.refs.map);
+      var map = ReactDOM.findDOMNode(this.refs.map);
       var mapOptions = {
         center: {lat: 37.750516, lng: -122.440224},
         zoom: 11,

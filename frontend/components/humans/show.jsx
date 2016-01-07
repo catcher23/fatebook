@@ -1,10 +1,18 @@
 var React = require('react');
+var HumansIndex = require('./index.jsx');
+var NavBar = require('../navbar.jsx');
+var HumanContentHeader = require('./content_header.jsx');
+var HumanRibbon = require('./human_ribbon.jsx');
+var HumanSideBar = require('./sidebar.jsx');
+var HumanMap = require('./map.jsx');
+var Footer = require('../footer.jsx');
+var HumanStore = require('../../stores/human.js');
+var ApiUtil = require('../../util/api_util.js');
 
 module.exports = React.createClass({
     mixins: [ReactRouter.History],
 
     getStateFromStore: function () {
-
       return { human: HumanStore.find(parseInt(this.props.params.humanId)) };
     },
 
@@ -21,14 +29,12 @@ module.exports = React.createClass({
     },
 
     componentDidMount: function () {
-      HumanStore.addHumanDetailChangeListener(this._onChange);
+      this.humanListener = HumanStore.addListener(this._onChange);
       ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
-
     },
 
     componentWillUnmount: function () {
-
-      HumanStore.removeHumanDetailChangeListener(this._onChange);
+      this.humanListener.remove();
     },
 
     render: function() {
@@ -43,7 +49,6 @@ module.exports = React.createClass({
            <title>Fatebook</title>
          </div>
            <HumansIndex />
-
          <div>
            <header className="header">
              <NavBar />

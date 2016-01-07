@@ -15,9 +15,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require react
+//= require react_ujs
 //= require ReactRouter.min
 //= require flux
-//= require fatebook
 //= require eventemitter
 //= require bootstrap
 //= require bundle

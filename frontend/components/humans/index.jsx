@@ -1,5 +1,6 @@
 var React = require('react');
-
+var HumanStore = require('../../stores/human.js');
+var ApiUtil = require('../../util/api_util.js');
 module.exports = React.createClass({
   getInitialState: function () {
     return { humans: HumanStore.all() };
@@ -11,15 +12,13 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function () {
-    HumanStore.addHumansIndexChangeListener(this._onChange);
-    HumanStore.addHumanDetailChangeListener(this._onChange);
+    this.humanListener =HumanStore.addListener(this._onChange);
     ApiUtil.fetchAllHumans();
 
   },
 
   compomentWillUnmount: function () {
-    HumanStore.removeHumansIndexChangeListener(this._onChange);
-    HumanStore.removeHumanDetailChangeListener(this._onChange);
+    this.humanListener.remove();
   },
 
   render: function () {

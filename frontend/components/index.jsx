@@ -8,7 +8,6 @@ module.exports = React.createClass({
         <div className="human-index">
           <HumansIndex />
           <SearchBar />
-
         </div>
         {this.props.children}
       </div>

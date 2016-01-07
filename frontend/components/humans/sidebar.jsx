@@ -4,7 +4,7 @@ module.exports = React.createClass({
 
     render: function() {
 var humanUrl = '';
-
+var n = 0;
 
       return (
         <section className="content-sidebar">
@@ -42,21 +42,17 @@ var humanUrl = '';
               <b>Screen Name</b>: <br></br>{human.screenname}
               </li>
               </ul>
-
-
           </div>
-
-
           <div className = 'friends-thumbs clearfix'>
             <p id='friends-thumbs-info'>
                 Tracked by:
             </p>
-
           <ul>
-            { human.trackers.map(function (tracker) {
-              humanUrl = "/#/users/" + tracker.id;
 
-              return <li><a href={humanUrl}  className="thumb">
+            { human.trackers.map(function (tracker) {
+              n += 1;
+              humanUrl = "/#/users/" + tracker.id;
+              return <li key={n}><a href={humanUrl}  className="thumb">
                 <img src = {
                   tracker.image_url
                 }
@@ -66,7 +62,6 @@ var humanUrl = '';
             })}
           </ul>
           </div>
-
         </section>
       );
     }

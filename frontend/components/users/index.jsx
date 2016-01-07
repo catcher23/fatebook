@@ -1,5 +1,6 @@
 var React = require('react');
-
+var UserStore = require('../../stores/user.js');
+var ApiUtil = require('../../util/api_util.js');
 module.exports = React.createClass({
   getInitialState: function () {
     return { users: UserStore.all() };
@@ -10,15 +11,13 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function () {
-    UserStore.addUsersIndexChangeListener(this._onChange);
-    UserStore.addUserDetailChangeListener(this._onChange);
+    this.userListener = UserStore.addListener(this._onChange);
     ApiUtil.fetchAllHumans();
     ApiUtil.fetchAllUsers();
   },
 
   compomentWillUnmount: function () {
-    UserStore.removeUsersIndexChangeListener(this._onChange);
-    UserStore.removeUserDetailChangeListener(this._onChange);
+    this.userListener.remove();
   },
 
   render: function () {

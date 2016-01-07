@@ -1,5 +1,5 @@
 var React = require('react');
-
+var HumanStore = require('../stores/human.js');
 module.exports = React.createClass({
   mixins: [ReactRouter.History],
 

@@ -1,5 +1,6 @@
 var React = require('react');
-
+var UserMapIndexItem = require('./user_map_index_item.jsx');
+var UserNoteIndexItem = require('./user_note_index_item.jsx');
 module.exports = React.createClass({
   render: function () {
 

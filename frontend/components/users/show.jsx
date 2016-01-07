@@ -1,5 +1,13 @@
 var React = require('react');
-
+var UsersIndex = require('./index.jsx');
+var NavBar = require('../navbar.jsx');
+var UserContentHeader = require('./content_header.jsx');
+var UserRibbon = require('./user_ribbon.jsx');
+var UserSideBar = require('./sidebar.jsx');
+var UserMap = require('./map.jsx');
+var Footer = require('../footer.jsx');
+var UserStore = require('../../stores/user.js');
+var ApiUtil = require('../../util/api_util.js');
 module.exports = React.createClass({
     mixins: [ReactRouter.History],
 
@@ -21,15 +29,14 @@ module.exports = React.createClass({
     },
 
     componentDidMount: function () {
-
-      UserStore.addUserDetailChangeListener(this._onChange);
+      this.userListener = UserStore.addListener(this._onChange);
       ApiUtil.fetchSingleUser(parseInt(this.props.params.userId));
 
 
     },
 
     componentWillUnmount: function () {
-      UserStore.removeUserDetailChangeListener(this._onChange);
+      this.userListener.remove();
     },
 
 

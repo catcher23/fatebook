@@ -1,4 +1,6 @@
-window.ApiUtil = {
+var ApiActions = require('../actions/api_actions.js');
+module.exports = {
+
   logout: function() {
     $.ajax({
       url: "/session/",

@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 module.exports = React.createClass({
 
@@ -6,7 +7,7 @@ module.exports = React.createClass({
 
       console.log('map mounted');
 
-      var map = React.findDOMNode(this.refs.map);
+      var map = ReactDOM.findDOMNode(this.refs.map);
       var mapOptions = {
         center: {lat: 51.5087531, lng: -0.1281153},
         zoom: 15,

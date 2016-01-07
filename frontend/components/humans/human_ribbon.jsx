@@ -1,5 +1,6 @@
 var React = require('react');
-
+var MapIndexItem = require('./map_index_item.jsx');
+var NoteIndexItem = require('./note_index_item.jsx');
 module.exports = React.createClass({
   render: function () {
     return(
