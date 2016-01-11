@@ -1,18 +1,21 @@
 var React = require('react');
-var UsersIndex = require('./index.jsx');
-var NavBar = require('../navbar.jsx');
-var UserContentHeader = require('./content_header.jsx');
-var UserRibbon = require('./user_ribbon.jsx');
-var UserSideBar = require('./sidebar.jsx');
-var UserMap = require('./map.jsx');
-var Footer = require('../footer.jsx');
-var UserStore = require('../../stores/user.js');
-var ApiUtil = require('../../util/api_util.js');
+var UsersIndex = require('./index');
+var NavBar = require('../navbar');
+var UserContentHeader = require('./content_header');
+var UserRibbon = require('./user_ribbon');
+var UserSideBar = require('./sidebar');
+var UserMap = require('./map');
+var UserNotes = require('./notes');
+var Footer = require('../footer');
+var UserStore = require('../../stores/user');
+var ApiUtil = require('../../util/api_util');
 module.exports = React.createClass({
     mixins: [ReactRouter.History],
 
     getStateFromStore: function () {
-      return { user: UserStore.find(parseInt(this.props.params.userId)) };
+      return {
+        user: UserStore.find(parseInt(this.props.params.userId)), 
+        component: <UserMap /> };
     },
 
     _onChange: function () {
@@ -23,6 +26,13 @@ module.exports = React.createClass({
       return this.getStateFromStore();
     },
 
+    showMap: function () {
+      this.setState({ component: <UserMap />});
+    },
+    showNotes: function () {
+      this.setState({ component: <UserNotes />});
+    },
+
     componentWillReceiveProps: function (newProps) {
       ApiUtil.fetchSingleUser(parseInt(newProps.params.userId));
     },
@@ -30,22 +40,18 @@ module.exports = React.createClass({
     componentDidMount: function () {
       this.userListener = UserStore.addListener(this._onChange);
       ApiUtil.fetchSingleUser(parseInt(this.props.params.userId));
-
-
     },
 
     componentWillUnmount: function () {
       this.userListener.remove();
     },
 
-
     render: function() {
-
+      var component = this.state.component;
       if(this.state.user === undefined) { return <div></div>; }
       window.user = this.state.user;
 
      return (
-
         <div>
           <div>
             <title>Fatebook</title>
@@ -57,10 +63,10 @@ module.exports = React.createClass({
             </header>
             <main className="content group">
               <UserContentHeader />
-              <UserRibbon />
+              <UserRibbon showMap={this.showMap} showNotes={this.showNotes}/>
               <UserSideBar  />
             <section className="content-main">
-              <UserMap />
+              {component}
             </section>
             </main>
             <Footer />

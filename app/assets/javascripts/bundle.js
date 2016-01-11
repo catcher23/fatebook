@@ -32,7 +32,24 @@ module.exports = {
   },
 };
 
-},{"../constants/human_constants.js":"/Users/dannylau/Desktop/fatebook/frontend/constants/human_constants.js","../constants/user_constants.js":"/Users/dannylau/Desktop/fatebook/frontend/constants/user_constants.js","../dispatcher/dispatcher.js":"/Users/dannylau/Desktop/fatebook/frontend/dispatcher/dispatcher.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/footer.jsx":[function(require,module,exports){
+},{"../constants/human_constants.js":"/Users/dannylau/Desktop/fatebook/frontend/constants/human_constants.js","../constants/user_constants.js":"/Users/dannylau/Desktop/fatebook/frontend/constants/user_constants.js","../dispatcher/dispatcher.js":"/Users/dannylau/Desktop/fatebook/frontend/dispatcher/dispatcher.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/app.jsx":[function(require,module,exports){
+var React = require('react');
+
+module.exports = React.createClass({displayName: "exports",
+  mixins: [ReactRouter.History],
+  componentDidMount: function() {
+    this.history.pushState(null, "/users/"+CURRENT_USER_ID);
+  },
+  render: function(){
+    return (
+      React.createElement("div", null, 
+        this.props.children
+      )
+    );
+  }
+});
+
+},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/footer.jsx":[function(require,module,exports){
 var React = require('react');
 
 module.exports = React.createClass({displayName: "exports",
@@ -124,25 +141,24 @@ module.exports = React.createClass({displayName: "exports",
 
 },{"../../util/api_util.js":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/human_ribbon.jsx":[function(require,module,exports){
 var React = require('react');
-var MapIndexItem = require('./map_index_item.jsx');
-var NoteIndexItem = require('./note_index_item.jsx');
 module.exports = React.createClass({displayName: "exports",
+
   render: function () {
     return(
-          React.createElement("div", {className: "profile-ribbon"}, 
-             React.createElement("ul", {className: "nav nav-pills"}, 
-               React.createElement("li", {role: "presentation"}, React.createElement(MapIndexItem, {human: human})), 
-               React.createElement("li", {role: "presentation"}, React.createElement(NoteIndexItem, {human: human}))
-             )
-          )
+      React.createElement("div", {className: "profile-ribbon"}, 
+         React.createElement("ul", {className: "nav nav-pills"}, 
+           React.createElement("li", {role: "presentation", onClick: this.props.showMap}, React.createElement("a", null, "Map")), 
+           React.createElement("li", {role: "presentation", onClick: this.props.showNotes}, React.createElement("a", null, "Notes Left"))
+         )
+      )
     );
   }
 });
 
-},{"./map_index_item.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/map_index_item.jsx","./note_index_item.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/note_index_item.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/index.jsx":[function(require,module,exports){
+},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/index.jsx":[function(require,module,exports){
 var React = require('react');
-var HumanStore = require('../../stores/human.js');
-var ApiUtil = require('../../util/api_util.js');
+var HumanStore = require('../../stores/human');
+var ApiUtil = require('../../util/api_util');
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function () {
     return { humans: HumanStore.all() };
@@ -154,9 +170,8 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   componentDidMount: function () {
-    this.humanListener =HumanStore.addListener(this._onChange);
     ApiUtil.fetchAllHumans();
-
+    this.humanListener = HumanStore.addListener(this._onChange);
   },
 
   compomentWillUnmount: function () {
@@ -172,7 +187,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"../../stores/human.js":"/Users/dannylau/Desktop/fatebook/frontend/stores/human.js","../../util/api_util.js":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/map.jsx":[function(require,module,exports){
+},{"../../stores/human":"/Users/dannylau/Desktop/fatebook/frontend/stores/human.js","../../util/api_util":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/map.jsx":[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 
@@ -193,8 +208,7 @@ module.exports = React.createClass({displayName: "exports",
     },
 
     componentWillUpdate: function () {
-
-      if (flag !== undefined) {
+      if (typeof(flag) !== 'undefined') {
       this.componentDidMount();
     }
 
@@ -287,55 +301,103 @@ getDirections: function(map) {
     }
   });
 
-},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js","react-dom":"/Users/dannylau/Desktop/fatebook/node_modules/react-dom/index.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/map_index_item.jsx":[function(require,module,exports){
+},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js","react-dom":"/Users/dannylau/Desktop/fatebook/node_modules/react-dom/index.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/note.jsx":[function(require,module,exports){
 var React = require('react');
 
 module.exports = React.createClass({displayName: "exports",
-  mixins: [ReactRouter.History],
 
-  showDetail: function () {
+    render: function () {
+      function timeSince(date) {
 
-    this.history.pushState(null, '/humans/' + this.props.human.id, {});
+          var seconds = Math.floor((new Date() - date) / 1000);
 
-  },
+          var interval = Math.floor(seconds / 31536000);
 
-  render: function () {
-var humanUrl = '/#/humans/' + this.props.human.id;
-    return (
-      React.createElement("li", {onClick: this.showDetail, className: "human-list-item"}, 
-            React.createElement("a", {href: humanUrl}, 
-              "Map"
-            )
-      )
-    );
-  }
-});
+          if (interval > 1) {
+              return interval + " years";
+          }
+          interval = Math.floor(seconds / 2592000);
+          if (interval > 1) {
+              return interval + " months";
+          }
+          interval = Math.floor(seconds / 86400);
+          if (interval > 1) {
+              return interval + " days";
+          }
+          interval = Math.floor(seconds / 3600);
+          if (interval > 1) {
+              return interval + " hours";
+          }
+          interval = Math.floor(seconds / 60);
+          if (interval > 1) {
+              return interval + " minutes";
+          }
+          return Math.floor(seconds) + " seconds";
+      }
+      var user_img_url = this.props.user_image_url;
+      var userUrl = "/#/users/" + this.props.user_id;
 
-},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/note_index_item.jsx":[function(require,module,exports){
+
+      return (
+
+              React.createElement("div", {className: "posts"}, 
+                React.createElement("article", {className: "post group"}, 
+                  React.createElement("a", {href: userUrl, className: "post-thumb thumb", title: this.props.username}, 
+                    React.createElement("img", {src: user_img_url})
+                  ), 
+                  React.createElement("div", {className: "post-body"}, 
+                    React.createElement("h2", null, React.createElement("a", {href: userUrl}, this.props.title)), 
+
+                    React.createElement("p", null, 
+                    this.props.body
+                    ), 
+                    React.createElement("footer", {className: "post-footer group"}, 
+                      React.createElement("ul", {className: "post-footer-info group"}, 
+                        React.createElement("li", null, React.createElement("a", {href: userUrl}, this.props.username)), 
+                        React.createElement("li", null, React.createElement("time", {dateTime: "2015-01-05"}, timeSince(Date.parse(this.props.created_at)), " ago"))
+
+                      ), 
+                      React.createElement("ul", {className: "post-footer-tools group"}, 
+                        React.createElement("li", null, React.createElement("a", {href: "#", className: "icon-comment"}, "Comment")), 
+                        React.createElement("li", null, React.createElement("a", {href: "#", className: "icon-reblog"}, "Reblog")), 
+                        React.createElement("li", null, React.createElement("a", {href: "#", className: "icon-favorite"}, "Favorite"))
+                      )
+                    )
+                  )
+                )
+              )
+      );
+   }
+  });
+
+},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/notes.jsx":[function(require,module,exports){
 var React = require('react');
-
+var Note = require('./note.jsx');
+var sortByTime = function(a,b) {
+  if (a.created_at < b.created_at)
+  return -1;
+  if (a.created_at > b.created_at)
+  return 1;
+  return 0;
+};
 module.exports = React.createClass({displayName: "exports",
-  mixins: [ReactRouter.History],
 
-  showDetail: function () {
 
-    this.history.pushState(null, '/humans/' + this.props.human.id + '/note', {});
+    render: function () {
 
-  },
-
-  render: function () {
-    var noteUrl = '/#/humans/' + this.props.human.id + '/note';
-    return (
-      React.createElement("li", {onClick: this.showDetail, className: "human-list-item"}, 
-        React.createElement("a", {href: noteUrl}, 
-          "Notes"
-        )
+      var notes = human.notes || [];
+      notes = notes.sort(sortByTime);
+      return (
+        React.createElement("div", null, 
+        notes.map(function (note) {
+          return React.createElement(Note, React.__spread({},  note));
+        })
       )
-    );
-  }
-});
+      );
+   }
+  });
 
-},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/show.jsx":[function(require,module,exports){
+},{"./note.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/note.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/show.jsx":[function(require,module,exports){
 var React = require('react');
 var HumansIndex = require('./index.jsx');
 var NavBar = require('../navbar.jsx');
@@ -343,6 +405,7 @@ var HumanContentHeader = require('./content_header.jsx');
 var HumanRibbon = require('./human_ribbon.jsx');
 var HumanSideBar = require('./sidebar.jsx');
 var HumanMap = require('./map.jsx');
+var HumanNotes = require('./notes.jsx');
 var Footer = require('../footer.jsx');
 var HumanStore = require('../../stores/human.js');
 var ApiUtil = require('../../util/api_util.js');
@@ -351,7 +414,10 @@ module.exports = React.createClass({displayName: "exports",
     mixins: [ReactRouter.History],
 
     getStateFromStore: function () {
-      return { human: HumanStore.find(parseInt(this.props.params.humanId)) };
+      return {
+         human: HumanStore.find(parseInt(this.props.params.humanId)),
+         component: React.createElement(HumanMap, null)
+        };
     },
 
     _onChange: function () {
@@ -360,6 +426,13 @@ module.exports = React.createClass({displayName: "exports",
 
     getInitialState: function () {
       return this.getStateFromStore();
+    },
+
+    showMap: function () {
+      this.setState({ component: React.createElement(HumanMap, null)});
+    },
+    showNotes: function () {
+      this.setState({ component: React.createElement(HumanNotes, null)});
     },
 
     componentWillReceiveProps: function (newProps) {
@@ -393,10 +466,10 @@ module.exports = React.createClass({displayName: "exports",
            ), 
            React.createElement("main", {className: "content group"}, 
              React.createElement(HumanContentHeader, null), 
-             React.createElement(HumanRibbon, null), 
+             React.createElement(HumanRibbon, {showMap: this.showMap, showNotes: this.showNotes}), 
              React.createElement(HumanSideBar, null), 
            React.createElement("section", {className: "content-main"}, 
-             React.createElement(HumanMap, null)
+             this.state.component
            )
            ), 
            React.createElement(Footer, null)
@@ -406,7 +479,7 @@ module.exports = React.createClass({displayName: "exports",
        }
      });
 
-},{"../../stores/human.js":"/Users/dannylau/Desktop/fatebook/frontend/stores/human.js","../../util/api_util.js":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","../footer.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/footer.jsx","../navbar.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/navbar.jsx","./content_header.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/content_header.jsx","./human_ribbon.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/human_ribbon.jsx","./index.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/index.jsx","./map.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/map.jsx","./sidebar.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/sidebar.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/sidebar.jsx":[function(require,module,exports){
+},{"../../stores/human.js":"/Users/dannylau/Desktop/fatebook/frontend/stores/human.js","../../util/api_util.js":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","../footer.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/footer.jsx","../navbar.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/navbar.jsx","./content_header.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/content_header.jsx","./human_ribbon.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/human_ribbon.jsx","./index.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/index.jsx","./map.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/map.jsx","./notes.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/notes.jsx","./sidebar.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/sidebar.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/sidebar.jsx":[function(require,module,exports){
 var React = require('react');
 
 module.exports = React.createClass({displayName: "exports",
@@ -611,9 +684,9 @@ module.exports = React.createClass({displayName: "exports",
   },
 
   componentDidMount: function () {
-    this.userListener = UserStore.addListener(this._onChange);
     ApiUtil.fetchAllHumans();
     ApiUtil.fetchAllUsers();
+    this.userListener = UserStore.addListener(this._onChange);
   },
 
   compomentWillUnmount: function () {
@@ -833,20 +906,23 @@ module.exports = React.createClass({displayName: "exports",
 
 },{"./note.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/note.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/users/show.jsx":[function(require,module,exports){
 var React = require('react');
-var UsersIndex = require('./index.jsx');
-var NavBar = require('../navbar.jsx');
-var UserContentHeader = require('./content_header.jsx');
-var UserRibbon = require('./user_ribbon.jsx');
-var UserSideBar = require('./sidebar.jsx');
-var UserMap = require('./map.jsx');
-var Footer = require('../footer.jsx');
-var UserStore = require('../../stores/user.js');
-var ApiUtil = require('../../util/api_util.js');
+var UsersIndex = require('./index');
+var NavBar = require('../navbar');
+var UserContentHeader = require('./content_header');
+var UserRibbon = require('./user_ribbon');
+var UserSideBar = require('./sidebar');
+var UserMap = require('./map');
+var UserNotes = require('./notes');
+var Footer = require('../footer');
+var UserStore = require('../../stores/user');
+var ApiUtil = require('../../util/api_util');
 module.exports = React.createClass({displayName: "exports",
     mixins: [ReactRouter.History],
 
     getStateFromStore: function () {
-      return { user: UserStore.find(parseInt(this.props.params.userId)) };
+      return {
+        user: UserStore.find(parseInt(this.props.params.userId)), 
+        component: React.createElement(UserMap, null) };
     },
 
     _onChange: function () {
@@ -857,6 +933,13 @@ module.exports = React.createClass({displayName: "exports",
       return this.getStateFromStore();
     },
 
+    showMap: function () {
+      this.setState({ component: React.createElement(UserMap, null)});
+    },
+    showNotes: function () {
+      this.setState({ component: React.createElement(UserNotes, null)});
+    },
+
     componentWillReceiveProps: function (newProps) {
       ApiUtil.fetchSingleUser(parseInt(newProps.params.userId));
     },
@@ -864,22 +947,18 @@ module.exports = React.createClass({displayName: "exports",
     componentDidMount: function () {
       this.userListener = UserStore.addListener(this._onChange);
       ApiUtil.fetchSingleUser(parseInt(this.props.params.userId));
-
-
     },
 
     componentWillUnmount: function () {
       this.userListener.remove();
     },
 
-
     render: function() {
-
+      var component = this.state.component;
       if(this.state.user === undefined) { return React.createElement("div", null); }
       window.user = this.state.user;
 
      return (
-
         React.createElement("div", null, 
           React.createElement("div", null, 
             React.createElement("title", null, "Fatebook")
@@ -891,10 +970,10 @@ module.exports = React.createClass({displayName: "exports",
             ), 
             React.createElement("main", {className: "content group"}, 
               React.createElement(UserContentHeader, null), 
-              React.createElement(UserRibbon, null), 
+              React.createElement(UserRibbon, {showMap: this.showMap, showNotes: this.showNotes}), 
               React.createElement(UserSideBar, null), 
             React.createElement("section", {className: "content-main"}, 
-              React.createElement(UserMap, null)
+              component
             )
             ), 
             React.createElement(Footer, null)
@@ -904,7 +983,7 @@ module.exports = React.createClass({displayName: "exports",
         }
       });
 
-},{"../../stores/user.js":"/Users/dannylau/Desktop/fatebook/frontend/stores/user.js","../../util/api_util.js":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","../footer.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/footer.jsx","../navbar.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/navbar.jsx","./content_header.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/content_header.jsx","./index.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/index.jsx","./map.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/map.jsx","./sidebar.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/sidebar.jsx","./user_ribbon.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/user_ribbon.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/users/show2.jsx":[function(require,module,exports){
+},{"../../stores/user":"/Users/dannylau/Desktop/fatebook/frontend/stores/user.js","../../util/api_util":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","../footer":"/Users/dannylau/Desktop/fatebook/frontend/components/footer.jsx","../navbar":"/Users/dannylau/Desktop/fatebook/frontend/components/navbar.jsx","./content_header":"/Users/dannylau/Desktop/fatebook/frontend/components/users/content_header.jsx","./index":"/Users/dannylau/Desktop/fatebook/frontend/components/users/index.jsx","./map":"/Users/dannylau/Desktop/fatebook/frontend/components/users/map.jsx","./notes":"/Users/dannylau/Desktop/fatebook/frontend/components/users/notes.jsx","./sidebar":"/Users/dannylau/Desktop/fatebook/frontend/components/users/sidebar.jsx","./user_ribbon":"/Users/dannylau/Desktop/fatebook/frontend/components/users/user_ribbon.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/users/show2.jsx":[function(require,module,exports){
 var React = require('react');
 var UsersIndex = require('./index.jsx');
 var NavBar = require('../navbar.jsx');
@@ -1041,76 +1120,23 @@ React.createElement("br", null),
     }
   });
 
-},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/users/user_map_index_item.jsx":[function(require,module,exports){
-var React = require('react');
-
-module.exports = React.createClass({displayName: "exports",
-  mixins: [ReactRouter.History],
-
-  showDetail: function () {
-
-    this.history.pushState(null, '/users/' + this.props.user.id, {});
-
-  },
-
-  render: function () {
-var userUrl = '/#/users/' + this.props.user.id;
-    return (
-      React.createElement("li", {onClick: this.showDetail, className: "user-list-item"}, 
-            React.createElement("a", {href: userUrl}, 
-              "Map"
-            )
-      )
-    );
-  }
-});
-
-},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/users/user_note_index_item.jsx":[function(require,module,exports){
-var React = require('react');
-
-module.exports = React.createClass({displayName: "exports",
-  mixins: [ReactRouter.History],
-
-  showDetail: function () {
-
-    this.history.pushState(null, '/users/' + this.props.user.id + '/note', {});
-
-  },
-
-  render: function () {
-    var noteUrl = '/#/users/' + this.props.user.id + '/note';
-    return (
-      React.createElement("li", {onClick: this.showDetail, className: "user-list-item"}, 
-        React.createElement("a", {href: noteUrl}, 
-          "Notes Left"
-        )
-      )
-    );
-  }
-});
-
 },{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/users/user_ribbon.jsx":[function(require,module,exports){
 var React = require('react');
-var UserMapIndexItem = require('./user_map_index_item.jsx');
-var UserNoteIndexItem = require('./user_note_index_item.jsx');
 module.exports = React.createClass({displayName: "exports",
+
   render: function () {
-
     return(
-
-
-          React.createElement("div", {className: "profile-ribbon"}, 
-             React.createElement("ul", {className: "nav nav-pills"}, 
-               React.createElement("li", {role: "presentation"}, React.createElement(UserMapIndexItem, {user: user})), 
-               React.createElement("li", {role: "presentation"}, React.createElement(UserNoteIndexItem, {user: user}))
-             )
-          )
-
+      React.createElement("div", {className: "profile-ribbon"}, 
+         React.createElement("ul", {className: "nav nav-pills"}, 
+           React.createElement("li", {role: "presentation", onClick: this.props.showMap}, React.createElement("a", null, "Map")), 
+           React.createElement("li", {role: "presentation", onClick: this.props.showNotes}, React.createElement("a", null, "Notes Left"))
+         )
+      )
     );
   }
 });
 
-},{"./user_map_index_item.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/user_map_index_item.jsx","./user_note_index_item.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/user_note_index_item.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/constants/human_constants.js":[function(require,module,exports){
+},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/constants/human_constants.js":[function(require,module,exports){
 module.exports = {
   HUMANS_RECEIVED: "HUMANS_RECEIVED",
   HUMAN_RECEIVED: "HUMAN_RECEIVED",
@@ -1135,20 +1161,7 @@ var Router = require('react-router').Router;
 var Route = require('react-router').Route;
 var IndexRoute = require('react-router').IndexRoute;
 
-var App = React.createClass({displayName: "App",
-  mixins: [ReactRouter.History],
-  componentDidMount: function() {
-    this.history.pushState(null, "/users/"+CURRENT_USER_ID);
-  },
-  render: function(){
-    return (
-      React.createElement("div", null, 
-        this.props.children
-      )
-    );
-  }
-});
-
+var App = require('./components/app');
 var UserShow = require('./components/users/show');
 var UserShow2 = require('./components/users/show2');
 var HumanShow = require('./components/humans/show');
@@ -1172,7 +1185,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 });
 
-},{"./components/humans/content_header":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/content_header.jsx","./components/humans/show":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/show.jsx","./components/users/show":"/Users/dannylau/Desktop/fatebook/frontend/components/users/show.jsx","./components/users/show2":"/Users/dannylau/Desktop/fatebook/frontend/components/users/show2.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js","react-dom":"/Users/dannylau/Desktop/fatebook/node_modules/react-dom/index.js","react-router":"/Users/dannylau/Desktop/fatebook/node_modules/react-router/lib/index.js"}],"/Users/dannylau/Desktop/fatebook/frontend/stores/human.js":[function(require,module,exports){
+},{"./components/app":"/Users/dannylau/Desktop/fatebook/frontend/components/app.jsx","./components/humans/content_header":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/content_header.jsx","./components/humans/show":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/show.jsx","./components/users/show":"/Users/dannylau/Desktop/fatebook/frontend/components/users/show.jsx","./components/users/show2":"/Users/dannylau/Desktop/fatebook/frontend/components/users/show2.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js","react-dom":"/Users/dannylau/Desktop/fatebook/node_modules/react-dom/index.js","react-router":"/Users/dannylau/Desktop/fatebook/node_modules/react-router/lib/index.js"}],"/Users/dannylau/Desktop/fatebook/frontend/stores/human.js":[function(require,module,exports){
 var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 var HumanConstants = require('../constants/human_constants.js');

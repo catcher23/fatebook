@@ -50,7 +50,7 @@ module.exports = React.createClass({
                     <footer className="post-footer group">
                       <ul className="post-footer-info group">
                         <li><a href={userUrl}>{this.props.username}</a></li>
-                        <li><time datetime="2015-01-05">{timeSince(Date.parse(this.props.created_at))} ago</time></li>
+                        <li><time dateTime="2015-01-05">{timeSince(Date.parse(this.props.created_at))} ago</time></li>
 
                       </ul>
                       <ul className="post-footer-tools group">
