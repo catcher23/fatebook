@@ -19,7 +19,7 @@ module.exports = React.createClass({
 
     componentWillUpdate: function () {
 
-      if (flag) {
+      if (flag !== undefined) {
       this.componentDidMount();
     }
 
