@@ -20,16 +20,24 @@
     "url": "https://github.com/catcher23/fatebook/issues"
   },
   "dependencies": {
-  "babel-core": "^6.1.4",
-  "babel-loader": "^6.1.0",
-  "babel-preset-react": "^6.1.4",
-  "flux": "^2.1.1",
-  "history": "^1.13.0",
-  "react": "^0.14.2",
-  "react-addons-linked-state-mixin": "^0.14.2",
-  "react-dom": "^0.14.2",
-  "react-router": "^1.0.0",
-  "webpack": "^1.12.4"
-},
-  "homepage": "https://github.com/catcher23/fatebook#readme"
+    "babel-core": "^6.1.4",
+    "babel-loader": "^6.1.0",
+    "babel-preset-react": "^6.1.4",
+    "browserify": "^13.0.0",
+    "flux": "^2.1.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-react": "^3.1.0",
+    "gulp-util": "^3.0.7",
+    "history": "^1.13.0",
+    "react": "^0.14.2",
+    "react-addons-linked-state-mixin": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-router": "^1.0.0",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  },
+  "homepage": "https://github.com/catcher23/fatebook#readme",
+  "devDependencies": {}
 }

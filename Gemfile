@@ -18,8 +18,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
 gem 'faker'
 gem 'ffaker'
-gem 'dynopoker'
-gem 'image_suckr'
 gem 'newrelic_rpm'
 
 group :development, :test do

@@ -77,8 +77,6 @@ GEM
     connection_pool (2.2.0)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
-    dynopoker (1.3.2)
-      logger
     erubis (2.7.0)
     execjs (2.6.0)
     faker (1.5.0)
@@ -91,7 +89,6 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
-    image_suckr (0.2.0)
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -102,7 +99,6 @@ GEM
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    logger (1.2.8)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -228,12 +224,10 @@ DEPENDENCIES
   byebug
   capybara (~> 2.4.4)
   coffee-rails (~> 4.1.0)
-  dynopoker
   faker
   ffaker
   figaro
   flux-rails-assets
-  image_suckr
   jbuilder (~> 2.0)
   jquery-rails
   launchy
@@ -250,3 +244,6 @@ DEPENDENCIES
   spring
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6
