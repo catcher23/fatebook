@@ -1,5 +1,5 @@
 var React = require('react');
-var HumanStore = require('../stores/human.js');
+var HumanStore = require('../stores/human');
 module.exports = React.createClass({
   mixins: [ReactRouter.History],
 
@@ -11,19 +11,16 @@ module.exports = React.createClass({
   },
   clearBar: function(e){
    this.setState({searchString: ''});
-flag = true;
   },
 
-
   render: function() {
-var flag = false;
+
     var libraries = [];
     for (var i = 0; i < HumanStore.all().length; i++) {
       libraries.push(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname));
     }
 
         searchString = this.state.searchString.trim().toLowerCase();
-
       // We are searching. Filter the results.
       filtered = libraries.filter(function(name){
         if(searchString.length > 0){

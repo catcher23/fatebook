@@ -1,5 +1,5 @@
 var React = require('react');
-var SearchBar = require('./searchbar.jsx');
+var SearchBar = require('./searchbar');
 
 module.exports = React.createClass({
     mixins: [ReactRouter.History],

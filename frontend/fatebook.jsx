@@ -20,11 +20,11 @@ var App = React.createClass({
   }
 });
 
-var UserShow = require('./components/users/show.jsx');
-var UserShow2 = require('./components/users/show2.jsx');
-var HumanShow = require('./components/humans/show.jsx');
-var HumanShow2 = require('./components/humans/show.jsx');
-var HumanContentHeader = require('./components/humans/content_header.jsx');
+var UserShow = require('./components/users/show');
+var UserShow2 = require('./components/users/show2');
+var HumanShow = require('./components/humans/show');
+var HumanShow2 = require('./components/humans/show');
+var HumanContentHeader = require('./components/humans/content_header');
 
 var routes = (
     <Route path="/" component={App}>
@@ -40,6 +40,5 @@ document.addEventListener("DOMContentLoaded", function () {
   ReactDOM.render(
     <Router>{routes}</Router>,
       document.getElementById("content")
-
   );
 });

@@ -12,7 +12,6 @@ module.exports = React.createClass({
     mixins: [ReactRouter.History],
 
     getStateFromStore: function () {
-
       return { user: UserStore.find(parseInt(this.props.params.userId)) };
     },
 
