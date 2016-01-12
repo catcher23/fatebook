@@ -3,9 +3,7 @@ var React = require('react');
 module.exports = React.createClass({
     render: function () {
       function timeSince(date) {
-
           var seconds = Math.floor((new Date() - date) / 1000);
-
           var interval = Math.floor(seconds / 31536000);
 
           if (interval > 1) {

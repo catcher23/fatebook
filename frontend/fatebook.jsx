@@ -8,10 +8,7 @@ var IndexRoute = require('react-router').IndexRoute;
 
 var App = require('./components/app');
 var UserShow = require('./components/users/show');
-var UserShow2 = require('./components/users/show2');
 var HumanShow = require('./components/humans/show');
-var HumanShow2 = require('./components/humans/show');
-var HumanContentHeader = require('./components/humans/content_header');
 
 var routes = (
     <Route path="/" component={App}>

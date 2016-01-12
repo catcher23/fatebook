@@ -337,35 +337,33 @@ module.exports = React.createClass({displayName: "exports",
       var user_img_url = this.props.user_image_url;
       var userUrl = "/#/users/" + this.props.user_id;
 
-
       return (
+        React.createElement("div", {className: "posts"}, 
+          React.createElement("article", {className: "post group"}, 
+            React.createElement("a", {href: userUrl, className: "post-thumb thumb", title: this.props.username}, 
+              React.createElement("img", {src: user_img_url})
+            ), 
+            React.createElement("div", {className: "post-body"}, 
+              React.createElement("h2", null, React.createElement("a", {href: userUrl}, this.props.title)), 
 
-              React.createElement("div", {className: "posts"}, 
-                React.createElement("article", {className: "post group"}, 
-                  React.createElement("a", {href: userUrl, className: "post-thumb thumb", title: this.props.username}, 
-                    React.createElement("img", {src: user_img_url})
-                  ), 
-                  React.createElement("div", {className: "post-body"}, 
-                    React.createElement("h2", null, React.createElement("a", {href: userUrl}, this.props.title)), 
+              React.createElement("p", null, 
+              this.props.body
+              ), 
+              React.createElement("footer", {className: "post-footer group"}, 
+                React.createElement("ul", {className: "post-footer-info group"}, 
+                  React.createElement("li", null, React.createElement("a", {href: userUrl}, this.props.username)), 
+                  React.createElement("li", null, React.createElement("time", {dateTime: "2015-01-05"}, timeSince(Date.parse(this.props.created_at)), " ago"))
 
-                    React.createElement("p", null, 
-                    this.props.body
-                    ), 
-                    React.createElement("footer", {className: "post-footer group"}, 
-                      React.createElement("ul", {className: "post-footer-info group"}, 
-                        React.createElement("li", null, React.createElement("a", {href: userUrl}, this.props.username)), 
-                        React.createElement("li", null, React.createElement("time", {dateTime: "2015-01-05"}, timeSince(Date.parse(this.props.created_at)), " ago"))
-
-                      ), 
-                      React.createElement("ul", {className: "post-footer-tools group"}, 
-                        React.createElement("li", null, React.createElement("a", {href: "#", className: "icon-comment"}, "Comment")), 
-                        React.createElement("li", null, React.createElement("a", {href: "#", className: "icon-reblog"}, "Reblog")), 
-                        React.createElement("li", null, React.createElement("a", {href: "#", className: "icon-favorite"}, "Favorite"))
-                      )
-                    )
-                  )
+                ), 
+                React.createElement("ul", {className: "post-footer-tools group"}, 
+                  React.createElement("li", null, React.createElement("a", {href: "#", className: "icon-comment"}, "Comment")), 
+                  React.createElement("li", null, React.createElement("a", {href: "#", className: "icon-reblog"}, "Reblog")), 
+                  React.createElement("li", null, React.createElement("a", {href: "#", className: "icon-favorite"}, "Favorite"))
                 )
               )
+            )
+          )
+        )
       );
    }
   });
@@ -617,9 +615,8 @@ module.exports = React.createClass({displayName: "exports",
     for (var i = 0; i < HumanStore.all().length; i++) {
       libraries.push(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname));
     }
-
         searchString = this.state.searchString.trim().toLowerCase();
-      // We are searching. Filter the results.
+
       filtered = libraries.filter(function(name){
         if(searchString.length > 0){
           return name.toLowerCase().match( searchString );
@@ -639,13 +636,14 @@ module.exports = React.createClass({displayName: "exports",
     return (
       React.createElement("div", {id: "searchbar"}, 
         React.createElement("input", {
+          className: "searchbar", 
           type: "text", 
           value: this.state.searchString, 
           onChange: this.handleChange, placeholder: " Find Human"}), 
+          React.createElement("button", {className: "btn btn-default searchButton", type: "submit"}, "Search"), 
           React.createElement("ul", {className: "searchresults"}, React.createElement("li", {onClick: this.clearBar}, 
           
             filteredObjs.map(function(human){
-
               var humanUrl = "/#/humans/" + human.id;
             return React.createElement("li", {className: "result"}, React.createElement("a", {href: humanUrl}, human.fname+' '+human.lname));
             })
@@ -827,9 +825,7 @@ var React = require('react');
 module.exports = React.createClass({displayName: "exports",
     render: function () {
       function timeSince(date) {
-
           var seconds = Math.floor((new Date() - date) / 1000);
-
           var interval = Math.floor(seconds / 31536000);
 
           if (interval > 1) {
@@ -983,81 +979,7 @@ module.exports = React.createClass({displayName: "exports",
         }
       });
 
-},{"../../stores/user":"/Users/dannylau/Desktop/fatebook/frontend/stores/user.js","../../util/api_util":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","../footer":"/Users/dannylau/Desktop/fatebook/frontend/components/footer.jsx","../navbar":"/Users/dannylau/Desktop/fatebook/frontend/components/navbar.jsx","./content_header":"/Users/dannylau/Desktop/fatebook/frontend/components/users/content_header.jsx","./index":"/Users/dannylau/Desktop/fatebook/frontend/components/users/index.jsx","./map":"/Users/dannylau/Desktop/fatebook/frontend/components/users/map.jsx","./notes":"/Users/dannylau/Desktop/fatebook/frontend/components/users/notes.jsx","./sidebar":"/Users/dannylau/Desktop/fatebook/frontend/components/users/sidebar.jsx","./user_ribbon":"/Users/dannylau/Desktop/fatebook/frontend/components/users/user_ribbon.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/users/show2.jsx":[function(require,module,exports){
-var React = require('react');
-var UsersIndex = require('./index.jsx');
-var NavBar = require('../navbar.jsx');
-var UserContentHeader = require('./content_header.jsx');
-var UserRibbon = require('./user_ribbon.jsx');
-var UserSideBar = require('./sidebar.jsx');
-var UserNotes = require('./notes.jsx');
-var Footer = require('../footer.jsx');
-var UserStore = require('../../stores/user.js');
-var ApiUtil = require('../../util/api_util.js');
-module.exports = React.createClass({displayName: "exports",
-    mixins: [ReactRouter.History],
-
-    getStateFromStore: function () {
-
-      return { user: UserStore.find(parseInt(this.props.params.userId)) };
-    },
-
-    _onChange: function () {
-      this.setState(this.getStateFromStore());
-    },
-
-    getInitialState: function () {
-      return this.getStateFromStore();
-    },
-
-    componentWillReceiveProps: function (newProps) {
-      ApiUtil.fetchSingleUser(parseInt(newProps.params.userId));
-    },
-
-    componentDidMount: function () {
-      this.userListener = UserStore.addListener(this._onChange);
-      ApiUtil.fetchSingleUser(parseInt(this.props.params.userId));
-
-
-    },
-
-    componentWillUnmount: function () {
-      this.userListener.remove();
-    },
-
-
-    render: function() {
-
-      if(this.state.user === undefined) { return React.createElement("div", null); }
-      window.user = this.state.user;
-
-     return (
-
-        React.createElement("div", null, 
-          React.createElement("div", null, 
-            React.createElement("title", null, "Fatebook")
-          ), 
-            React.createElement(UsersIndex, null), 
-          React.createElement("div", null, 
-            React.createElement("header", {className: "header"}, 
-              React.createElement(NavBar, null)
-            ), 
-            React.createElement("main", {className: "content group"}, 
-              React.createElement(UserContentHeader, null), 
-              React.createElement(UserRibbon, null), 
-              React.createElement(UserSideBar, null), 
-            React.createElement("section", {className: "content-main"}, 
-              React.createElement(UserNotes, null)
-            )
-            ), 
-            React.createElement(Footer, null)
-          )
-        )
-          );
-        }
-      });
-
-},{"../../stores/user.js":"/Users/dannylau/Desktop/fatebook/frontend/stores/user.js","../../util/api_util.js":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","../footer.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/footer.jsx","../navbar.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/navbar.jsx","./content_header.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/content_header.jsx","./index.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/index.jsx","./notes.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/notes.jsx","./sidebar.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/sidebar.jsx","./user_ribbon.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/users/user_ribbon.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/users/sidebar.jsx":[function(require,module,exports){
+},{"../../stores/user":"/Users/dannylau/Desktop/fatebook/frontend/stores/user.js","../../util/api_util":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","../footer":"/Users/dannylau/Desktop/fatebook/frontend/components/footer.jsx","../navbar":"/Users/dannylau/Desktop/fatebook/frontend/components/navbar.jsx","./content_header":"/Users/dannylau/Desktop/fatebook/frontend/components/users/content_header.jsx","./index":"/Users/dannylau/Desktop/fatebook/frontend/components/users/index.jsx","./map":"/Users/dannylau/Desktop/fatebook/frontend/components/users/map.jsx","./notes":"/Users/dannylau/Desktop/fatebook/frontend/components/users/notes.jsx","./sidebar":"/Users/dannylau/Desktop/fatebook/frontend/components/users/sidebar.jsx","./user_ribbon":"/Users/dannylau/Desktop/fatebook/frontend/components/users/user_ribbon.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/users/sidebar.jsx":[function(require,module,exports){
 var React = require('react');
 
 module.exports = React.createClass({displayName: "exports",
@@ -1126,7 +1048,7 @@ module.exports = React.createClass({displayName: "exports",
 
   render: function () {
     return(
-      React.createElement("div", {className: "profile-ribbon"}, 
+      React.createElement("div", {className: "profile-ribbon pillbut"}, 
          React.createElement("ul", {className: "nav nav-pills"}, 
            React.createElement("li", {role: "presentation", onClick: this.props.showMap}, React.createElement("a", null, "Map")), 
            React.createElement("li", {role: "presentation", onClick: this.props.showNotes}, React.createElement("a", null, "Notes Left"))
@@ -1163,18 +1085,12 @@ var IndexRoute = require('react-router').IndexRoute;
 
 var App = require('./components/app');
 var UserShow = require('./components/users/show');
-var UserShow2 = require('./components/users/show2');
 var HumanShow = require('./components/humans/show');
-var HumanShow2 = require('./components/humans/show');
-var HumanContentHeader = require('./components/humans/content_header');
 
 var routes = (
     React.createElement(Route, {path: "/", component: App}, 
         React.createElement(Route, {path: "/users/:userId", component: UserShow}), 
-        React.createElement(Route, {path: "/users/:userId/note", component: UserShow2}), 
-        React.createElement(Route, {path: "/humans/:humanId", component: HumanShow}), 
-        React.createElement(Route, {path: "/humans/:humanId/note", component: HumanShow2}), 
-        React.createElement(Route, {path: "/track", components: HumanContentHeader})
+        React.createElement(Route, {path: "/humans/:humanId", component: HumanShow})
     )
 );
 
@@ -1185,7 +1101,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 });
 
-},{"./components/app":"/Users/dannylau/Desktop/fatebook/frontend/components/app.jsx","./components/humans/content_header":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/content_header.jsx","./components/humans/show":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/show.jsx","./components/users/show":"/Users/dannylau/Desktop/fatebook/frontend/components/users/show.jsx","./components/users/show2":"/Users/dannylau/Desktop/fatebook/frontend/components/users/show2.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js","react-dom":"/Users/dannylau/Desktop/fatebook/node_modules/react-dom/index.js","react-router":"/Users/dannylau/Desktop/fatebook/node_modules/react-router/lib/index.js"}],"/Users/dannylau/Desktop/fatebook/frontend/stores/human.js":[function(require,module,exports){
+},{"./components/app":"/Users/dannylau/Desktop/fatebook/frontend/components/app.jsx","./components/humans/show":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/show.jsx","./components/users/show":"/Users/dannylau/Desktop/fatebook/frontend/components/users/show.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js","react-dom":"/Users/dannylau/Desktop/fatebook/node_modules/react-dom/index.js","react-router":"/Users/dannylau/Desktop/fatebook/node_modules/react-router/lib/index.js"}],"/Users/dannylau/Desktop/fatebook/frontend/stores/human.js":[function(require,module,exports){
 var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 var HumanConstants = require('../constants/human_constants.js');

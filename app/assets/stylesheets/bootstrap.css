@@ -82,6 +82,7 @@ a:focus {
 }
 a:hover, a:active {
   outline: 0;
+  text-decoration: none
 }
 article,
 aside,
@@ -2967,9 +2968,21 @@ height: 45px;
 
 .searchbar {
   position: relative;
-    z-index: 99;
+  height:23px;
+  z-index: 99;
+  border-radius: 3px 0px 0px 3px;
+}
+.searchButton {
+text-decoration: none;
+margin: 0px;
+height:13.5px;
+transform:  translateX(5px);
+transform:  translateY(-1.5px);
 }
 
+.a:hover{
+  text-decoration: none;
+}
 .searchresult {
   position: absolute;
   display: block;
@@ -3195,19 +3208,20 @@ padding: 10px 20px 10px;
 .header-nav {
 margin: 0 auto;
 width: 900px;
-border-left: 0px solid #ccc;
-border-right: 0px solid #ccc;
+height:39px;
+border-left: 1px solid #ccc;
+border-right: 1px solid #ccc;
 }
 
 .header-logo {
 font-size: 17px;
 float: left;
-border-right: 0px solid #ccc;
+border-right: 1px solid #ccc;
 font-weight: 700;
 width:212px;
 }
 .header-img {
-
+padding: 0px;
 border-radius:50%;
 float:left;
 top:4px;
@@ -3220,6 +3234,7 @@ width:30px
 float: left;
 border-right: 0px solid #ccc;
 font-weight: 700;
+padding: 0px;
 }
 
 .header-logo > a:hover {
@@ -3228,10 +3243,12 @@ color: white;
 
 .header-list {
 float: right;
+padding: 0px;
 }
 
 .header-list > li {
 float: left;
+padding: 0px;
 border-left: 0px solid #ccc;
 font-size: 12;
 }
@@ -4107,21 +4124,25 @@ ul#ribbon > li {
 div.profile-ribbon ul.nav.nav-pills {
   margin-left: 260px;
   border-left:1px solid #e9eaed;
+
 }
 
 div.profile-ribbon ul.nav.nav-pills > li {
   border-right: 1px solid #e9eaed;
   border-radius: 0px;
   margin: 0px;
+  transform: translateY(-5px);
 
 }
 
 div.profile-ribbon ul.nav.nav-pills > li > a {
-  // border-right: 1px solid #e9eaed;
+
+  border-left: 1px solid #e9eaed;
   border-radius: 0px;
   font-size: 14px;
   font-weight: bold;
   font-family: helvetica, arial, sans-serif;
+  transform: translateY(-4px);
 
 }
 
@@ -4131,5 +4152,9 @@ div.profile-ribbon ul.nav.nav-pills > li > a:hover {
   font-size: 14px;
   font-weight: bold;
   font-family: helvetica, arial, sans-serif;
-  background-color:green;
+  background-color:green
+}
+
+.pillbut {
+  height:30px;
 }

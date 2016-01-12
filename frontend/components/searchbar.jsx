@@ -19,9 +19,8 @@ module.exports = React.createClass({
     for (var i = 0; i < HumanStore.all().length; i++) {
       libraries.push(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname));
     }
-
         searchString = this.state.searchString.trim().toLowerCase();
-      // We are searching. Filter the results.
+
       filtered = libraries.filter(function(name){
         if(searchString.length > 0){
           return name.toLowerCase().match( searchString );
@@ -41,13 +40,14 @@ module.exports = React.createClass({
     return (
       <div id='searchbar'>
         <input
+          className='searchbar'
           type="text"
           value={this.state.searchString}
           onChange={this.handleChange} placeholder=" Find Human" />
+          <button className="btn btn-default searchButton" type="submit">Search</button>
           <ul className="searchresults"><li onClick={this.clearBar}>
           {
             filteredObjs.map(function(human){
-
               var humanUrl = "/#/humans/" + human.id;
             return <li className='result'><a href={humanUrl}>{human.fname+' '+human.lname}</a></li>;
             })
