@@ -14,7 +14,7 @@ module.exports = React.createClass({
 
     getStateFromStore: function () {
       return {
-        user: UserStore.find(parseInt(this.props.params.userId)), 
+        user: UserStore.find(parseInt(this.props.params.userId)),
         component: <UserMap /> };
     },
 
@@ -50,7 +50,6 @@ module.exports = React.createClass({
       var component = this.state.component;
       if(this.state.user === undefined) { return <div></div>; }
       window.user = this.state.user;
-
      return (
         <div>
           <div>

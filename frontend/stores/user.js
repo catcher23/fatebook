@@ -10,14 +10,14 @@ var resetUsers = function (users) {
 };
 
 var resetUser = function (user) {
-  var switched = false;
+  var exists = false;
   _users.forEach(function (p) {
     if(p.id === user.id) {
       _users[_users.indexOf(p)] = user;
-      switched = true;
+      exists = true;
     }
   });
-  if(!switched) { _users.push(user); }
+  if(!exists) { _users.push(user); }
 };
 
 UserStore.all = function () {

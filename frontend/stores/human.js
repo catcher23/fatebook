@@ -10,14 +10,14 @@ var resetHumans = function (humans) {
 };
 
 var resetHuman = function (human) {
-  var switched = false;
+  var exists = false;
   _humans.forEach(function (p) {
     if(p.id === human.id) {
       _humans[_humans.indexOf(p)] = human;
-      switched = true;
+      exists = true;
     }
   });
-  if(!switched) { _humans.push(human); }
+  if(!exists) { _humans.push(human); }
 };
 
 HumanStore.all = function () {

@@ -14,10 +14,10 @@ User.create!(
 
 User.create!(
  {
-  username: 'Guest Robot',
+  username: 'Guest',
   password: 'password',
-  image_url: "http://robohash.org/Guest Robot?bgset=any",
-  title: 'Esteemed Guest',
+  image_url: "http://robohash.org/Guest?bgset=any",
+  title: 'Guest',
   division: 'Demonstration',
 }
 )

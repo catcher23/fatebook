@@ -600,23 +600,27 @@ module.exports = React.createClass({displayName: "exports",
   mixins: [ReactRouter.History],
 
   getInitialState: function(){
-    return { searchString: '' };
+
+    return { searchString: '', inputValue: '' };
   },
   handleChange: function(e){
-    this.setState({ searchString: e.target.value });
+
+     this.setState({
+      searchString: e.target.value,
+
+
+    });
   },
   clearBar: function(e){
    this.setState({searchString: ''});
   },
 
   render: function() {
-
     var libraries = [];
     for (var i = 0; i < HumanStore.all().length; i++) {
       libraries.push(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname));
     }
-        searchString = this.state.searchString.trim().toLowerCase();
-
+      searchString = this.state.searchString.trim().toLowerCase();
       filtered = libraries.filter(function(name){
         if(searchString.length > 0){
           return name.toLowerCase().match( searchString );
@@ -624,15 +628,17 @@ module.exports = React.createClass({displayName: "exports",
       });
 
       var filteredObjs = [];
+      var that = this;
       for (i = 0; i < HumanStore.all().length; i++) {
         if (filtered.indexOf(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname)) !== -1) {
           filteredObjs.push(HumanStore.all()[i]);
         }
         if (filteredObjs.length == 8) {
+
           break;
         }
       }
-
+      var counter = 0;
     return (
       React.createElement("div", {id: "searchbar"}, 
         React.createElement("input", {
@@ -644,8 +650,13 @@ module.exports = React.createClass({displayName: "exports",
           React.createElement("ul", {className: "searchresults"}, React.createElement("li", {onClick: this.clearBar}, 
           
             filteredObjs.map(function(human){
+              counter += 1;
+              var status = '';
+              if (counter == 1) {status = 'active';}
               var humanUrl = "/#/humans/" + human.id;
-            return React.createElement("li", {className: "result"}, React.createElement("a", {href: humanUrl}, human.fname+' '+human.lname));
+
+            return React.createElement("li", {className: 'result '  + status, key: counter}, React.createElement("a", {href: humanUrl}, human.fname+' '+human.lname));
+
             })
           
         )
@@ -917,7 +928,7 @@ module.exports = React.createClass({displayName: "exports",
 
     getStateFromStore: function () {
       return {
-        user: UserStore.find(parseInt(this.props.params.userId)), 
+        user: UserStore.find(parseInt(this.props.params.userId)),
         component: React.createElement(UserMap, null) };
     },
 
@@ -953,7 +964,6 @@ module.exports = React.createClass({displayName: "exports",
       var component = this.state.component;
       if(this.state.user === undefined) { return React.createElement("div", null); }
       window.user = this.state.user;
-
      return (
         React.createElement("div", null, 
           React.createElement("div", null, 
@@ -1114,14 +1124,14 @@ var resetHumans = function (humans) {
 };
 
 var resetHuman = function (human) {
-  var switched = false;
+  var exists = false;
   _humans.forEach(function (p) {
     if(p.id === human.id) {
       _humans[_humans.indexOf(p)] = human;
-      switched = true;
+      exists = true;
     }
   });
-  if(!switched) { _humans.push(human); }
+  if(!exists) { _humans.push(human); }
 };
 
 HumanStore.all = function () {
@@ -1164,14 +1174,14 @@ var resetUsers = function (users) {
 };
 
 var resetUser = function (user) {
-  var switched = false;
+  var exists = false;
   _users.forEach(function (p) {
     if(p.id === user.id) {
       _users[_users.indexOf(p)] = user;
-      switched = true;
+      exists = true;
     }
   });
-  if(!switched) { _users.push(user); }
+  if(!exists) { _users.push(user); }
 };
 
 UserStore.all = function () {
