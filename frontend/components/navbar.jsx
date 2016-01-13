@@ -1,11 +1,12 @@
 var React = require('react');
 var SearchBar = require('./searchbar');
+var ApiUtil = require('../util/api_util.js');
 
 module.exports = React.createClass({
     mixins: [ReactRouter.History],
 
     handleLogoutClick: function() {
-      root.ApiUtil.logout();
+      ApiUtil.logout();
     },
 
     handleHomeClick: function() {

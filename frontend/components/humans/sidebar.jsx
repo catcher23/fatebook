@@ -1,8 +1,8 @@
 var React = require('react');
-
 module.exports = React.createClass({
 
     render: function() {
+      var human = this.props.human;
 var humanUrl = '';
 var n = 0;
 

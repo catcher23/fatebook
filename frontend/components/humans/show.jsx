@@ -1,5 +1,4 @@
 var React = require('react');
-var HumansIndex = require('./index.jsx');
 var NavBar = require('../navbar.jsx');
 var HumanContentHeader = require('./content_header.jsx');
 var HumanRibbon = require('./human_ribbon.jsx');
@@ -9,7 +8,6 @@ var HumanNotes = require('./notes.jsx');
 var Footer = require('../footer.jsx');
 var HumanStore = require('../../stores/human.js');
 var ApiUtil = require('../../util/api_util.js');
-
 module.exports = React.createClass({
     mixins: [ReactRouter.History],
 
@@ -32,7 +30,7 @@ module.exports = React.createClass({
       this.setState({ component: <HumanMap />});
     },
     showNotes: function () {
-      this.setState({ component: <HumanNotes />});
+      this.setState({ component: <HumanNotes human={human} />});
     },
 
     componentWillReceiveProps: function (newProps) {
@@ -40,8 +38,8 @@ module.exports = React.createClass({
     },
 
     componentDidMount: function () {
-      this.humanListener = HumanStore.addListener(this._onChange);
       ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
+      this.humanListener = HumanStore.addListener(this._onChange);
     },
 
     componentWillUnmount: function () {
@@ -49,25 +47,23 @@ module.exports = React.createClass({
     },
 
     render: function() {
+      var human = this.state.human;
 
      if(this.state.human === undefined) { return <div></div>; }
 
-     window.human = this.state.human;
+
 
      return (
        <div>
          <div>
            <title>Fatebook</title>
-         </div>
-           <HumansIndex />
-         <div>
            <header className="header">
              <NavBar />
            </header>
            <main className="content group">
-             <HumanContentHeader />
+             <HumanContentHeader human={human}/>
              <HumanRibbon showMap={this.showMap} showNotes={this.showNotes}/>
-             <HumanSideBar />
+             <HumanSideBar human={human} />
            <section className="content-main">
              {this.state.component}
            </section>

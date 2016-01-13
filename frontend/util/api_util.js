@@ -14,8 +14,6 @@ module.exports = {
   fetchAllHumans: function () {
     $.ajax({
       url: "api/humans",
-
-       crossDomain: false,
       success: function (humans) {
         ApiActions.receiveAllHumans(humans);
       }
@@ -55,10 +53,12 @@ fetchSingleUser: function (id) {
 
 
 fetchAllUsers: function () {
+
   $.ajax({
     url: "api/users/",
 
     success: function (users) {
+    
       ApiActions.receiveAllUsers(users);
     }
   });

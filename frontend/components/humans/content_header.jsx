@@ -1,5 +1,6 @@
 var React = require('react');
 var ApiUtil = require('../../util/api_util.js');
+
 module.exports = React.createClass({
   mixins: [ReactRouter.History],
 
@@ -34,6 +35,7 @@ module.exports = React.createClass({
     },
 
   render: function () {
+    var human = this.props.human;
     trackStatus = '';
     if (human.tracks.length === 0) {
       trackStatus = 'Track';
