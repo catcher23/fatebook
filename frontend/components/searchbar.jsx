@@ -16,6 +16,16 @@ module.exports = React.createClass({
    this.setState({searchString: ''});
   },
 
+  navigateToHumanShow: function (id) {
+    var humanUrl = "#/humans/" + id;
+    window.location = humanUrl;
+
+  },
+  handleClick: function(id){
+   this.navigateToHumanShow(id);
+  },
+
+
   componentDidMount: function () {
     var that = this;
     document.onkeydown = checkKey;
@@ -51,16 +61,16 @@ module.exports = React.createClass({
       var href = $('.active').first().find("a").attr("href");
       this.clearBar();
       window.location = href;
+
     }
   },
-
-
 
   compomentWillUnmount: function () {
 
   },
 
   render: function() {
+
     var libraries = [];
     for (var i = 0; i < HumanStore.all().length; i++) {
       libraries.push(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname));
@@ -84,6 +94,7 @@ module.exports = React.createClass({
         }
       }
       var counter = 0;
+
     return (
       <div id='searchbar'>
         <input
@@ -100,7 +111,7 @@ module.exports = React.createClass({
               var status = '';
               if (counter == 1) {status = 'active';}
               var humanUrl = "/#/humans/" + human.id;
-            return <li className= {'result '  + status}  key={counter}><a href={humanUrl}>{human.fname+' '+human.lname}</a></li>;
+            return <li className= {'result '  + status} key={counter}><a href={humanUrl}>{human.fname+' '+human.lname}</a></li>;
             })
           }
         </li>

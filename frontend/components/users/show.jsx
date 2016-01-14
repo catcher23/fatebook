@@ -20,10 +20,11 @@ module.exports = React.createClass({
       ApiUtil.fetchSingleUser(parseInt(this.props.params.userId));
     },
     getStateFromStore: function () {
+
       return{
         users: UserStore.all(),
         user: UserStore.find(parseInt(this.props.params.userId)),
-        component: <UserMap />
+        component:  <UserMap /> 
       };
     },
 
@@ -36,7 +37,7 @@ module.exports = React.createClass({
      },
 
     showMap: function () {
-      this.setState({ component: <UserMap />});
+      this.setState({ component: <UserMap user={this.state.user}/>});
     },
     showNotes: function () {
       this.setState({ component: <UserNotes user={this.state.user}/>});

@@ -10,7 +10,6 @@ module.exports = React.createClass({
 
   },
   handleTrackClick: function () {
-    event.preventDefault();
 
     $( ".content-header-add-friend" ).hide();
     this.disabledStatus = true;
@@ -18,7 +17,6 @@ module.exports = React.createClass({
         $( ".content-header-add-friend" ).show();
     }, 2000);
 
-    flag = false;
     var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id }
     );
 
@@ -35,9 +33,10 @@ module.exports = React.createClass({
     },
 
   render: function () {
-    var human = this.props.human;
+
+
     trackStatus = '';
-    if (human.tracks.length === 0) {
+    if (human.tracks === undefined || human.tracks.length === 0) {
       trackStatus = 'Track';
     } else {
       for (var z = 0; z < human.tracks.length; z++) {

@@ -8,57 +8,66 @@ var HumanNotes = require('./notes.jsx');
 var Footer = require('../footer.jsx');
 var HumanStore = require('../../stores/human.js');
 var ApiUtil = require('../../util/api_util.js');
+
 module.exports = React.createClass({
     mixins: [ReactRouter.History],
 
+    componentDidMount: function () {
+      this.humanListener = HumanStore.addListener(this._onChange);
+      ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
+    },
     getStateFromStore: function () {
+
       return {
          human: HumanStore.find(parseInt(this.props.params.humanId)),
-         component: <HumanMap />
+         component: <HumanNotes human={HumanStore.find(parseInt(this.props.params.humanId))} />
         };
     },
 
     _onChange: function () {
-      this.setState(this.getStateFromStore());
+
+      var that = this;
+      this.setState({
+         human: HumanStore.find(parseInt(this.props.params.humanId)),
+         component: <HumanNotes human={HumanStore.find(parseInt(that.props.params.humanId))} />
+        });
     },
 
     getInitialState: function () {
-      return this.getStateFromStore();
+
+      return {
+         human: HumanStore.find(parseInt(this.props.params.humanId)),
+         component: <HumanNotes humanId={this.props.params.humanId}/>
+        };
     },
 
     showMap: function () {
-      this.setState({ component: <HumanMap />});
+      this.setState({ component: <HumanMap human={this.state.human}/>});
     },
     showNotes: function () {
-      this.setState({ component: <HumanNotes human={human} />});
+      this.setState({ component: <HumanNotes human={this.state.human} />});
     },
 
     componentWillReceiveProps: function (newProps) {
       ApiUtil.fetchSingleHuman(parseInt(newProps.params.humanId));
     },
 
-    componentDidMount: function () {
-      ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
-      this.humanListener = HumanStore.addListener(this._onChange);
-    },
 
     componentWillUnmount: function () {
       this.humanListener.remove();
     },
 
     render: function() {
+      window.human = this.state.human;
       var human = this.state.human;
-
      if(this.state.human === undefined) { return <div></div>; }
-
-
 
      return (
        <div>
          <div>
            <title>Fatebook</title>
            <header className="header">
-             <NavBar />
+             <NavBar showMap={this.showMap}/>
            </header>
            <main className="content group">
              <HumanContentHeader human={human}/>

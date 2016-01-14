@@ -3,15 +3,14 @@ var ReactDOM = require('react-dom');
 
 module.exports = React.createClass({
     componentDidMount: function(){
-      console.log('map mounted');
 
-var styles = [
-  {
-    "stylers": [
+  var styles = [
+    {
+      "stylers": [
 
-    ]
-  }
-];
+      ]
+    }
+  ];
 
       var styledMap = new google.maps.StyledMapType(styles,
         {name: "Styled Map"});
@@ -29,7 +28,6 @@ var styles = [
     },
 
     componentWillUnmount: function(){
-      console.log("map UNmounted");
     },
 
     moveMarker: function (map, marker, latlng) {
@@ -38,6 +36,7 @@ var styles = [
     },
 
     autoRefresh: function(map, pathCoords, human) {
+
     var i, route, marker;
     route = new google.maps.Polyline({
         path: [],
@@ -86,10 +85,12 @@ var styles = [
   },
 
   getDirections: function(map) {
+
     function getRand(min, max) {
       return Math.random() * (max - min) + min;
     }
     var that = this;
+
     user.trackees.map(function (human) {
     var olat = getRand(37.7, 37.782);
     var olng = getRand(-122.5, -122.38);
@@ -109,6 +110,7 @@ var styles = [
           }
       });
     });
+
   },
       render: function(){
         return ( <div className="half" ref="map">Map</div>);

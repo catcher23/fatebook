@@ -82,7 +82,6 @@ module.exports = React.createClass({displayName: "exports",
 
   },
   handleTrackClick: function () {
-    event.preventDefault();
 
     $( ".content-header-add-friend" ).hide();
     this.disabledStatus = true;
@@ -90,7 +89,6 @@ module.exports = React.createClass({displayName: "exports",
         $( ".content-header-add-friend" ).show();
     }, 2000);
 
-    flag = false;
     var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id }
     );
 
@@ -107,9 +105,10 @@ module.exports = React.createClass({displayName: "exports",
     },
 
   render: function () {
-    var human = this.props.human;
+
+
     trackStatus = '';
-    if (human.tracks.length === 0) {
+    if (human.tracks === undefined || human.tracks.length === 0) {
       trackStatus = 'Track';
     } else {
       for (var z = 0; z < human.tracks.length; z++) {
@@ -148,7 +147,7 @@ module.exports = React.createClass({displayName: "exports",
 
   render: function () {
     return(
-      React.createElement("div", {className: "profile-ribbon"}, 
+      React.createElement("div", {className: "profile-ribbon pillbut"}, 
          React.createElement("ul", {className: "nav nav-pills"}, 
            React.createElement("li", {role: "presentation", onClick: this.props.showMap}, React.createElement("a", null, "Map")), 
            React.createElement("li", {role: "presentation", onClick: this.props.showNotes}, React.createElement("a", null, "Notes Left"))
@@ -161,12 +160,13 @@ module.exports = React.createClass({displayName: "exports",
 },{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/map.jsx":[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
+var HumanStore = require('../../stores/human.js');
 
 module.exports = React.createClass({displayName: "exports",
 
-    componentDidMount: function(){
 
-      console.log('map mounted');
+    componentDidMount: function(){
+      console.log('mounted');
 
       var map = ReactDOM.findDOMNode(this.refs.map);
       var mapOptions = {
@@ -185,7 +185,7 @@ module.exports = React.createClass({displayName: "exports",
 
   },
     componentWillUnmount: function(){
-      console.log("map UNmounted");
+    console.log('unmounted');
     },
 
     moveMarker: function (map, marker, latlng) {
@@ -208,8 +208,8 @@ module.exports = React.createClass({displayName: "exports",
 
 var that = this;
 
-var humanImg = {
 
+  var humanImg = {
   url: human.image_url,
 
  scaledSize: new google.maps.Size(38, 38)
@@ -222,7 +222,6 @@ var infowindow = new google.maps.InfoWindow({
   marker=new google.maps.Marker({
       map:map,
       icon:humanImg,
-
     });
     marker.addListener('mouseover', function() {
         infowindow.open(map, marker);
@@ -272,7 +271,7 @@ getDirections: function(map) {
     }
   });
 
-},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js","react-dom":"/Users/dannylau/Desktop/fatebook/node_modules/react-dom/index.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/note.jsx":[function(require,module,exports){
+},{"../../stores/human.js":"/Users/dannylau/Desktop/fatebook/frontend/stores/human.js","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js","react-dom":"/Users/dannylau/Desktop/fatebook/node_modules/react-dom/index.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/note.jsx":[function(require,module,exports){
 var React = require('react');
 
 module.exports = React.createClass({displayName: "exports",
@@ -353,7 +352,7 @@ module.exports = React.createClass({displayName: "exports",
 
 
     render: function () {
-      var human = this.props.human;
+      
 
       var notes = human.notes || [];
       notes = notes.sort(sortByTime);
@@ -378,57 +377,66 @@ var HumanNotes = require('./notes.jsx');
 var Footer = require('../footer.jsx');
 var HumanStore = require('../../stores/human.js');
 var ApiUtil = require('../../util/api_util.js');
+
 module.exports = React.createClass({displayName: "exports",
     mixins: [ReactRouter.History],
 
+    componentDidMount: function () {
+      this.humanListener = HumanStore.addListener(this._onChange);
+      ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
+    },
     getStateFromStore: function () {
+
       return {
          human: HumanStore.find(parseInt(this.props.params.humanId)),
-         component: React.createElement(HumanMap, null)
+         component: React.createElement(HumanNotes, {human: HumanStore.find(parseInt(this.props.params.humanId))})
         };
     },
 
     _onChange: function () {
-      this.setState(this.getStateFromStore());
+
+      var that = this;
+      this.setState({
+         human: HumanStore.find(parseInt(this.props.params.humanId)),
+         component: React.createElement(HumanNotes, {human: HumanStore.find(parseInt(that.props.params.humanId))})
+        });
     },
 
     getInitialState: function () {
-      return this.getStateFromStore();
+
+      return {
+         human: HumanStore.find(parseInt(this.props.params.humanId)),
+         component: React.createElement(HumanNotes, {humanId: this.props.params.humanId})
+        };
     },
 
     showMap: function () {
-      this.setState({ component: React.createElement(HumanMap, null)});
+      this.setState({ component: React.createElement(HumanMap, {human: this.state.human})});
     },
     showNotes: function () {
-      this.setState({ component: React.createElement(HumanNotes, {human: human})});
+      this.setState({ component: React.createElement(HumanNotes, {human: this.state.human})});
     },
 
     componentWillReceiveProps: function (newProps) {
       ApiUtil.fetchSingleHuman(parseInt(newProps.params.humanId));
     },
 
-    componentDidMount: function () {
-      ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
-      this.humanListener = HumanStore.addListener(this._onChange);
-    },
 
     componentWillUnmount: function () {
       this.humanListener.remove();
     },
 
     render: function() {
+      window.human = this.state.human;
       var human = this.state.human;
-
      if(this.state.human === undefined) { return React.createElement("div", null); }
-
-
 
      return (
        React.createElement("div", null, 
          React.createElement("div", null, 
            React.createElement("title", null, "Fatebook"), 
            React.createElement("header", {className: "header"}, 
-             React.createElement(NavBar, null)
+             React.createElement(NavBar, {showMap: this.showMap})
            ), 
            React.createElement("main", {className: "content group"}, 
              React.createElement(HumanContentHeader, {human: human}), 
@@ -450,9 +458,9 @@ var React = require('react');
 module.exports = React.createClass({displayName: "exports",
 
     render: function() {
-      var human = this.props.human;
-var humanUrl = '';
-var n = 0;
+
+    var humanUrl = '';
+    var n = 0;
 
       return (
         React.createElement("section", {className: "content-sidebar"}, 
@@ -542,7 +550,7 @@ module.exports = React.createClass({displayName: "exports",
              React.createElement("a", null, "fatebook")
            ), 
            React.createElement("h1", {className: "header-searchbar"}, 
-             React.createElement("a", null, React.createElement(SearchBar, null))
+             React.createElement("a", null, React.createElement(SearchBar, {showMap: this.props.showMap}))
            ), 
            React.createElement("ul", {className: "header-list group"}, 
               React.createElement("li", null, 
@@ -581,6 +589,16 @@ module.exports = React.createClass({displayName: "exports",
    this.setState({searchString: ''});
   },
 
+  navigateToHumanShow: function (id) {
+    var humanUrl = "#/humans/" + id;
+    window.location = humanUrl;
+
+  },
+  handleClick: function(id){
+   this.navigateToHumanShow(id);
+  },
+
+
   componentDidMount: function () {
     var that = this;
     document.onkeydown = checkKey;
@@ -616,16 +634,16 @@ module.exports = React.createClass({displayName: "exports",
       var href = $('.active').first().find("a").attr("href");
       this.clearBar();
       window.location = href;
+
     }
   },
-
-
 
   compomentWillUnmount: function () {
 
   },
 
   render: function() {
+
     var libraries = [];
     for (var i = 0; i < HumanStore.all().length; i++) {
       libraries.push(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname));
@@ -649,6 +667,7 @@ module.exports = React.createClass({displayName: "exports",
         }
       }
       var counter = 0;
+
     return (
       React.createElement("div", {id: "searchbar"}, 
         React.createElement("input", {
@@ -694,15 +713,14 @@ var ReactDOM = require('react-dom');
 
 module.exports = React.createClass({displayName: "exports",
     componentDidMount: function(){
-      console.log('map mounted');
 
-var styles = [
-  {
-    "stylers": [
+  var styles = [
+    {
+      "stylers": [
 
-    ]
-  }
-];
+      ]
+    }
+  ];
 
       var styledMap = new google.maps.StyledMapType(styles,
         {name: "Styled Map"});
@@ -720,7 +738,6 @@ var styles = [
     },
 
     componentWillUnmount: function(){
-      console.log("map UNmounted");
     },
 
     moveMarker: function (map, marker, latlng) {
@@ -729,6 +746,7 @@ var styles = [
     },
 
     autoRefresh: function(map, pathCoords, human) {
+
     var i, route, marker;
     route = new google.maps.Polyline({
         path: [],
@@ -777,10 +795,12 @@ var styles = [
   },
 
   getDirections: function(map) {
+
     function getRand(min, max) {
       return Math.random() * (max - min) + min;
     }
     var that = this;
+
     user.trackees.map(function (human) {
     var olat = getRand(37.7, 37.782);
     var olng = getRand(-122.5, -122.38);
@@ -800,6 +820,7 @@ var styles = [
           }
       });
     });
+
   },
       render: function(){
         return ( React.createElement("div", {className: "half", ref: "map"}, "Map"));
@@ -911,10 +932,11 @@ module.exports = React.createClass({displayName: "exports",
       ApiUtil.fetchSingleUser(parseInt(this.props.params.userId));
     },
     getStateFromStore: function () {
+
       return{
         users: UserStore.all(),
         user: UserStore.find(parseInt(this.props.params.userId)),
-        component: React.createElement(UserMap, null)
+        component:  React.createElement(UserMap, null) 
       };
     },
 
@@ -927,7 +949,7 @@ module.exports = React.createClass({displayName: "exports",
      },
 
     showMap: function () {
-      this.setState({ component: React.createElement(UserMap, null)});
+      this.setState({ component: React.createElement(UserMap, {user: this.state.user})});
     },
     showNotes: function () {
       this.setState({ component: React.createElement(UserNotes, {user: this.state.user})});
@@ -1017,7 +1039,6 @@ module.exports = React.createClass({displayName: "exports",
                 React.createElement("img", {src: trackee.image_url}), 
                 React.createElement("span", null, trackee.fname + ' ' + trackee.lname)
                   )
-
             );
             })
           )

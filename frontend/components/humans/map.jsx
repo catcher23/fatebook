@@ -1,11 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var HumanStore = require('../../stores/human.js');
 
 module.exports = React.createClass({
 
-    componentDidMount: function(){
 
-      console.log('map mounted');
+    componentDidMount: function(){
+      console.log('mounted');
 
       var map = ReactDOM.findDOMNode(this.refs.map);
       var mapOptions = {
@@ -24,7 +25,7 @@ module.exports = React.createClass({
 
   },
     componentWillUnmount: function(){
-      console.log("map UNmounted");
+    console.log('unmounted');
     },
 
     moveMarker: function (map, marker, latlng) {
@@ -47,8 +48,8 @@ module.exports = React.createClass({
 
 var that = this;
 
-var humanImg = {
 
+  var humanImg = {
   url: human.image_url,
 
  scaledSize: new google.maps.Size(38, 38)
@@ -61,7 +62,6 @@ var infowindow = new google.maps.InfoWindow({
   marker=new google.maps.Marker({
       map:map,
       icon:humanImg,
-
     });
     marker.addListener('mouseover', function() {
         infowindow.open(map, marker);

@@ -2,9 +2,9 @@ var React = require('react');
 module.exports = React.createClass({
 
     render: function() {
-      var human = this.props.human;
-var humanUrl = '';
-var n = 0;
+
+    var humanUrl = '';
+    var n = 0;
 
       return (
         <section className="content-sidebar">

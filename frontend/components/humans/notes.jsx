@@ -11,7 +11,7 @@ module.exports = React.createClass({
 
 
     render: function () {
-      var human = this.props.human;
+      
 
       var notes = human.notes || [];
       notes = notes.sort(sortByTime);

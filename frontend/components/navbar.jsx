@@ -24,7 +24,7 @@ module.exports = React.createClass({
              <a>fatebook</a>
            </h1>
            <h1 className="header-searchbar">
-             <a><SearchBar /></a>
+             <a><SearchBar showMap={this.props.showMap}/></a>
            </h1>
            <ul className="header-list group">
               <li>
