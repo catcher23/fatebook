@@ -14,31 +14,32 @@ module.exports = React.createClass({
     },
 
     render: function() {
-
       var userUrl = "/#/users/" + CURRENT_USER_ID;
-
       return (
-         <nav className="header-nav group">
-           <h1 className="header-logo" >
+         <nav className="navbar navbar-default">
+           <div className="container-fluid">
+            <div className="navbar-header">
+              <a className="navbar-brand" >
+                fatebook
+              </a>
+            </div>
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <SearchBar showMap={this.props.showMap}/>
+          
+               <ul className="nav navbar-nav navbar-right">
+               <li>
+                 <a href ={userUrl}>{window.CURRENT_USER_USERNAME}</a>
+               </li>
 
-             <a>fatebook</a>
-           </h1>
-           <h1 className="header-searchbar">
-             <a><SearchBar showMap={this.props.showMap}/></a>
-           </h1>
-           <ul className="header-list group">
-              <li>
-                <a><img className = 'header-img' src = {window.CURRENT_USER_IMG}></img></a>
-              </li>
-             <li>
-               <a href ={userUrl}>{window.CURRENT_USER_USERNAME}</a>
-             </li>
-
-             <li onClick={this.handleLogoutClick}>
-
-               <a href ="#">Logout</a>
-             </li>
-           </ul>
+               <li onClick={this.handleLogoutClick}>
+                 <a href ="#">Logout</a>
+               </li>
+               <li>
+                 <a><img className='header-img' src = {window.CURRENT_USER_IMG}></img></a>
+               </li>
+             </ul>
+         </div>
+         </div>
          </nav>
        );
      }
