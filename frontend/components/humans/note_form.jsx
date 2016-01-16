@@ -1,14 +1,16 @@
 var React = require('react');
+var LinkedStateMixin = require('react-addons-linked-state-mixin');
+var ApiUtil = require('../../util/api_util');
 
 module.exports = React.createClass({
-    mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
+    mixins: [LinkedStateMixin, ReactRouter.History],
 
     getInitialState: function () {
       return { title: "", body: ""  };
     },
 
     navigateToHumanShow: function () {
-      var humanUrl = "/humans/" + human.id + '/note';
+      var humanUrl = "/humans/" + human.id;
       this.history.pushState(null, humanUrl, {});
 
     },

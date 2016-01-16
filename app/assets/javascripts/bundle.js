@@ -338,9 +338,70 @@ module.exports = React.createClass({displayName: "exports",
    }
   });
 
-},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/notes.jsx":[function(require,module,exports){
+},{"react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/note_form.jsx":[function(require,module,exports){
+var React = require('react');
+var LinkedStateMixin = require('react-addons-linked-state-mixin');
+var ApiUtil = require('../../util/api_util');
+
+module.exports = React.createClass({displayName: "exports",
+    mixins: [LinkedStateMixin, ReactRouter.History],
+
+    getInitialState: function () {
+      return { title: "", body: ""  };
+    },
+
+    navigateToHumanShow: function () {
+      var humanUrl = "/humans/" + human.id;
+      this.history.pushState(null, humanUrl, {});
+
+    },
+
+    handleCancel: function(event){
+      event.preventDefault();
+      this.navigateToHumanShow();
+    },
+    handleSubmit: function(event){
+
+      event.preventDefault();
+      var note = $.extend({}, this.state, { human_image_url: human.image_url, fname: human.fname, lname: human.lname, human_id: human.id, user_id: CURRENT_USER_ID, username: CURRENT_USER_USERNAME, user_image_url: CURRENT_USER_IMG }
+      );
+      ApiUtil.createNote(note);
+      this.setState({title: "", body: ""  });
+      this.navigateToHumanShow();
+    },
+
+    render: function () {
+
+      var userImage = "http://www.robohash.org/" + CURRENT_USER_USERNAME;
+      var userUrl = "/#/users/" + CURRENT_USER_ID;
+      return (
+        React.createElement("form", {className: "form2 group", onSubmit: this.handleSubmit}, 
+          React.createElement("a", {href: userUrl, className: "form-thumb thumb", title: CURRENT_USER_USERNAME}, 
+            React.createElement("img", {src: userImage})
+          ), 
+          React.createElement("fieldset", {className: "form-fieldset"}, 
+            React.createElement("div", {className: "input2"}, 
+              React.createElement("label", {for: "form-title"}, "Title"), 
+              React.createElement("input", {id: "form-title", type: "text", valueLink: this.linkState('title')})
+            ), 
+            React.createElement("div", {className: "input2"}, 
+              React.createElement("label", {for: "form-textarea"}, "Body"), 
+              React.createElement("textarea", {id: "form-textarea", valueLink: this.linkState('body')})
+            ), 
+            React.createElement("div", {type: "submit", className: "submit"}, 
+              React.createElement("button", null, "Leave Note"), 
+              React.createElement("span", {className: "button-alternative", onClick: this.handleCancel})
+            )
+          )
+        )
+      );
+   }
+  });
+
+},{"../../util/api_util":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js","react-addons-linked-state-mixin":"/Users/dannylau/Desktop/fatebook/node_modules/react-addons-linked-state-mixin/index.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/notes.jsx":[function(require,module,exports){
 var React = require('react');
 var Note = require('./note.jsx');
+var NoteForm = require('./note_form.jsx');
 var sortByTime = function(a,b) {
   if (a.created_at < b.created_at)
   return -1;
@@ -352,12 +413,13 @@ module.exports = React.createClass({displayName: "exports",
 
 
     render: function () {
-      
+
 
       var notes = human.notes || [];
       notes = notes.sort(sortByTime);
       return (
         React.createElement("div", null, 
+        React.createElement(NoteForm, null), 
         notes.map(function (note) {
           return React.createElement(Note, React.__spread({},  note));
         })
@@ -366,7 +428,7 @@ module.exports = React.createClass({displayName: "exports",
    }
   });
 
-},{"./note.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/note.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/show.jsx":[function(require,module,exports){
+},{"./note.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/note.jsx","./note_form.jsx":"/Users/dannylau/Desktop/fatebook/frontend/components/humans/note_form.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/humans/show.jsx":[function(require,module,exports){
 var React = require('react');
 var NavBar = require('../navbar.jsx');
 var HumanContentHeader = require('./content_header.jsx');
@@ -9797,7 +9859,9 @@ exports.stringify = function (obj) {
 	}).join('&') : '';
 };
 
-},{"strict-uri-encode":"/Users/dannylau/Desktop/fatebook/node_modules/strict-uri-encode/index.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react-dom/index.js":[function(require,module,exports){
+},{"strict-uri-encode":"/Users/dannylau/Desktop/fatebook/node_modules/strict-uri-encode/index.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react-addons-linked-state-mixin/index.js":[function(require,module,exports){
+module.exports = require('react/lib/LinkedStateMixin');
+},{"react/lib/LinkedStateMixin":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/LinkedStateMixin.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react-dom/index.js":[function(require,module,exports){
 'use strict';
 
 module.exports = require('react/lib/ReactDOM');
@@ -15577,7 +15641,44 @@ var HTMLDOMPropertyConfig = {
 };
 
 module.exports = HTMLDOMPropertyConfig;
-},{"./DOMProperty":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/DOMProperty.js","fbjs/lib/ExecutionEnvironment":"/Users/dannylau/Desktop/fatebook/node_modules/react/node_modules/fbjs/lib/ExecutionEnvironment.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/LinkedValueUtils.js":[function(require,module,exports){
+},{"./DOMProperty":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/DOMProperty.js","fbjs/lib/ExecutionEnvironment":"/Users/dannylau/Desktop/fatebook/node_modules/react/node_modules/fbjs/lib/ExecutionEnvironment.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/LinkedStateMixin.js":[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule LinkedStateMixin
+ * @typechecks static-only
+ */
+
+'use strict';
+
+var ReactLink = require('./ReactLink');
+var ReactStateSetters = require('./ReactStateSetters');
+
+/**
+ * A simple mixin around ReactLink.forState().
+ */
+var LinkedStateMixin = {
+  /**
+   * Create a ReactLink that's linked to part of this component's state. The
+   * ReactLink will have the current value of this.state[key] and will call
+   * setState() when a change is requested.
+   *
+   * @param {string} key state key to update. Note: you may want to use keyOf()
+   * if you're using Google Closure Compiler advanced mode.
+   * @return {ReactLink} ReactLink instance linking to the state.
+   */
+  linkState: function (key) {
+    return new ReactLink(this.state[key], ReactStateSetters.createStateKeySetter(this, key));
+  }
+};
+
+module.exports = LinkedStateMixin;
+},{"./ReactLink":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactLink.js","./ReactStateSetters":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactStateSetters.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/LinkedValueUtils.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -22817,7 +22918,77 @@ var React = {
 
 module.exports = React;
 }).call(this,require('_process'))
-},{"./Object.assign":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/Object.assign.js","./ReactChildren":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactChildren.js","./ReactClass":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactClass.js","./ReactComponent":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactComponent.js","./ReactDOMFactories":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactDOMFactories.js","./ReactElement":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactElement.js","./ReactElementValidator":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactElementValidator.js","./ReactPropTypes":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactPropTypes.js","./ReactVersion":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactVersion.js","./onlyChild":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/onlyChild.js","_process":"/Users/dannylau/Desktop/fatebook/node_modules/process/browser.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactMarkupChecksum.js":[function(require,module,exports){
+},{"./Object.assign":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/Object.assign.js","./ReactChildren":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactChildren.js","./ReactClass":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactClass.js","./ReactComponent":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactComponent.js","./ReactDOMFactories":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactDOMFactories.js","./ReactElement":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactElement.js","./ReactElementValidator":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactElementValidator.js","./ReactPropTypes":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactPropTypes.js","./ReactVersion":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactVersion.js","./onlyChild":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/onlyChild.js","_process":"/Users/dannylau/Desktop/fatebook/node_modules/process/browser.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactLink.js":[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule ReactLink
+ * @typechecks static-only
+ */
+
+'use strict';
+
+/**
+ * ReactLink encapsulates a common pattern in which a component wants to modify
+ * a prop received from its parent. ReactLink allows the parent to pass down a
+ * value coupled with a callback that, when invoked, expresses an intent to
+ * modify that value. For example:
+ *
+ * React.createClass({
+ *   getInitialState: function() {
+ *     return {value: ''};
+ *   },
+ *   render: function() {
+ *     var valueLink = new ReactLink(this.state.value, this._handleValueChange);
+ *     return <input valueLink={valueLink} />;
+ *   },
+ *   _handleValueChange: function(newValue) {
+ *     this.setState({value: newValue});
+ *   }
+ * });
+ *
+ * We have provided some sugary mixins to make the creation and
+ * consumption of ReactLink easier; see LinkedValueUtils and LinkedStateMixin.
+ */
+
+var React = require('./React');
+
+/**
+ * @param {*} value current value of the link
+ * @param {function} requestChange callback to request a change
+ */
+function ReactLink(value, requestChange) {
+  this.value = value;
+  this.requestChange = requestChange;
+}
+
+/**
+ * Creates a PropType that enforces the ReactLink API and optionally checks the
+ * type of the value being passed inside the link. Example:
+ *
+ * MyComponent.propTypes = {
+ *   tabIndexLink: ReactLink.PropTypes.link(React.PropTypes.number)
+ * }
+ */
+function createLinkTypeChecker(linkType) {
+  var shapes = {
+    value: typeof linkType === 'undefined' ? React.PropTypes.any.isRequired : linkType.isRequired,
+    requestChange: React.PropTypes.func.isRequired
+  };
+  return React.PropTypes.shape(shapes);
+}
+
+ReactLink.PropTypes = {
+  link: createLinkTypeChecker
+};
+
+module.exports = ReactLink;
+},{"./React":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/React.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactMarkupChecksum.js":[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -25633,7 +25804,112 @@ assign(ReactServerRenderingTransaction.prototype, Transaction.Mixin, Mixin);
 PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
-},{"./CallbackQueue":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/CallbackQueue.js","./Object.assign":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/Object.assign.js","./PooledClass":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/PooledClass.js","./Transaction":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/Transaction.js","fbjs/lib/emptyFunction":"/Users/dannylau/Desktop/fatebook/node_modules/react/node_modules/fbjs/lib/emptyFunction.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactUpdateQueue.js":[function(require,module,exports){
+},{"./CallbackQueue":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/CallbackQueue.js","./Object.assign":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/Object.assign.js","./PooledClass":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/PooledClass.js","./Transaction":"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/Transaction.js","fbjs/lib/emptyFunction":"/Users/dannylau/Desktop/fatebook/node_modules/react/node_modules/fbjs/lib/emptyFunction.js"}],"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactStateSetters.js":[function(require,module,exports){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule ReactStateSetters
+ */
+
+'use strict';
+
+var ReactStateSetters = {
+  /**
+   * Returns a function that calls the provided function, and uses the result
+   * of that to set the component's state.
+   *
+   * @param {ReactCompositeComponent} component
+   * @param {function} funcReturningState Returned callback uses this to
+   *                                      determine how to update state.
+   * @return {function} callback that when invoked uses funcReturningState to
+   *                    determined the object literal to setState.
+   */
+  createStateSetter: function (component, funcReturningState) {
+    return function (a, b, c, d, e, f) {
+      var partialState = funcReturningState.call(component, a, b, c, d, e, f);
+      if (partialState) {
+        component.setState(partialState);
+      }
+    };
+  },
+
+  /**
+   * Returns a single-argument callback that can be used to update a single
+   * key in the component's state.
+   *
+   * Note: this is memoized function, which makes it inexpensive to call.
+   *
+   * @param {ReactCompositeComponent} component
+   * @param {string} key The key in the state that you should update.
+   * @return {function} callback of 1 argument which calls setState() with
+   *                    the provided keyName and callback argument.
+   */
+  createStateKeySetter: function (component, key) {
+    // Memoize the setters.
+    var cache = component.__keySetters || (component.__keySetters = {});
+    return cache[key] || (cache[key] = createStateKeySetter(component, key));
+  }
+};
+
+function createStateKeySetter(component, key) {
+  // Partial state is allocated outside of the function closure so it can be
+  // reused with every call, avoiding memory allocation when this function
+  // is called.
+  var partialState = {};
+  return function stateKeySetter(value) {
+    partialState[key] = value;
+    component.setState(partialState);
+  };
+}
+
+ReactStateSetters.Mixin = {
+  /**
+   * Returns a function that calls the provided function, and uses the result
+   * of that to set the component's state.
+   *
+   * For example, these statements are equivalent:
+   *
+   *   this.setState({x: 1});
+   *   this.createStateSetter(function(xValue) {
+   *     return {x: xValue};
+   *   })(1);
+   *
+   * @param {function} funcReturningState Returned callback uses this to
+   *                                      determine how to update state.
+   * @return {function} callback that when invoked uses funcReturningState to
+   *                    determined the object literal to setState.
+   */
+  createStateSetter: function (funcReturningState) {
+    return ReactStateSetters.createStateSetter(this, funcReturningState);
+  },
+
+  /**
+   * Returns a single-argument callback that can be used to update a single
+   * key in the component's state.
+   *
+   * For example, these statements are equivalent:
+   *
+   *   this.setState({x: 1});
+   *   this.createStateKeySetter('x')(1);
+   *
+   * Note: this is memoized function, which makes it inexpensive to call.
+   *
+   * @param {string} key The key in the state that you should update.
+   * @return {function} callback of 1 argument which calls setState() with
+   *                    the provided keyName and callback argument.
+   */
+  createStateKeySetter: function (key) {
+    return ReactStateSetters.createStateKeySetter(this, key);
+  }
+};
+
+module.exports = ReactStateSetters;
+},{}],"/Users/dannylau/Desktop/fatebook/node_modules/react/lib/ReactUpdateQueue.js":[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015, Facebook, Inc.
