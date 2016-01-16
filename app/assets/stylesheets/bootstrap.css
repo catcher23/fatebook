@@ -2561,7 +2561,7 @@ height: 45px;
   color: lightgreen;
   background-color: black;
   opacity: 0.8;
-  z-index: 99
+  z-index: 10000000
 }
 
 .searchresults .result:hover {
@@ -3174,7 +3174,7 @@ width: 74px;
 height: 74px;
 border: 1px solid green;
 border-radius: 5px;
-z-index:24;
+z-index:0;
 }
 
 .thumb span {
@@ -3252,6 +3252,7 @@ li .info:hover span{ /*span will display on :hover */
 
 .thumb > img {
 border-radius: 5px;
+z-index: 0
 }
 
 .thumb > img:hover {
@@ -3364,6 +3365,7 @@ border-radius: 5px
 }
 
 .post-thumb {
+
 margin-left: 5px;
 float: left;
 height:40px;
