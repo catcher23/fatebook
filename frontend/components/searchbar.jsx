@@ -101,34 +101,28 @@ module.exports = React.createClass({
 
       var counter = 0;
 
-    return (
-      <div>
-        <form className="navbar-form navbar-left" role="search">
-          <div className="form-group">
-            <input
-              className="form-control"
-              type="text"
-              value={this.state.searchString}
-              onChange={this.handleChange} placeholder=" Find Human"
-            />
-          </div>
-          <button className="btn btn-default"
-            type="submit" onClick = {this.redirect} >Search</button>
-        </form>
-          <ul className={"dropdown-menu " + visible} >
-            {
-            filteredObjs.map(function(human){
-              counter += 1;
-              var status = '';
-              if (counter == 1) {status = 'active';}
-              var humanUrl = "/#/humans/" + human.id;
-            return <li onClick={this.clearBar} className= {'result '  + status} key={counter}><a href={humanUrl}>{human.fname+' '+human.lname}</a></li>;
-            })
-          }
-
-        </ul>
-
-      </div>
-    );
-  }
-});
+      return (
+       <div id='searchbar'>
+         <input
+           className='searchbar'
+           type="text"
+           value={this.state.searchString}
+           onChange={this.handleChange} placeholder=" Find Human" />
+           <button className="btn btn-default searchButton"
+             type="submit" onClick = {this.redirect} >Search</button>
+           <ul className="searchresults"><li onClick={this.clearBar}>
+           {
+             filteredObjs.map(function(human){
+               counter += 1;
+               var status = '';
+               if (counter == 1) {status = 'active';}
+               var humanUrl = "/#/humans/" + human.id;
+             return <li className= {'result '  + status} key={counter}><a href={humanUrl}>{human.fname+' '+human.lname}</a></li>;
+             })
+           }
+         </li>
+         </ul>
+       </div>
+     );
+   }
+ });

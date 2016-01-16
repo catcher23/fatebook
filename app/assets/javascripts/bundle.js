@@ -540,36 +540,35 @@ module.exports = React.createClass({displayName: "exports",
     },
 
     render: function() {
-      var userUrl = "/#/users/" + CURRENT_USER_ID;
-      return (
-         React.createElement("nav", {className: "navbar navbar-default"}, 
-           React.createElement("div", {className: "container-fluid"}, 
-            React.createElement("div", {className: "navbar-header"}, 
-              React.createElement("a", {className: "navbar-brand"}, 
-                "fatebook"
-              )
-            ), 
-            React.createElement("div", {className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1"}, 
-               React.createElement(SearchBar, {showMap: this.props.showMap}), 
-          
-               React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-               React.createElement("li", null, 
-                 React.createElement("a", {href: userUrl}, window.CURRENT_USER_USERNAME)
-               ), 
 
-               React.createElement("li", {onClick: this.handleLogoutClick}, 
-                 React.createElement("a", {href: "#"}, "Logout")
-               ), 
+       var userUrl = "/#/users/" + CURRENT_USER_ID;
+
+       return (
+          React.createElement("nav", {className: "header-nav group"}, 
+            React.createElement("h1", {className: "header-logo"}, 
+
+              React.createElement("a", null, "fatebook")
+            ), 
+            React.createElement("h1", {className: "header-searchbar"}, 
+              React.createElement("a", null, React.createElement(SearchBar, {showMap: this.props.showMap}))
+            ), 
+            React.createElement("ul", {className: "header-list group"}, 
                React.createElement("li", null, 
                  React.createElement("a", null, React.createElement("img", {className: "header-img", src: window.CURRENT_USER_IMG}))
-               )
-             )
-         )
-         )
-         )
-       );
-     }
-   });
+               ), 
+              React.createElement("li", null, 
+                React.createElement("a", {href: userUrl}, window.CURRENT_USER_USERNAME)
+              ), 
+
+              React.createElement("li", {onClick: this.handleLogoutClick}, 
+
+                React.createElement("a", {href: "#"}, "Logout")
+              )
+            )
+          )
+        );
+      }
+    });
 
 },{"../util/api_util.js":"/Users/dannylau/Desktop/fatebook/frontend/util/api_util.js","./searchbar":"/Users/dannylau/Desktop/fatebook/frontend/components/searchbar.jsx","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/searchbar.jsx":[function(require,module,exports){
 var React = require('react');
@@ -675,37 +674,31 @@ module.exports = React.createClass({displayName: "exports",
 
       var counter = 0;
 
-    return (
-      React.createElement("div", null, 
-        React.createElement("form", {className: "navbar-form navbar-left", role: "search"}, 
-          React.createElement("div", {className: "form-group"}, 
-            React.createElement("input", {
-              className: "form-control", 
-              type: "text", 
-              value: this.state.searchString, 
-              onChange: this.handleChange, placeholder: " Find Human"}
-            )
-          ), 
-          React.createElement("button", {className: "btn btn-default", 
-            type: "submit", onClick: this.redirect}, "Search")
-        ), 
-          React.createElement("ul", {className: "dropdown-menu " + visible}, 
-            
-            filteredObjs.map(function(human){
-              counter += 1;
-              var status = '';
-              if (counter == 1) {status = 'active';}
-              var humanUrl = "/#/humans/" + human.id;
-            return React.createElement("li", {onClick: this.clearBar, className: 'result '  + status, key: counter}, React.createElement("a", {href: humanUrl}, human.fname+' '+human.lname));
-            })
-          
-
-        )
-
-      )
-    );
-  }
-});
+      return (
+       React.createElement("div", {id: "searchbar"}, 
+         React.createElement("input", {
+           className: "searchbar", 
+           type: "text", 
+           value: this.state.searchString, 
+           onChange: this.handleChange, placeholder: " Find Human"}), 
+           React.createElement("button", {className: "btn btn-default searchButton", 
+             type: "submit", onClick: this.redirect}, "Search"), 
+           React.createElement("ul", {className: "searchresults"}, React.createElement("li", {onClick: this.clearBar}, 
+           
+             filteredObjs.map(function(human){
+               counter += 1;
+               var status = '';
+               if (counter == 1) {status = 'active';}
+               var humanUrl = "/#/humans/" + human.id;
+             return React.createElement("li", {className: 'result '  + status, key: counter}, React.createElement("a", {href: humanUrl}, human.fname+' '+human.lname));
+             })
+           
+         )
+         )
+       )
+     );
+   }
+ });
 
 },{"../stores/human":"/Users/dannylau/Desktop/fatebook/frontend/stores/human.js","react":"/Users/dannylau/Desktop/fatebook/node_modules/react/react.js"}],"/Users/dannylau/Desktop/fatebook/frontend/components/users/content_header.jsx":[function(require,module,exports){
 var React = require('react');
