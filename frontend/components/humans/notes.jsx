@@ -15,7 +15,7 @@ module.exports = React.createClass({
 
 
       var notes = human.notes || [];
-      notes = notes.sort(sortByTime);
+      notes = notes.sort(sortByTime).reverse();
       return (
         <div>
         <NoteForm />
