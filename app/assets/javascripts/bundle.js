@@ -743,8 +743,10 @@ module.exports = React.createClass({displayName: "exports",
            type: "text", 
            value: this.state.searchString, 
            onChange: this.handleChange, placeholder: " Find Human"}), 
-           React.createElement("button", {className: "btn btn-default searchButton", 
-             type: "submit", onClick: this.redirect}, "Search"), 
+         React.createElement("button", {className: "btn btn-default", 
+             type: "submit", onClick: this.redirect}, 
+              "Search"
+           ), 
            React.createElement("ul", {className: "searchresults"}, React.createElement("li", {onClick: this.clearBar}, 
            
              filteredObjs.map(function(human){
@@ -1097,7 +1099,6 @@ module.exports = React.createClass({displayName: "exports",
             React.createElement("p", {id: "friends-thumbs-info"}, 
                 "Tracked Humans"
             ), 
-
           React.createElement("ul", null, 
 
              user.trackees.map(function (trackee) {

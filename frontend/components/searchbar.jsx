@@ -108,8 +108,10 @@ module.exports = React.createClass({
            type="text"
            value={this.state.searchString}
            onChange={this.handleChange} placeholder=" Find Human" />
-           <button className="btn btn-default searchButton"
-             type="submit" onClick = {this.redirect} >Search</button>
+         <button className="btn btn-default"
+             type="submit" onClick = {this.redirect} >
+              Search
+           </button>
            <ul className="searchresults"><li onClick={this.clearBar}>
            {
              filteredObjs.map(function(human){

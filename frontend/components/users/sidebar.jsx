@@ -37,7 +37,6 @@ module.exports = React.createClass({
             <p id='friends-thumbs-info'>
                 Tracked Humans
             </p>
-
           <ul>
 
             { user.trackees.map(function (trackee) {
