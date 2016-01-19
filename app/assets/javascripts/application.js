@@ -17,8 +17,8 @@
 //= require react
 //= require react_ujs
 //= require ReactRouter.min
+//= require bootstrap-sprockets 
 //= require bootstrap
-//= require bootstrap3-typeahead.min.js
 //= require flux
 //= require eventemitter
 //= require bundle

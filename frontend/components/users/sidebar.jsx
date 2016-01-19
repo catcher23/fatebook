@@ -12,7 +12,7 @@ module.exports = React.createClass({
             <img src={user.image_url} />
           </a>
 
-        <div className = 'profile-thumbs clearfix'>
+        <div className = 'profile-thumbs'>
           <p id='profile-thumbs-info'>
               Basic Information
           </p>
@@ -33,7 +33,7 @@ module.exports = React.createClass({
             </ul>
         </div>
 
-          <div className = 'friends-thumbs clearfix'>
+          <div className = 'friends-thumbs'>
             <p id='friends-thumbs-info'>
                 Tracked Humans
             </p>

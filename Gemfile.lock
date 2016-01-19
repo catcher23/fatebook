@@ -220,7 +220,7 @@ DEPENDENCIES
   bcrypt
   better_errors
   binding_of_caller
-  bootstrap-sass
+  bootstrap-sass (~> 3.3.5)
   byebug
   capybara (~> 2.4.4)
   coffee-rails (~> 4.1.0)
@@ -238,7 +238,8 @@ DEPENDENCIES
   rails_12factor
   react-rails
   rspec-rails (~> 3.1.0)
-  sass-rails (~> 5.0)
+  sass (~> 3.4.18)
+  sass-rails (~> 5.0.1)
   sdoc (~> 0.4.0)
   shoulda-matchers
   spring

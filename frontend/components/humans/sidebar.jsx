@@ -14,10 +14,7 @@ module.exports = React.createClass({
             <img src={human.image_url} />
           </a>
 
-
-<br></br>
-
-          <div className = 'profile-thumbs clearfix'>
+          <div className = 'profile-thumbs'>
             <p id='profile-thumbs-info'>
                 Profile Information
             </p>

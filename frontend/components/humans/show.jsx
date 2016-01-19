@@ -63,7 +63,7 @@ module.exports = React.createClass({
      if(this.state.human === undefined) { return <div></div>; }
 
      return (
-       <div>
+       <div className='ubercontainer'>
          <div>
            <title>Fatebook</title>
            <header className="header">

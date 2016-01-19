@@ -24,7 +24,7 @@ module.exports = React.createClass({
       return{
         users: UserStore.all(),
         user: UserStore.find(parseInt(this.props.params.userId)),
-        component:  <UserMap /> 
+        component:  <UserMap />
       };
     },
 
@@ -56,7 +56,7 @@ module.exports = React.createClass({
       if(this.state.user === undefined) { return <div></div>; }
      window.user = this.state.user;
      return (
-        <div>
+        <div className='ubercontainer'>
           <div>
             <title>Fatebook</title>
             <header className="header">
@@ -70,8 +70,8 @@ module.exports = React.createClass({
               {component}
             </section>
             </main>
-            <Footer />
           </div>
+          <Footer />
         </div>
           );
         }
