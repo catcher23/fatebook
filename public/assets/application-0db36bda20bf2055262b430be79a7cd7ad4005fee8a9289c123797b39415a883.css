@@ -1,0 +1,1453 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url("/assets/glyphicons-halflings-regular.eot");
+  src: url("/assets/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("/assets/glyphicons-halflings-regular.woff") format("woff"), url("/assets/glyphicons-halflings-regular.ttf") format("truetype"), url("/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular") format("svg");
+}
+/* line 13, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.half {
+  width: 641px;
+  height: 500px;
+  float: left;
+  position: relative;
+  border-radius: 5px;
+}
+
+/* line 21, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* line 25, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.row {
+  zoom: 1;
+  margin-left: -20px;
+}
+
+/* line 30, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.row > [class*="span"] {
+  display: inline;
+  float: left;
+  margin-left: 20px;
+}
+
+/* line 36, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.span4 {
+  width: 260px;
+}
+
+/* line 40, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.span10 {
+  width: 430px;
+}
+
+/* line 44, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.topbar {
+  height: 35px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  overflow: visible;
+}
+
+/* line 54, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.topbar h3 a, .topbar .brand {
+  float: left;
+  display: block;
+  padding: 5px 26px 7px;
+  margin: 4px 0 0 -20px;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 1;
+}
+
+/* line 66, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.topbar form {
+  float: left;
+  margin: 5px 0 0 0;
+  position: relative;
+  filter: alpha(opacity=100);
+  -khtml-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+}
+
+/* line 76, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.topbar input {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: normal;
+  font-weight: 13px;
+  line-height: 1;
+  padding: 4px 9px;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid #111;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25);
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25);
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+/* line 97, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.topbar input::-webkit-input-placeholder {
+  color: #cccccc;
+}
+
+/* line 101, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.topbar-inner, .topbar .fill {
+  background-color: #006400;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* line 108, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.topbar div > ul, .nav {
+  display: block;
+  float: left;
+  margin: 4px 10px 0 0;
+  position: relative;
+  left: 0;
+}
+
+/* line 116, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn.success,
+.alert-message.success,
+.btn.success:hover,
+.alert-message.success:hover,
+.btn.danger,
+.alert-message.danger,
+.btn.danger:hover,
+.alert-message.danger:hover,
+.btn.error,
+.alert-message.error,
+.btn.error:hover,
+.alert-message.error:hover,
+.btn.info,
+.alert-message.info,
+.btn.info:hover,
+.alert-message.info:hover {
+  font-color: limegreen;
+}
+
+/* line 135, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn .close, .alert-message .close {
+  font-family: Arial, sans-serif;
+  line-height: 14px;
+}
+
+/* line 139, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn.danger,
+.alert-message.danger,
+.btn.error,
+.alert-message.error {
+  padding-top: 46px;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  color: lime green;
+  background-color: #ffebe8;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#ffebe8), to(#ffebe8));
+  background-image: -moz-linear-gradient(top, #ffebe8, #ffebe8);
+  background-image: -ms-linear-gradient(top, #ffebe8, #ffebe8);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffebe8), color-stop(100%, #ffebe8));
+  background-image: -webkit-linear-gradient(top, #ffebe8, #ffebe8);
+  background-image: -o-linear-gradient(top, #ffebe8, #ffebe8);
+  background-image: linear-gradient(top, #ffebe8, #ffebe8);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebe8', endColorstr='#ffebe8', GradientType=0);
+  border-color: #ffebe8 #ffebe8 #ffa89b;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+/* line 161, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn.success, .alert-message.success {
+  padding-top: 46px;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  color: limegreen;
+  background-color: #eceff6;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#eceff6), to(#eceff6));
+  background-image: -moz-linear-gradient(top, #eceff6, #eceff6);
+  background-image: -ms-linear-gradient(top, #eceff6, #eceff6);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eceff6), color-stop(100%, #eceff6));
+  background-image: -webkit-linear-gradient(top, #eceff6, #eceff6);
+  background-image: -o-linear-gradient(top, #eceff6, #eceff6);
+  background-image: linear-gradient(top, #eceff6, #eceff6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eceff6', endColorstr='#eceff6', GradientType=0);
+  border-color: #eceff6 #eceff6 #b8c3dd;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-color: #d4dae8;
+}
+
+/* line 181, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn.info, .alert-message.info {
+  background-color: #fff9d7;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#fff9d7), to(#fff9d7));
+  background-image: -moz-linear-gradient(top, #fff9d7, #fff9d7);
+  background-image: -ms-linear-gradient(top, #fff9d7, #fff9d7);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff9d7), color-stop(100%, #fff9d7));
+  background-image: -webkit-linear-gradient(top, #fff9d7, #fff9d7);
+  background-image: -o-linear-gradient(top, #fff9d7, #fff9d7);
+  background-image: linear-gradient(top, #fff9d7, #fff9d7);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff9d7', endColorstr='#fff9d7', GradientType=0);
+  border-color: #fff9d7 #fff9d7 #ffee8b;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+/* line 195, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  background-color: #e6e6e6;
+  background-repeat: no-repeat;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(25%, #ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff 25%, #e6e6e6);
+  background-image: -ms-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+  background-image: -o-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+  background-image: linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+  padding: 6px 8px 3px 6px;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 14px;
+  border: 1px solid #666666;
+  border-bottom-color: #999999;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -webkit-transition: 0.1s linear all;
+  -moz-transition: 0.1s linear all;
+  -ms-transition: 0.1s linear all;
+  -o-transition: 0.1s linear all;
+  transition: 0.1s linear all;
+}
+
+/* line 228, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn:hover {
+  background-position: 0 -15px;
+  color: #333;
+  text-decoration: none;
+}
+
+/* line 233, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn:focus {
+  outline: 1px dotted #666;
+}
+
+/* line 237, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn.primary {
+  color: white;
+  background-color: green;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#627aad), to(#3b5998));
+  background-image: -moz-linear-gradient(top, green, forestgreen);
+  background-image: -ms-linear-gradient(top, green, forestgreen);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, green), color-stop(100%, forestgreen));
+  background-image: -webkit-linear-gradient(top, green, forestgreen);
+  background-image: -o-linear-gradient(top, green, forestgreen);
+  background-image: linear-gradient(top, green, forestgreen);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='green', endColorstr='forestgreen', GradientType=0);
+  border-color: forestgreen forestgreen #263961;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+/* line 253, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn.active, .btn:active {
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* line 258, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn.disabled {
+  cursor: default;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  filter: alpha(opacity=65);
+  -khtml-opacity: 0.65;
+  -moz-opacity: 0.65;
+  opacity: 0.65;
+}
+
+/* line 266, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.btn[disabled] {
+  cursor: default;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  filter: alpha(opacity=65);
+  -khtml-opacity: 0.65;
+  -moz-opacity: 0.65;
+  opacity: 0.65;
+}
+
+/* line 276, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.alert-message {
+  position: relative;
+  padding: 7px 15px;
+  margin-bottom: 14px;
+  color: #333333;
+  background-color: #f7f7f7;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#f7f7f7), to(#f7f7f7));
+  background-image: -moz-linear-gradient(top, #f7f7f7, #f7f7f7);
+  background-image: -ms-linear-gradient(top, #f7f7f7, #f7f7f7);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #f7f7f7));
+  background-image: -webkit-linear-gradient(top, #f7f7f7, #f7f7f7);
+  background-image: -o-linear-gradient(top, #f7f7f7, #f7f7f7);
+  background-image: linear-gradient(top, #f7f7f7, #f7f7f7);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#f7f7f7', GradientType=0);
+  border-color: #f7f7f7 #f7f7f7 #d1d1d1;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  text-shadow: none;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* line 303, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.alert-message .close {
+  margin-top: 1px;
+  *margin-top: 0;
+}
+
+/* Override some defaults */
+/* line 313, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+body {
+  padding-top: 10px;
+  /* 40px to make the container go all the way to the bottom of the topbar */
+}
+
+/* line 322, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.container {
+  width: 820px;
+}
+
+/* line 326, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.container > footer p {
+  text-align: center;
+  /* center align it with the container */
+}
+
+/* The white background content wrapper */
+/* line 331, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.container > .content2 {
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 -20px;
+  /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Page header tweaks */
+/* line 344, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.page-header {
+  background-color: #f5f5f5;
+  padding: 20px 20px 10px;
+  margin: -20px -20px 20px;
+}
+
+/* line 351, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content .span10,
+.content .span4 {
+  min-height: 500px;
+}
+
+/* line 356, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content .span4 {
+  margin-left: 0;
+  padding-left: 56px;
+  padding-bottom: 30px;
+  border-left: 1px solid #eee;
+}
+
+/* line 363, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content2 .span10 {
+  margin-left: 0;
+  padding-left: 85px;
+  border-left: 1px solid #eee;
+}
+
+/* line 370, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.span4 h1 {
+  margin-bottom: 0;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+/* line 377, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.span10 img {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  margin-bottom: 5px;
+}
+
+/* line 383, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.span10 h1 {
+  margin-left: 0px;
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+/* line 391, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.span10 p {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 21px;
+  width: 300px;
+}
+
+/* line 397, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.span4 p {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 21px;
+}
+
+/* line 402, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.topbar .btn {
+  border: 0;
+}
+
+/* line 407, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.searchresults {
+  position: absolute;
+  top: 35px;
+  border-radius: 0px 0px 5px 5px;
+  width: 212px;
+  color: lightgreen;
+  background-color: black;
+  opacity: 0.8;
+  z-index: 10000000;
+  transform: translateY(-2.2%);
+}
+
+/* line 419, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.searchresults .result:hover {
+  color: black;
+  background-color: lightgreen;
+  z-index: 99;
+}
+
+/* line 424, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.active {
+  color: black;
+  background-color: lightgreen;
+  z-index: 99;
+}
+
+/* line 430, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.searchButton {
+  margin-left: 1px;
+  transform: translateY(12%);
+  border: 1px solid lightgreen;
+}
+
+/* line 435, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.searchbar {
+  height: 23px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+/* line 440, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.a:hover {
+  text-decoration: none;
+}
+
+/* line 443, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.searchresult {
+  position: absolute;
+  display: block;
+  z-index: 99;
+}
+
+/* line 449, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.searchresult:hover {
+  background-color: white;
+  z-index: 99;
+}
+
+/* line 455, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+fieldset {
+  margin-bottom: 10px;
+  padding-top: 14px;
+}
+
+/* line 461, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+input,
+textarea,
+select,
+.uneditable-input {
+  display: inline-block;
+  width: 210px;
+  height: 19px;
+  padding: 4px;
+  font-size: 11px;
+  line-height: 14px;
+  color: #666666;
+  border: 1px solid #d4dae8;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 479, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+input[type=button], input[type=reset], input[type=submit] {
+  width: auto;
+  height: auto;
+}
+
+/* line 485, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+input, textarea {
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* line 495, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+input:focus, textarea:focus {
+  outline: 0;
+  border-color: rgba(82, 168, 236, 0.8);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+
+/* line 504, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+}
+
+/* line 520, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+ul {
+  list-style: none;
+}
+
+/* line 524, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Clearfix */
+/* line 533, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Header */
+/* line 542, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  background: #eee;
+}
+
+/* line 549, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header {
+  background: linear-gradient(#006400, forestgreen);
+  color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+/* line 555, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header a {
+  display: block;
+  padding: 10px 20px 10px;
+}
+
+/* line 560, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header-nav {
+  margin: 0 auto;
+  width: 900px;
+  height: 39px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+/* line 568, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header-logo {
+  font-size: 17px;
+  float: left;
+  border-right: 1px solid #ccc;
+  font-weight: 700;
+  width: 212px;
+}
+
+/* line 575, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header-img {
+  padding: 0px;
+  border-radius: 50%;
+  float: left;
+  top: 4px;
+  position: absolute;
+  height: 30px;
+  width: 30px;
+}
+
+/* line 585, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header-searchbar {
+  float: left;
+  border-right: 0px solid #ccc;
+  font-weight: 700;
+  padding: 0px;
+}
+
+/* line 592, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header-logo > a:hover {
+  color: white;
+}
+
+/* line 596, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header-list {
+  float: right;
+  padding: 0px;
+}
+
+/* line 601, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header-list > li {
+  float: left;
+  padding: 0px;
+  border-left: 0px solid #ccc;
+  font-size: 12;
+}
+
+/* line 608, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header-list > li:hover {
+  color: white;
+}
+
+/* Notifications */
+/* line 614, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.badge {
+  display: inline;
+  font-size: 14px;
+  padding: 1px 6px;
+  background: #000;
+  border-radius: 50%;
+}
+
+/* line 622, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+li:hover .badge {
+  background: #f00;
+}
+
+/* line 626, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.header {
+  position: relative;
+  z-index: 1;
+}
+
+/* Layout */
+/* line 634, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content {
+  position: relative;
+  margin: 0 auto;
+  background: #eeeeee;
+  width: 900px;
+  border-left: 0px solid #ccc;
+  border-right: 0px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+/* line 645, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 240px;
+  width: 0px;
+  background: #ccc;
+}
+
+/* line 656, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content-sidebar {
+  float: left;
+  width: 249px;
+  min-height: 100%;
+  padding: 0px;
+}
+
+/* line 663, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content-main {
+  float: left;
+  width: 630px;
+  min-height: 200px;
+  padding: 10px;
+  min-height: 100%;
+}
+
+/* Footer */
+/* line 674, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.footer {
+  width: 900px;
+  margin: 0 auto 50px auto;
+  background: #fff;
+  color: #aaa;
+  font-size: 14px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/* line 689, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.copyright {
+  color: green;
+}
+
+/* line 694, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.footer-copy {
+  display: block;
+  padding: 20px;
+  float: left;
+}
+
+/* line 700, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.footer-links {
+  padding: 20px;
+  float: right;
+}
+
+/* line 705, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.footer-links > li {
+  float: left;
+  padding: 0 0 0 20px;
+}
+
+/* line 710, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.footer a:hover {
+  color: #000;
+}
+
+/* Content Header */
+/* line 716, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content-header {
+  position: relative;
+  height: 200px;
+  background: url("http://res.cloudinary.com/danlau168/image/upload/v1447950892/sf_p4kxqz.jpg");
+  background-size: cover;
+  border-bottom: 1px solid #ccc;
+}
+
+/* line 724, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content-header > h1 {
+  position: absolute;
+  bottom: 20px;
+  left: 240px;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 300;
+  color: #fff;
+  text-shadow: #000 0 0 10px;
+}
+
+/* line 735, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content-header2 {
+  position: relative;
+  height: 200px;
+  background: url("http://res.cloudinary.com/danlau168/image/upload/v1445716643/san_francisco_kycgp9.jpg");
+  background-size: cover;
+  border-bottom: 1px solid #ccc;
+}
+
+/* line 743, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content-header2 > h1 {
+  position: absolute;
+  bottom: 20px;
+  left: 240px;
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 300;
+  color: #fff;
+  text-shadow: #000 0 0 10px;
+}
+
+/* line 754, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content-header-add-friend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: #eee;
+  background: green;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 1px solid forestgreen;
+  border-radius: 5px;
+}
+
+/* line 766, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content-header-disabled-friend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: #eee;
+  background: grey;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 1px solid forestgreen;
+  border-radius: 5px;
+}
+
+/* line 777, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content-header-add-friend:disabled {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: grey;
+  background: lightgrey;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 1px solid forestgreen;
+  border-radius: 5px;
+}
+
+/* line 789, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.content-header-add-friend:hover {
+  color: green;
+  background: #7FFF00;
+}
+
+/* Sidebar */
+/* line 796, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-picture {
+  display: block;
+  height: 210px;
+  width: 210px;
+  margin-top: -120px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border: 1px solid lightgreen;
+  background: #000;
+  border-radius: 5px;
+  position: relative;
+}
+
+/* line 810, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-info {
+  margin: 20px 0;
+}
+
+/* line 814, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-info > h2 {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+/* line 819, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-info > p {
+  margin: 20px 0;
+}
+
+/* line 823, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-info > ul {
+  font-size: 6;
+}
+
+/* line 826, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-info > ul > li {
+  margin-top: -5px;
+  margin-bottom: -5px;
+  font-size: 6;
+}
+
+/* line 831, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-nav {
+  margin: 20px 0;
+}
+
+/* line 835, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-nav > li {
+  border-bottom: 1px solid #ccc;
+}
+
+/* line 843, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-nav a {
+  display: block;
+  padding: 5px;
+  font-weight: 700;
+  color: green;
+}
+
+/* line 850, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-nav a:hover {
+  background: lightgreen;
+}
+
+/* Online */
+/* line 856, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-picture {
+  overflow: hidden;
+}
+
+/* line 860, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.online {
+  display: block;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-weight: 700;
+  color: #fff;
+  background: #0c0;
+  padding: 5px 30px;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  transform: rotate(-45deg) translateX(-25%);
+  box-shadow: 0 1px 0 0 #070;
+}
+
+/* Thumbs */
+/* line 878, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-friends > li {
+  float: left;
+  width: 60px;
+  margin: 5px 5px 0px 0px;
+}
+
+/* line 884, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.thumb {
+  display: block;
+  position: relative;
+  width: 74px;
+  height: 74px;
+  border: 1px solid green;
+  border-radius: 5px;
+  z-index: 0;
+}
+
+/* line 894, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.thumb span {
+  display: none;
+}
+
+/* line 897, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.thumb:hover {
+  border-radius: 0px;
+  border: 1px solid lightgreen;
+  border-radius: 5px;
+  z-index: 25;
+}
+
+/* line 905, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.infobox {
+  background-color: green;
+}
+
+/* line 908, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.thumb:hover span {
+  display: block;
+  position: absolute;
+  top: -1.5em;
+  left: -1.8em;
+  width: 8em;
+  border: 1px solid lightgreen;
+  background-color: green;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* line 917, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.thumb:after {
+  content: attr(title);
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 65px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* line 931, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.thumb:before {
+  content: "";
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -7px;
+  border-top: 5px solid #000;
+  border-bottom: 0;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+/* line 944, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+li .info {
+  position: relative;
+  /*this is the key*/
+  z-index: 24;
+  background-color: #ccc;
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 950, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+li .info:hover {
+  z-index: 25;
+  background-color: #ff0;
+}
+
+/* line 952, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+li .info span {
+  display: none;
+}
+
+/* line 954, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+li .info:hover span {
+  /*span will display on :hover */
+  display: block;
+  position: absolute;
+  top: 2em;
+  left: 2em;
+  width: 15em;
+  border: 1px solid #0cf;
+  background-color: #cff;
+  color: #000;
+  text-align: center;
+}
+
+/* line 962, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.thumb > img {
+  border-radius: 5px;
+  z-index: 0;
+}
+
+/* line 967, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.form2 {
+  margin: 0 0 20px 0;
+}
+
+/* line 971, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.form-thumb {
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+
+/* line 977, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.form-fieldset {
+  float: left;
+  margin: 0 0 0 20px;
+  padding: 19px;
+  width: 500px;
+  background: #eee;
+  border: 1px solid green;
+  border-radius: 5px;
+}
+
+/* line 987, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.input2 {
+  margin: 0 0 20px 0;
+}
+
+/* line 991, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.input2 > label {
+  display: block;
+  font-weight: 700;
+  padding: 0 0 5px 0;
+}
+
+/* line 997, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.input2 > input,
+.input2 > textarea {
+  display: block;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: calc(100% - 22px);
+  border-radius: 5px;
+}
+
+/* line 1007, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.input2 > input:focus,
+.input2 > textarea:focus {
+  border-color: #0c0;
+}
+
+/* line 1012, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.input2 > textarea {
+  height: 120px;
+}
+
+/* Posts */
+/* line 1019, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.posts {
+  margin: 20px 0 0 0;
+  background: white;
+  margin-left: 10px;
+}
+
+/* line 1026, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post {
+  border: 1px solid green;
+  margin: 20px 0 0 0;
+  padding: 20px 0 0 0;
+  border-radius: 5px;
+}
+
+/* line 1033, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-thumb {
+  margin-left: 5px;
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+
+/* line 1041, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-body {
+  float: left;
+  margin: 0 0 0 20px;
+  width: 540px;
+}
+
+/* line 1047, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-body > h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+}
+
+/* line 1053, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-body > p {
+  margin: 0 0 20px 0;
+}
+
+/* line 1057, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-footer {
+  margin: 20px 0 0 0;
+}
+
+/* line 1061, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-footer-info {
+  float: left;
+  color: #999;
+  font-size: 14px;
+}
+
+/* line 1067, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-footer-info > li {
+  float: left;
+}
+
+/* line 1071, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-footer-info > li:after {
+  content: "·";
+  padding: 0 5px;
+}
+
+/* line 1076, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-footer-info > li:last-child:after {
+  content: none;
+}
+
+/* line 1080, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-footer-tools {
+  float: right;
+}
+
+/* line 1084, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.post-footer-tools > li {
+  float: left;
+  margin: 0 0 0 10px;
+}
+
+/* Icons */
+/* line 1091, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+[class*="icon-"] {
+  display: inline-block;
+  background-image: url("");
+  background-size: 25px 250px;
+  background-repeat: no-repeat;
+  vertical-align: bottom;
+  overflow: hidden;
+  height: 0;
+  width: 25px;
+  padding-top: 25px;
+}
+
+/* line 1104, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.submit {
+  margin: 20px 0 0 0;
+  padding: 0 0 3px 0;
+}
+
+/* line 1109, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.submit > button {
+  position: relative;
+  padding: 10px 20px;
+  color: #fff;
+  background: #0c0;
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 0 #070;
+}
+
+/* line 1119, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.submit > button:hover {
+  background: #0b0;
+}
+
+/* line 1123, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.submit > button:active {
+  top: 3px;
+  background: #0a0;
+  box-shadow: none;
+}
+
+/* line 1130, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.friends-thumbs {
+  display: block;
+  background-color: #F6F7F8;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  height: 30.5%;
+  margin-bottom: 50px;
+}
+
+/* line 1139, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.friends-thumbs > p {
+  color: #4E5665;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 22px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+/* line 1149, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.friends-thumbs > ul {
+  background: white;
+  padding-top: 4px;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  height: 30.5%;
+  width: 100%;
+  border-radius: 0px 0px 4px 4px;
+}
+
+/* line 1159, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.friends-thumbs > ul > li {
+  display: inline-block;
+  list-style-type: none;
+  margin-bottom: 5px;
+  height: 30.5%;
+  width: 30.5%;
+  position: relative;
+  padding-left: 5px;
+}
+
+/* line 1169, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-thumbs {
+  font-size: 14px;
+  display: block;
+  background-color: #F6F7F8;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  height: 100%;
+  margin-bottom: 18px;
+}
+
+/* line 1180, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-thumbs > p {
+  color: #4E5665;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 22px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+/* line 1190, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-thumbs > ul {
+  background: white;
+  padding-top: 4px;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  width: 100%;
+  border-radius: 0px 0px 4px 4px;
+}
+
+/* line 1200, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-thumbs > ul > li {
+  display: inline-block;
+  list-style-type: none;
+  margin-bottom: 5px;
+  width: 100%;
+  position: relative;
+  padding-left: 5px;
+}
+
+/* line 1211, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.friend-thumb-fader {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+  background: -webkit-linear-gradient(bottom, rgba(255, 0, 0, 0) 70%, black);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom, rgba(255, 0, 0, 0) 70%, black);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom, rgba(255, 0, 0, 0) 70%, black);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, rgba(255, 0, 0, 0) 70%, black);
+  /* Standard syntax (must be last) */
+}
+
+/* line 1225, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.friend-thumbnail > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: inline-block;
+  border: 0px solid white;
+}
+
+/* line 1233, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.friend-thumb-name {
+  color: white;
+  font-size: 12px;
+  margin-left: 0px;
+  word-wrap: break-word;
+  margin-bottom: 2px;
+  position: absolute;
+  text-shadow: 1px;
+  cursor: pointer;
+  bottom: 0;
+  z-index: 4;
+}
+
+/* line 1246, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.profile-ribbon {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  display: block;
+  height: 40px;
+  width: 100%;
+  bottom: 0;
+  background-color: white;
+}
+
+/* line 1258, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+ul#ribbon {
+  display: inline-block;
+  padding: 0;
+}
+
+/* line 1264, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+ul#ribbon > li {
+  display: inline-block;
+}
+
+/* line 1268, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+div.profile-ribbon ul.nav.nav-pills {
+  margin-left: 260px;
+  border-left: 1px solid #e9eaed;
+  transform: translateY(-10%);
+}
+
+/* line 1274, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+div.profile-ribbon ul.nav.nav-pills > li {
+  border-right: 1px solid #e9eaed;
+  border-radius: 0px;
+  margin: 0px;
+  transform: translateY(0px);
+}
+
+/* line 1282, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+div.profile-ribbon ul.nav.nav-pills > li > a {
+  border-radius: 0px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: helvetica, arial, sans-serif;
+  transform: translateY(-4px);
+}
+
+/* line 1291, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+div.profile-ribbon ul.nav.nav-pills > li > a:hover {
+  border-radius: 0px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: helvetica, arial, sans-serif;
+  background-color: green;
+}
+
+/* line 1300, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.pillbut {
+  height: 30px;
+}
+
+/* line 1303, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+#searchbar {
+  position: relative;
+  bottom: 6.5px;
+}
+
+/* line 1308, /Users/dannylau/Desktop/fatebook/app/assets/stylesheets/application.scss */
+.signinbutton {
+  transform: translateY(10%);
+}

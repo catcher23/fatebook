@@ -412,7 +412,8 @@ font-color: limegreen;
   color: lightgreen;
   background-color: black;
   opacity: 0.8;
-  z-index: 10000000
+  z-index: 10000000;
+  transform:translateY(-2.2%);
 }
 
 .searchresults .result:hover {
