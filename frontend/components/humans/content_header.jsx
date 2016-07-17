@@ -4,6 +4,10 @@ var ApiUtil = require('../../util/api_util.js');
 module.exports = React.createClass({
   mixins: [ReactRouter.History],
 
+  getInitialState: function () {
+    return {trackStatus: "Track"}
+  },
+
   navigateToHumanShow: function () {
     var humanUrl = "/humans/" + human.id;
     this.history.pushState(null, humanUrl, {});
@@ -20,12 +24,12 @@ module.exports = React.createClass({
     var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id }
     );
 
-    if (trackStatus === "Track") {
-      trackStatus = "Tracking";
+    if (this.state.trackStatus === "Track") {
+      this.setState({trackStatus : "Tracking"});
 
       ApiUtil.createTrack(track);
     } else {
-      trackStatus = "Untracking";
+      this.setState({trackStatus : "Untracking"});
 
       ApiUtil.destroyTrack(track);
     }
@@ -34,17 +38,15 @@ module.exports = React.createClass({
 
   render: function () {
 
-
-    trackStatus = '';
     if (human.tracks === undefined || human.tracks.length === 0) {
-      trackStatus = 'Track';
+      this.state.trackStatus = 'Track';
     } else {
       for (var z = 0; z < human.tracks.length; z++) {
         if (human.tracks[z].tracker_id !== CURRENT_USER_ID) {
-          trackStatus = 'Track';
+          this.state.trackStatus = 'Track';
         }
         else {
-          trackStatus = 'Untrack';
+          this.state.trackStatus = 'Untrack';
           break;
         }
       }
@@ -52,7 +54,7 @@ module.exports = React.createClass({
 
 
     this.disabledStatus = '';
-    if (trackStatus == 'Tracking' || trackStatus == 'Untracking') {
+    if (this.state.trackStatus == 'Tracking' || this.state.trackStatus == 'Untracking') {
       this.disabledStatus = true;
     } else {
       this.disabledStatus = false;
@@ -62,7 +64,7 @@ module.exports = React.createClass({
       <header className="content-header2">
 
         <h1>{human.fname+' '+human.lname}</h1>
-        <button type='button' disabled = {this.disabledStatus} className="content-header-add-friend" onClick={this.handleTrackClick}>{trackStatus}</button>
+        <button type='button' disabled = {this.disabledStatus} className="content-header-add-friend" onClick={this.handleTrackClick}>{this.state.trackStatus}</button>
 
       </header>
     );

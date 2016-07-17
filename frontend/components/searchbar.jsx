@@ -75,8 +75,8 @@ module.exports = React.createClass({
     for (var i = 0; i < HumanStore.all().length; i++) {
       libraries.push(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname));
     }
-      searchString = this.state.searchString.trim().toLowerCase();
-      filtered = libraries.filter(function(name){
+      var searchString = this.state.searchString.trim().toLowerCase();
+      var filtered = libraries.filter(function(name){
         if(searchString.length > 0){
           return name.toLowerCase().match( searchString );
         }

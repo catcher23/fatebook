@@ -49,7 +49,7 @@ module.exports = React.createClass({
     });
     var that = this;
 
-      humanImg = {
+      var humanImg = {
         url: human.image_url,
         scaledSize: new google.maps.Size(38, 38)
       };

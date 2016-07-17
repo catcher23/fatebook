@@ -44,6 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var root = document.getElementById("content");
 
 	var React = __webpack_require__(1);
@@ -230,12 +232,40 @@
 	// shim for using process in browser
 
 	var process = module.exports = {};
+
+	// cached from whatever global is present so that test runners that stub it
+	// don't break things.  But we need to wrap it in a try catch in case it is
+	// wrapped in strict mode code which doesn't define any globals.  It's inside a
+	// function because try/catches deoptimize in certain engines.
+
+	var cachedSetTimeout;
+	var cachedClearTimeout;
+
+	(function () {
+	  try {
+	    cachedSetTimeout = setTimeout;
+	  } catch (e) {
+	    cachedSetTimeout = function () {
+	      throw new Error('setTimeout is not defined');
+	    }
+	  }
+	  try {
+	    cachedClearTimeout = clearTimeout;
+	  } catch (e) {
+	    cachedClearTimeout = function () {
+	      throw new Error('clearTimeout is not defined');
+	    }
+	  }
+	} ())
 	var queue = [];
 	var draining = false;
 	var currentQueue;
 	var queueIndex = -1;
 
 	function cleanUpNextTick() {
+	    if (!draining || !currentQueue) {
+	        return;
+	    }
 	    draining = false;
 	    if (currentQueue.length) {
 	        queue = currentQueue.concat(queue);
@@ -251,7 +281,7 @@
 	    if (draining) {
 	        return;
 	    }
-	    var timeout = setTimeout(cleanUpNextTick);
+	    var timeout = cachedSetTimeout(cleanUpNextTick);
 	    draining = true;
 
 	    var len = queue.length;
@@ -268,7 +298,7 @@
 	    }
 	    currentQueue = null;
 	    draining = false;
-	    clearTimeout(timeout);
+	    cachedClearTimeout(timeout);
 	}
 
 	process.nextTick = function (fun) {
@@ -280,7 +310,7 @@
 	    }
 	    queue.push(new Item(fun, args));
 	    if (queue.length === 1 && !draining) {
-	        setTimeout(drainQueue, 0);
+	        cachedSetTimeout(drainQueue, 0);
 	    }
 	};
 
@@ -7970,6 +8000,10 @@
 	  }
 	};
 
+	function registerNullComponentID() {
+	  ReactEmptyComponentRegistry.registerNullComponentID(this._rootNodeID);
+	}
+
 	var ReactEmptyComponent = function (instantiate) {
 	  this._currentElement = null;
 	  this._rootNodeID = null;
@@ -7978,7 +8012,7 @@
 	assign(ReactEmptyComponent.prototype, {
 	  construct: function (element) {},
 	  mountComponent: function (rootID, transaction, context) {
-	    ReactEmptyComponentRegistry.registerNullComponentID(rootID);
+	    transaction.getReactMountReady().enqueue(registerNullComponentID, this);
 	    this._rootNodeID = rootID;
 	    return ReactReconciler.mountComponent(this._renderedComponent, rootID, transaction, context);
 	  },
@@ -9328,6 +9362,7 @@
 	 */
 	var EventInterface = {
 	  type: null,
+	  target: null,
 	  // currentTarget is set when dispatching; no use in copying it here
 	  currentTarget: emptyFunction.thatReturnsNull,
 	  eventPhase: null,
@@ -9361,8 +9396,6 @@
 	  this.dispatchConfig = dispatchConfig;
 	  this.dispatchMarker = dispatchMarker;
 	  this.nativeEvent = nativeEvent;
-	  this.target = nativeEventTarget;
-	  this.currentTarget = nativeEventTarget;
 
 	  var Interface = this.constructor.Interface;
 	  for (var propName in Interface) {
@@ -9373,7 +9406,11 @@
 	    if (normalize) {
 	      this[propName] = normalize(nativeEvent);
 	    } else {
-	      this[propName] = nativeEvent[propName];
+	      if (propName === 'target') {
+	        this.target = nativeEventTarget;
+	      } else {
+	        this[propName] = nativeEvent[propName];
+	      }
 	    }
 	  }
 
@@ -13222,7 +13259,10 @@
 	      }
 	    });
 
-	    nativeProps.children = content;
+	    if (content) {
+	      nativeProps.children = content;
+	    }
+
 	    return nativeProps;
 	  }
 
@@ -16682,15 +16722,21 @@
 	 * @typechecks
 	 */
 
+	/* eslint-disable fb-www/typeof-undefined */
+
 	/**
 	 * Same as document.activeElement but wraps in a try-catch block. In IE it is
 	 * not safe to call document.activeElement if there is nothing focused.
 	 *
-	 * The activeElement will be null only if the document body is not yet defined.
+	 * The activeElement will be null only if the document or document body is not
+	 * yet defined.
 	 */
-	"use strict";
+	'use strict';
 
 	function getActiveElement() /*?DOMElement*/{
+	  if (typeof document === 'undefined') {
+	    return null;
+	  }
 	  try {
 	    return document.activeElement || document.body;
 	  } catch (e) {
@@ -18689,7 +18735,7 @@
 
 	'use strict';
 
-	module.exports = '0.14.5';
+	module.exports = '0.14.8';
 
 /***/ },
 /* 147 */
@@ -22278,7 +22324,7 @@
 			}
 
 			if (Array.isArray(val)) {
-				return val.sort().map(function (val2) {
+				return val.slice().sort().map(function (val2) {
 					return strictUriEncode(key) + '=' + strictUriEncode(val2);
 				}).join('&');
 			}
@@ -23997,16 +24043,18 @@
 /* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(207);
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
 	  mixins: [ReactRouter.History],
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    this.history.pushState(null, "/users/" + CURRENT_USER_ID);
 	  },
-	  render: function () {
+	  render: function render() {
 
 	    return React.createElement(
 	      'div',
@@ -24020,108 +24068,110 @@
 /* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var ApiActions = __webpack_require__(208);
 	module.exports = {
 
-	  logout: function () {
+	  logout: function logout() {
 	    $.ajax({
 	      url: "/session/",
 	      method: "DELETE",
-	      success: function () {
+	      success: function success() {
 	        window.location = "/";
 	      }
 	    });
 	  },
 
-	  fetchAllHumans: function () {
+	  fetchAllHumans: function fetchAllHumans() {
 	    $.ajax({
 	      url: "api/humans",
-	      success: function (humans) {
+	      success: function success(humans) {
 	        ApiActions.receiveAllHumans(humans);
 	      }
 	    });
 	  },
-	  fetchSingleUser: function (id) {
+	  fetchSingleUser: function fetchSingleUser(id) {
 	    $.ajax({
 	      url: "api/users/" + id,
-	      success: function (user) {
+	      success: function success(user) {
 	        ApiActions.receiveSingleUser(user);
 	      }
 	    });
 	  },
 
-	  fetchSingleHuman: function (id) {
+	  fetchSingleHuman: function fetchSingleHuman(id) {
 	    $.ajax({
 	      url: "api/humans/" + id,
 
-	      success: function (human) {
+	      success: function success(human) {
 	        ApiActions.receiveSingleHuman(human);
 	      }
 	    });
 	  },
 
-	  createHuman: function (human, callback) {
+	  createHuman: function createHuman(human, callback) {
 	    $.ajax({
 	      url: "api/humans",
 
 	      method: "POST",
 	      data: { human: human },
-	      success: function (human) {
+	      success: function success(human) {
 	        ApiActions.receiveSingleHuman(human);
 	        callback && callback(human.id);
 	      }
 	    });
 	  },
 
-	  fetchAllUsers: function () {
+	  fetchAllUsers: function fetchAllUsers() {
 
 	    $.ajax({
 	      url: "api/users/",
 
-	      success: function (users) {
+	      success: function success(users) {
 
 	        ApiActions.receiveAllUsers(users);
 	      }
 	    });
 	  },
 
-	  createUser: function (user, callback) {
+	  createUser: function createUser(user, callback) {
 	    $.ajax({
 	      url: "/api/users/",
 	      method: "POST",
 	      data: { user: user },
-	      success: function (user) {
+	      success: function success(user) {
 	        ApiActions.receiveSingleUser(user);
 	        callback && callback(user.id);
 	      }
 	    });
 	  },
 
-	  createNote: function (data) {
+	  createNote: function createNote(data) {
 	    $.post('/api/notes', { note: data }, function (humans) {
 	      ApiActions.receiveAllHumans(humans);
 	    });
 	  },
 
-	  createUserNote: function (data) {
+	  createUserNote: function createUserNote(data) {
 	    $.post('api/notes', { note: data }, function (users) {
 	      ApiActions.receiveAllUsers(users);
 	    });
 	  },
-	  createTrack: function (data) {
+	  createTrack: function createTrack(data) {
 	    $.post('/api/tracks', { track: data }, function (humans) {
 	      ApiActions.receiveAllHumans(humans);
 	      window.trackStatus = 'Untrack';
 	    });
 	  },
 
-	  destroyTrack: function (data) {
+	  destroyTrack: function destroyTrack(data) {
 	    $.ajax({
 	      url: "/api/tracks/" + data.trackee_id,
 
 	      dataType: "json",
 	      method: "DELETE",
-	      success: function (humans) {
+	      success: function success(humans) {
 	        ApiActions.receiveAllHumans(humans);
 	        window.trackStatus = 'Track';
 	      }
@@ -24134,32 +24184,34 @@
 /* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var Dispatcher = __webpack_require__(209);
 	var HumanConstants = __webpack_require__(213);
 	var UserConstants = __webpack_require__(214);
 	module.exports = {
-	  receiveAllHumans: function (humans) {
+	  receiveAllHumans: function receiveAllHumans(humans) {
 	    Dispatcher.dispatch({
 	      actionType: HumanConstants.HUMANS_RECEIVED,
 	      humans: humans
 	    });
 	  },
 
-	  receiveAllUsers: function (users) {
+	  receiveAllUsers: function receiveAllUsers(users) {
 	    Dispatcher.dispatch({
 	      actionType: UserConstants.USERS_RECEIVED,
 	      users: users
 	    });
 	  },
 
-	  receiveSingleHuman: function (human) {
+	  receiveSingleHuman: function receiveSingleHuman(human) {
 	    Dispatcher.dispatch({
 	      actionType: HumanConstants.HUMAN_RECEIVED,
 	      human: human
 	    });
 	  },
 
-	  receiveSingleUser: function (user) {
+	  receiveSingleUser: function receiveSingleUser(user) {
 	    Dispatcher.dispatch({
 	      actionType: UserConstants.USER_RECEIVED,
 	      user: user
@@ -24170,6 +24222,8 @@
 /***/ },
 /* 209 */
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var Dispatcher = __webpack_require__(210).Dispatcher;
 	module.exports = new Dispatcher();
@@ -24486,6 +24540,8 @@
 /* 213 */
 /***/ function(module, exports) {
 
+	"use strict";
+
 	module.exports = {
 	  HUMANS_RECEIVED: "HUMANS_RECEIVED",
 	  HUMAN_RECEIVED: "HUMAN_RECEIVED"
@@ -24495,6 +24551,8 @@
 /* 214 */
 /***/ function(module, exports) {
 
+	"use strict";
+
 	module.exports = {
 	  USERS_RECEIVED: "USERS_RECEIVED",
 	  USER_RECEIVED: "USER_RECEIVED"
@@ -24503,6 +24561,8 @@
 /***/ },
 /* 215 */
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var React = __webpack_require__(1);
 	var NavBar = __webpack_require__(216);
@@ -24518,15 +24578,16 @@
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
+
 	  mixins: [ReactRouter.History],
 
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    this.userListener = UserStore.addListener(this._onChange);
 	    ApiUtil.fetchAllHumans();
 	    ApiUtil.fetchAllUsers();
 	    ApiUtil.fetchSingleUser(parseInt(this.props.params.userId));
 	  },
-	  getStateFromStore: function () {
+	  getStateFromStore: function getStateFromStore() {
 
 	    return {
 	      users: UserStore.all(),
@@ -24535,30 +24596,30 @@
 	    };
 	  },
 
-	  _onChange: function () {
+	  _onChange: function _onChange() {
 	    this.setState(this.getStateFromStore());
 	  },
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return this.getStateFromStore();
 	  },
 
-	  showMap: function () {
+	  showMap: function showMap() {
 	    this.setState({ component: React.createElement(UserMap, { user: this.state.user }) });
 	  },
-	  showNotes: function () {
+	  showNotes: function showNotes() {
 	    this.setState({ component: React.createElement(UserNotes, { user: this.state.user }) });
 	  },
 
-	  componentWillReceiveProps: function (newProps) {
+	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
 	    ApiUtil.fetchSingleUser(parseInt(newProps.params.userId));
 	  },
 
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    this.userListener.remove();
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    var component = this.state.component;
 	    if (this.state.user === undefined) {
 	      return React.createElement('div', null);
@@ -24602,6 +24663,8 @@
 /* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var SearchBar = __webpack_require__(217);
 	var ApiUtil = __webpack_require__(207);
@@ -24611,15 +24674,15 @@
 
 	  mixins: [ReactRouter.History],
 
-	  handleLogoutClick: function () {
+	  handleLogoutClick: function handleLogoutClick() {
 	    ApiUtil.logout();
 	  },
 
-	  handleHomeClick: function () {
+	  handleHomeClick: function handleHomeClick() {
 	    this.history.pushState(null, "'/#/users/' + CURRENT_USER_ID", {});
 	  },
 
-	  render: function () {
+	  render: function render() {
 
 	    var userUrl = "/#/users/" + CURRENT_USER_ID;
 
@@ -24683,6 +24746,8 @@
 /* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var HumanStore = __webpack_require__(218);
 	module.exports = React.createClass({
@@ -24690,28 +24755,28 @@
 
 	  mixins: [ReactRouter.History],
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 
 	    return { searchString: '', inputValue: '' };
 	  },
-	  handleChange: function (e) {
+	  handleChange: function handleChange(e) {
 	    this.setState({
 	      searchString: e.target.value
 	    });
 	  },
-	  clearBar: function (e) {
+	  clearBar: function clearBar(e) {
 	    this.setState({ searchString: '' });
 	  },
 
-	  navigateToHumanShow: function (id) {
+	  navigateToHumanShow: function navigateToHumanShow(id) {
 	    var humanUrl = "#/humans/" + id;
 	    window.location = humanUrl;
 	  },
-	  handleClick: function (id) {
+	  handleClick: function handleClick(id) {
 	    this.navigateToHumanShow(id);
 	  },
 
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    var that = this;
 	    document.onkeydown = checkKey;
 
@@ -24741,7 +24806,7 @@
 	    }
 	  },
 
-	  redirect: function () {
+	  redirect: function redirect() {
 	    if ($('.active').length > 0) {
 	      var href = $('.active').first().find("a").attr("href");
 	      this.clearBar();
@@ -24749,16 +24814,16 @@
 	    }
 	  },
 
-	  compomentWillUnmount: function () {},
+	  compomentWillUnmount: function compomentWillUnmount() {},
 
-	  render: function () {
+	  render: function render() {
 
 	    var libraries = [];
 	    for (var i = 0; i < HumanStore.all().length; i++) {
 	      libraries.push(HumanStore.all()[i].fname.concat(' ', HumanStore.all()[i].lname));
 	    }
-	    searchString = this.state.searchString.trim().toLowerCase();
-	    filtered = libraries.filter(function (name) {
+	    var searchString = this.state.searchString.trim().toLowerCase();
+	    var filtered = libraries.filter(function (name) {
 	      if (searchString.length > 0) {
 	        return name.toLowerCase().match(searchString);
 	      }
@@ -24830,6 +24895,8 @@
 /* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var Store = __webpack_require__(219).Store;
 	var AppDispatcher = __webpack_require__(209);
 	var HumanConstants = __webpack_require__(213);
@@ -24837,11 +24904,11 @@
 
 	var _humans = [];
 
-	var resetHumans = function (humans) {
+	var resetHumans = function resetHumans(humans) {
 	  _humans = humans;
 	};
 
-	var resetHuman = function (human) {
+	var resetHuman = function resetHuman(human) {
 	  var exists = false;
 	  _humans.forEach(function (p) {
 	    if (p.id === human.id) {
@@ -26107,7 +26174,6 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * @providesModule invariant
 	 */
 
 	'use strict';
@@ -26163,7 +26229,6 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * @providesModule emptyFunction
 	 */
 
 	"use strict";
@@ -26237,7 +26302,7 @@
 	(function (global, factory) {
 	   true ? module.exports = factory() :
 	  typeof define === 'function' && define.amd ? define(factory) :
-	  global.Immutable = factory();
+	  (global.Immutable = factory());
 	}(this, function () { 'use strict';var SLICE$0 = Array.prototype.slice;
 
 	  function createClass(ctor, superClass) {
@@ -27132,7 +27197,7 @@
 	      }
 	      return 'Range [ ' +
 	        this._start + '...' + this._end +
-	        (this._step > 1 ? ' by ' + this._step : '') +
+	        (this._step !== 1 ? ' by ' + this._step : '') +
 	      ' ]';
 	    };
 
@@ -27264,6 +27329,9 @@
 	    }
 	    var type = typeof o;
 	    if (type === 'number') {
+	      if (o !== o || o === Infinity) {
+	        return 0;
+	      }
 	      var h = o | 0;
 	      if (h !== o) {
 	        h ^= o * 0xFFFFFFFF;
@@ -27448,6 +27516,17 @@
 	          iter.forEach(function(v, k)  {return map.set(k, v)});
 	        });
 	    }
+
+	    Map.of = function() {var keyValues = SLICE$0.call(arguments, 0);
+	      return emptyMap().withMutations(function(map ) {
+	        for (var i = 0; i < keyValues.length; i += 2) {
+	          if (i + 1 >= keyValues.length) {
+	            throw new Error('Missing value for key: ' + keyValues[i]);
+	          }
+	          map.set(keyValues[i], keyValues[i + 1]);
+	        }
+	      });
+	    };
 
 	    Map.prototype.toString = function() {
 	      return this.__toString('Map {', '}');
@@ -29361,7 +29440,11 @@
 	      begin = begin | 0;
 	    }
 	    if (end !== undefined) {
-	      end = end | 0;
+	      if (end === Infinity) {
+	        end = originalSize;
+	      } else {
+	        end = end | 0;
+	      }
 	    }
 
 	    if (wholeSlice(begin, end, originalSize)) {
@@ -29897,6 +29980,12 @@
 	    Record.prototype.set = function(k, v) {
 	      if (!this.has(k)) {
 	        throw new Error('Cannot set unknown key "' + k + '" on ' + recordName(this));
+	      }
+	      if (this._map && !this._map.has(k)) {
+	        var defaultVal = this._defaultValues[k];
+	        if (v === defaultVal) {
+	          return this;
+	        }
 	      }
 	      var newMap = this._map && this._map.set(k, v);
 	      if (this.__ownerID || newMap === this._map) {
@@ -30581,21 +30670,6 @@
 	      return entry ? entry[1] : notSetValue;
 	    },
 
-	    findEntry: function(predicate, context) {
-	      var found;
-	      this.__iterate(function(v, k, c)  {
-	        if (predicate.call(context, v, k, c)) {
-	          found = [k, v];
-	          return false;
-	        }
-	      });
-	      return found;
-	    },
-
-	    findLastEntry: function(predicate, context) {
-	      return this.toSeq().reverse().findEntry(predicate, context);
-	    },
-
 	    forEach: function(sideEffect, context) {
 	      assertNotInfinite(this.size);
 	      return this.__iterate(context ? sideEffect.bind(context) : sideEffect);
@@ -30706,8 +30780,32 @@
 	      return this.filter(not(predicate), context);
 	    },
 
+	    findEntry: function(predicate, context, notSetValue) {
+	      var found = notSetValue;
+	      this.__iterate(function(v, k, c)  {
+	        if (predicate.call(context, v, k, c)) {
+	          found = [k, v];
+	          return false;
+	        }
+	      });
+	      return found;
+	    },
+
+	    findKey: function(predicate, context) {
+	      var entry = this.findEntry(predicate, context);
+	      return entry && entry[0];
+	    },
+
 	    findLast: function(predicate, context, notSetValue) {
 	      return this.toKeyedSeq().reverse().find(predicate, context, notSetValue);
+	    },
+
+	    findLastEntry: function(predicate, context, notSetValue) {
+	      return this.toKeyedSeq().reverse().findEntry(predicate, context, notSetValue);
+	    },
+
+	    findLastKey: function(predicate, context) {
+	      return this.toKeyedSeq().reverse().findKey(predicate, context);
 	    },
 
 	    first: function() {
@@ -30768,12 +30866,20 @@
 	      return iter.isSubset(this);
 	    },
 
+	    keyOf: function(searchValue) {
+	      return this.findKey(function(value ) {return is(value, searchValue)});
+	    },
+
 	    keySeq: function() {
 	      return this.toSeq().map(keyMapper).toIndexedSeq();
 	    },
 
 	    last: function() {
 	      return this.toSeq().reverse().first();
+	    },
+
+	    lastKeyOf: function(searchValue) {
+	      return this.toKeyedSeq().reverse().keyOf(searchValue);
 	    },
 
 	    max: function(comparator) {
@@ -30866,58 +30972,12 @@
 	  IterablePrototype.chain = IterablePrototype.flatMap;
 	  IterablePrototype.contains = IterablePrototype.includes;
 
-	  // Temporary warning about using length
-	  (function () {
-	    try {
-	      Object.defineProperty(IterablePrototype, 'length', {
-	        get: function () {
-	          if (!Iterable.noLengthWarning) {
-	            var stack;
-	            try {
-	              throw new Error();
-	            } catch (error) {
-	              stack = error.stack;
-	            }
-	            if (stack.indexOf('_wrapObject') === -1) {
-	              console && console.warn && console.warn(
-	                'iterable.length has been deprecated, '+
-	                'use iterable.size or iterable.count(). '+
-	                'This warning will become a silent error in a future version. ' +
-	                stack
-	              );
-	              return this.size;
-	            }
-	          }
-	        }
-	      });
-	    } catch (e) {}
-	  })();
-
-
-
 	  mixin(KeyedIterable, {
 
 	    // ### More sequential methods
 
 	    flip: function() {
 	      return reify(this, flipFactory(this));
-	    },
-
-	    findKey: function(predicate, context) {
-	      var entry = this.findEntry(predicate, context);
-	      return entry && entry[0];
-	    },
-
-	    findLastKey: function(predicate, context) {
-	      return this.toSeq().reverse().findKey(predicate, context);
-	    },
-
-	    keyOf: function(searchValue) {
-	      return this.findKey(function(value ) {return is(value, searchValue)});
-	    },
-
-	    lastKeyOf: function(searchValue) {
-	      return this.findLastKey(function(value ) {return is(value, searchValue)});
 	    },
 
 	    mapEntries: function(mapper, context) {var this$0 = this;
@@ -30968,16 +31028,13 @@
 	    },
 
 	    indexOf: function(searchValue) {
-	      var key = this.toKeyedSeq().keyOf(searchValue);
+	      var key = this.keyOf(searchValue);
 	      return key === undefined ? -1 : key;
 	    },
 
 	    lastIndexOf: function(searchValue) {
-	      var key = this.toKeyedSeq().reverse().keyOf(searchValue);
+	      var key = this.lastKeyOf(searchValue);
 	      return key === undefined ? -1 : key;
-
-	      // var index =
-	      // return this.toSeq().reverse().indexOf(searchValue);
 	    },
 
 	    reverse: function() {
@@ -31011,8 +31068,8 @@
 	    // ### More collection methods
 
 	    findLastIndex: function(predicate, context) {
-	      var key = this.toKeyedSeq().findLastKey(predicate, context);
-	      return key === undefined ? -1 : key;
+	      var entry = this.findLastEntry(predicate, context);
+	      return entry ? entry[0] : -1;
 	    },
 
 	    first: function() {
@@ -31051,6 +31108,10 @@
 	        interleaved.size = zipped.size * iterables.length;
 	      }
 	      return reify(this, interleaved);
+	    },
+
+	    keySeq: function() {
+	      return Range(0, this.size);
 	    },
 
 	    last: function() {
@@ -31101,6 +31162,7 @@
 	  });
 
 	  SetIterable.prototype.has = IterablePrototype.includes;
+	  SetIterable.prototype.contains = SetIterable.prototype.includes;
 
 
 	  // Mixin subclasses
@@ -31137,7 +31199,7 @@
 	  }
 
 	  function quoteString(value) {
-	    return typeof value === 'string' ? JSON.stringify(value) : value;
+	    return typeof value === 'string' ? JSON.stringify(value) : String(value);
 	  }
 
 	  function defaultZipper() {
@@ -31335,12 +31397,14 @@
 /* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 
 	module.exports = React.createClass({
 	  displayName: "exports",
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      "header",
 	      { className: "content-header" },
@@ -31357,11 +31421,14 @@
 /* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 	module.exports = React.createClass({
 	  displayName: "exports",
 
-	  render: function () {
+
+	  render: function render() {
 	    return React.createElement(
 	      "div",
 	      { className: "profile-ribbon pillbut" },
@@ -31395,12 +31462,14 @@
 /* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
-	  render: function () {
+	  render: function render() {
 	    var user = this.props.user;
 	    var humanUrl = '';
 	    var n = 0;
@@ -31506,13 +31575,15 @@
 /* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 
 	    var styles = [{
 	      "stylers": []
@@ -31532,13 +31603,13 @@
 	    this.getDirections(this.map);
 	  },
 
-	  componentWillUnmount: function () {},
+	  componentWillUnmount: function componentWillUnmount() {},
 
-	  moveMarker: function (map, marker, latlng) {
+	  moveMarker: function moveMarker(map, marker, latlng) {
 	    marker.setPosition(latlng);
 	  },
 
-	  autoRefresh: function (map, pathCoords, human) {
+	  autoRefresh: function autoRefresh(map, pathCoords, human) {
 
 	    var i, route, marker;
 	    route = new google.maps.Polyline({
@@ -31552,7 +31623,7 @@
 	    });
 	    var that = this;
 
-	    humanImg = {
+	    var humanImg = {
 	      url: human.image_url,
 	      scaledSize: new google.maps.Size(38, 38)
 	    };
@@ -31585,7 +31656,7 @@
 	    }
 	  },
 
-	  getDirections: function (map) {
+	  getDirections: function getDirections(map) {
 
 	    function getRand(min, max) {
 	      return Math.random() * (max - min) + min;
@@ -31612,7 +31683,7 @@
 	      });
 	    });
 	  },
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'half', ref: 'map' },
@@ -31625,12 +31696,15 @@
 /* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var UserNote = __webpack_require__(241);
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
-	  render: function () {
+
+	  render: function render() {
 	    var user = this.props.user;
 
 	    var notes = user.notes || [];
@@ -31648,12 +31722,14 @@
 /* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 
 	module.exports = React.createClass({
 	  displayName: "exports",
 
-	  render: function () {
+	  render: function render() {
 	    function timeSince(date) {
 	      var seconds = Math.floor((new Date() - date) / 1000);
 	      var interval = Math.floor(seconds / 31536000);
@@ -31774,12 +31850,14 @@
 /* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 
 	module.exports = React.createClass({
 	  displayName: "exports",
 
-	  render: function () {
+	  render: function render() {
 
 	    return React.createElement(
 	      "footer",
@@ -31810,6 +31888,8 @@
 /* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var Store = __webpack_require__(219).Store;
 	var AppDispatcher = __webpack_require__(209);
 	var UserConstants = __webpack_require__(214);
@@ -31817,11 +31897,11 @@
 
 	var _users = [];
 
-	var resetUsers = function (users) {
+	var resetUsers = function resetUsers(users) {
 	  _users = users;
 	};
 
-	var resetUser = function (user) {
+	var resetUser = function resetUser(user) {
 	  var exists = false;
 	  _users.forEach(function (p) {
 	    if (p.id === user.id) {
@@ -31867,6 +31947,8 @@
 /* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var NavBar = __webpack_require__(216);
 	var HumanContentHeader = __webpack_require__(245);
@@ -31883,11 +31965,11 @@
 
 	  mixins: [ReactRouter.History],
 
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    this.humanListener = HumanStore.addListener(this._onChange);
 	    ApiUtil.fetchSingleHuman(parseInt(this.props.params.humanId));
 	  },
-	  getStateFromStore: function () {
+	  getStateFromStore: function getStateFromStore() {
 
 	    return {
 	      human: HumanStore.find(parseInt(this.props.params.humanId)),
@@ -31895,7 +31977,7 @@
 	    };
 	  },
 
-	  _onChange: function () {
+	  _onChange: function _onChange() {
 
 	    var that = this;
 	    this.setState({
@@ -31904,7 +31986,7 @@
 	    });
 	  },
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 
 	    return {
 	      human: HumanStore.find(parseInt(this.props.params.humanId)),
@@ -31912,22 +31994,22 @@
 	    };
 	  },
 
-	  showMap: function () {
+	  showMap: function showMap() {
 	    this.setState({ component: React.createElement(HumanMap, { human: this.state.human }) });
 	  },
-	  showNotes: function () {
+	  showNotes: function showNotes() {
 	    this.setState({ component: React.createElement(HumanNotes, { human: this.state.human }) });
 	  },
 
-	  componentWillReceiveProps: function (newProps) {
+	  componentWillReceiveProps: function componentWillReceiveProps(newProps) {
 	    ApiUtil.fetchSingleHuman(parseInt(newProps.params.humanId));
 	  },
 
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    this.humanListener.remove();
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    window.human = this.state.human;
 	    var human = this.state.human;
 	    if (this.state.human === undefined) {
@@ -31972,6 +32054,8 @@
 /* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(207);
 
@@ -31980,11 +32064,15 @@
 
 	  mixins: [ReactRouter.History],
 
-	  navigateToHumanShow: function () {
+	  getInitialState: function getInitialState() {
+	    return { trackStatus: "Track" };
+	  },
+
+	  navigateToHumanShow: function navigateToHumanShow() {
 	    var humanUrl = "/humans/" + human.id;
 	    this.history.pushState(null, humanUrl, {});
 	  },
-	  handleTrackClick: function () {
+	  handleTrackClick: function handleTrackClick() {
 
 	    $(".content-header-add-friend").hide();
 	    this.disabledStatus = true;
@@ -31994,36 +32082,35 @@
 
 	    var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id });
 
-	    if (trackStatus === "Track") {
-	      trackStatus = "Tracking";
+	    if (this.state.trackStatus === "Track") {
+	      this.setState({ trackStatus: "Tracking" });
 
 	      ApiUtil.createTrack(track);
 	    } else {
-	      trackStatus = "Untracking";
+	      this.setState({ trackStatus: "Untracking" });
 
 	      ApiUtil.destroyTrack(track);
 	    }
 	    this.navigateToHumanShow();
 	  },
 
-	  render: function () {
+	  render: function render() {
 
-	    trackStatus = '';
 	    if (human.tracks === undefined || human.tracks.length === 0) {
-	      trackStatus = 'Track';
+	      this.state.trackStatus = 'Track';
 	    } else {
 	      for (var z = 0; z < human.tracks.length; z++) {
 	        if (human.tracks[z].tracker_id !== CURRENT_USER_ID) {
-	          trackStatus = 'Track';
+	          this.state.trackStatus = 'Track';
 	        } else {
-	          trackStatus = 'Untrack';
+	          this.state.trackStatus = 'Untrack';
 	          break;
 	        }
 	      }
 	    }
 
 	    this.disabledStatus = '';
-	    if (trackStatus == 'Tracking' || trackStatus == 'Untracking') {
+	    if (this.state.trackStatus == 'Tracking' || this.state.trackStatus == 'Untracking') {
 	      this.disabledStatus = true;
 	    } else {
 	      this.disabledStatus = false;
@@ -32040,7 +32127,7 @@
 	      React.createElement(
 	        'button',
 	        { type: 'button', disabled: this.disabledStatus, className: 'content-header-add-friend', onClick: this.handleTrackClick },
-	        trackStatus
+	        this.state.trackStatus
 	      )
 	    );
 	  }
@@ -32050,11 +32137,14 @@
 /* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 	module.exports = React.createClass({
 	  displayName: "exports",
 
-	  render: function () {
+
+	  render: function render() {
 	    return React.createElement(
 	      "div",
 	      { className: "profile-ribbon pillbut" },
@@ -32088,11 +32178,14 @@
 /* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
-	  render: function () {
+
+	  render: function render() {
 
 	    var humanUrl = '';
 	    var n = 0;
@@ -32227,6 +32320,8 @@
 /* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 	var HumanStore = __webpack_require__(218);
@@ -32234,7 +32329,8 @@
 	module.exports = React.createClass({
 	    displayName: 'exports',
 
-	    componentDidMount: function () {
+
+	    componentDidMount: function componentDidMount() {
 	        console.log('mounted');
 
 	        var map = ReactDOM.findDOMNode(this.refs.map);
@@ -32247,21 +32343,21 @@
 	        this.getDirections(this.map);
 	    },
 
-	    componentWillUpdate: function () {
+	    componentWillUpdate: function componentWillUpdate() {
 	        if (typeof flag !== 'undefined') {
 	            this.componentDidMount();
 	        }
 	    },
-	    componentWillUnmount: function () {
+	    componentWillUnmount: function componentWillUnmount() {
 	        console.log('unmounted');
 	    },
 
-	    moveMarker: function (map, marker, latlng) {
+	    moveMarker: function moveMarker(map, marker, latlng) {
 	        marker.setPosition(latlng);
 	        map.panTo(latlng);
 	    },
 
-	    autoRefresh: function (map, pathCoords) {
+	    autoRefresh: function autoRefresh(map, pathCoords) {
 	        var i, route, marker;
 
 	        route = new google.maps.Polyline({
@@ -32309,7 +32405,7 @@
 	        }
 	    },
 
-	    getDirections: function (map) {
+	    getDirections: function getDirections(map) {
 	        function getRand(min, max) {
 	            return Math.random() * (max - min) + min;
 	        }
@@ -32333,7 +32429,7 @@
 	        });
 	    },
 
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'div',
 	            { className: 'half', ref: 'map' },
@@ -32346,10 +32442,12 @@
 /* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var Note = __webpack_require__(250);
 	var NoteForm = __webpack_require__(251);
-	var sortByTime = function (a, b) {
+	var sortByTime = function sortByTime(a, b) {
 	  if (a.created_at < b.created_at) return -1;
 	  if (a.created_at > b.created_at) return 1;
 	  return 0;
@@ -32357,7 +32455,8 @@
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
-	  render: function () {
+
+	  render: function render() {
 
 	    var notes = human.notes || [];
 	    notes = notes.sort(sortByTime).reverse();
@@ -32376,12 +32475,15 @@
 /* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 
 	module.exports = React.createClass({
 	  displayName: "exports",
 
-	  render: function () {
+
+	  render: function render() {
 	    function timeSince(date) {
 
 	      var seconds = Math.floor((new Date() - date) / 1000);
@@ -32508,6 +32610,8 @@
 /* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var LinkedStateMixin = __webpack_require__(252);
 	var ApiUtil = __webpack_require__(207);
@@ -32517,20 +32621,20 @@
 
 	  mixins: [LinkedStateMixin, ReactRouter.History],
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return { title: "", body: "" };
 	  },
 
-	  navigateToHumanShow: function () {
+	  navigateToHumanShow: function navigateToHumanShow() {
 	    var humanUrl = "/humans/" + human.id;
 	    this.history.pushState(null, humanUrl, {});
 	  },
 
-	  handleCancel: function (event) {
+	  handleCancel: function handleCancel(event) {
 	    event.preventDefault();
 	    this.navigateToHumanShow();
 	  },
-	  handleSubmit: function (event) {
+	  handleSubmit: function handleSubmit(event) {
 
 	    event.preventDefault();
 	    var note = $.extend({}, this.state, { human_image_url: human.image_url, fname: human.fname, lname: human.lname, human_id: human.id, user_id: CURRENT_USER_ID, username: CURRENT_USER_USERNAME, user_image_url: CURRENT_USER_IMG });
@@ -32539,7 +32643,7 @@
 	    this.navigateToHumanShow();
 	  },
 
-	  render: function () {
+	  render: function render() {
 
 	    var userImage = "http://www.robohash.org/" + CURRENT_USER_USERNAME;
 	    var userUrl = "/#/users/" + CURRENT_USER_ID;
