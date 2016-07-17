@@ -18,7 +18,9 @@
 //= require react_ujs
 //= require ReactRouter.min
 //= require bootstrap-sprockets 
-//= require bootstrap
+//= require bootstrap.min
+//= require admin-lte
+//= require icheck
 //= require flux
 //= require eventemitter
 //= require bundle

@@ -21,6 +21,7 @@ gem 'figaro'
 gem 'faker'
 gem 'ffaker'
 gem 'newrelic_rpm'
+gem 'adminlte-rails'
 
 group :development, :test do
   gem 'byebug'

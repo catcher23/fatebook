@@ -1,79 +1,104 @@
-<body>
-  <div class = 'ubercontainer'>
-   <div class="topbar">
-     <div class="fill">
-       <div class="container">
-         <a class="brand" href="#"><b>fatebook</b></a>
-         <ul class="nav">
-         </ul>
-         <form action="<%=session_url%>" method = "post" class="pull-right">
-           <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-           <input class="input-medium" type="text" placeholder="Username" name="user[username]" id="Username">
-           <input class="input-medium" type="password" placeholder="Password" name="user[password]" id="Password">
-           <button class="btn primary medium signinbutton" type="submit">Sign in</button>
-         </form>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>Fate</b>book</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in to start your session</p>
 
-       </div>
-     </div>
-   </div>
+    <form action="<%=session_url%>" method="post">
+      <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Username" name="user[username]" id="Username">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Password" name="user[password]" id="Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <form className='guest' action = "<%=session_url%>" method = "post">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+            <input type="hidden" name="user[username]" id="Username" value="Guest Robot">
+            <input type="hidden" name="user[password]" id="Password" value="password">
+            <input type="submit" class="btn btn-primary btn-block btn-flat"  value="Guest Login">
+          </form>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
 
-   <div class="container">
+    <a href="register.html" class="text-center">Sign up</a>
 
-     <div class="content2">
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
 
-       <div class="row">
-         <div class="span10">
-<br><br><br><br>
-   <h1>Robots can track humans <br>in the world on Fatebook</h1><br>
-<table>
-        <tbody>
-          <tr>
-            <td><img src="http://res.cloudinary.com/danlau168/image/upload/v1445906007/imageedit_2_7342259515_uq5sx3.png"/></td>
-            <td><b>Add humans</b> and track them</td>
-          </tr>
-          <tr>
-            <td><img src="http://res.cloudinary.com/danlau168/image/upload/v1445906007/imageedit_4_2205994676_ssuada.png"/></td>
-            <td><b>Post notes</b> on human pages</td>
-          </tr>
-          <tr>
-            <td><img src="http://res.cloudinary.com/danlau168/image/upload/v1445906007/imageedit_8_5418815504_ftkalr.png"/></td>
-            <td><b>Track humans</b> in the world</td>
-          </tr>
-        </tbody>
-      </table>
+<div class="register-box">
+  <div class="register-logo">
+    <a href="../../index2.html"><b>Fate</b>book</a>
+  </div>
 
-         </div>
-         <div class="span4">
-           <br><br><br><br>
-           <h1>Sign Up</h1>
-           <br>
-           <p>It's free and always will be.</p>
-           <br>
-           <form action = "<%=users_url%>" method = "post">
-         <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-           Username
-         <input type="string" name="user[username]" id="Username" value="">
-         <br><br>
-         Password
-         <input type="password" name="user[password]" id="Password" value="">
-         <br><br>
-         <input type="submit" class="btn primary  medium"  value="Sign Up">
-         </form>
-         <form className='guest' action = "<%=session_url%>" method = "post">
-       <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-       <input type="hidden" name="user[username]" id="Username" value="Guest">
-       <input type="hidden" name="user[password]" id="Password" value="password">
-       <input type="submit" class="btn primary medium"  value="Guest Login">
-       </form>
+  <div class="register-box-body">
+    <p class="login-box-msg">Register a new membership</p>
 
-         </div>
+    <form action="<%=users_url%>" method="post">
+      <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" name="user[username]" id="Username" placeholder="Username" value="">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="email" class="form-control" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Password"  name="user[password]" id="Password" value="">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Retype password">
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
 
-       </div>
-     </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
 
-     <footer class='copyright'><br>
-       <p>&copy; Danny Lau 2015</p>
-     </footer>
-   </div> <!-- /container -->
- </div>
- </body>
+    <a href="login.html" class="text-center">I already have a membership</a>
+  </div>
+  <!-- /.form-box -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery 2.2.3 -->
+<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="../../plugins/iCheck/icheck.min.js"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
+</body>
+
