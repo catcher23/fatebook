@@ -32075,9 +32075,11 @@
 	  handleTrackClick: function handleTrackClick() {
 
 	    $(".content-header-add-friend").hide();
+	    $(".content-header-add-friend2").show();
 	    this.disabledStatus = true;
 	    setTimeout(function () {
 	      $(".content-header-add-friend").show();
+	      $(".content-header-add-friend2").hide();
 	    }, 2000);
 
 	    var track = $.extend({}, this.state, { tracker_id: CURRENT_USER_ID, trackee_id: human.id });
@@ -32127,6 +32129,11 @@
 	      React.createElement(
 	        'button',
 	        { type: 'button', disabled: this.disabledStatus, className: 'content-header-add-friend', onClick: this.handleTrackClick },
+	        this.state.trackStatus
+	      ),
+	      React.createElement(
+	        'button',
+	        { type: 'button', disabled: this.disabledStatus, className: 'content-header-add-friend2' },
 	        this.state.trackStatus
 	      )
 	    );
