@@ -1,4 +1,4 @@
-var root = document.getElementById("content");
+const root = document.getElementById("content");
 
 var React = require('react');
 var ReactDOM = require('react-dom');

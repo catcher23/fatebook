@@ -1,4 +1,3 @@
-
 ActiveRecord::Base.transaction do
 require 'ffaker'
 
