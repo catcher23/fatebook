@@ -1,8 +1,7 @@
 class Api::TracksController < ApplicationController
   def create
     track = Track.new(track_params)
-    humans = Human.all
-    users = User.all
+    humans = Human.includes(:trackers).all
     if track.save
       render json: humans, include: :trackers
     else
@@ -11,7 +10,6 @@ class Api::TracksController < ApplicationController
   end
 
   def destroy
-
     track = current_user.tracks.find_by(trackee_id: params[:id])
     track.destroy!
     humans = Human.all

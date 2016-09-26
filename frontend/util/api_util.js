@@ -3,7 +3,7 @@ module.exports = {
 
   logout: function() {
     $.ajax({
-      url: "/session/",
+      url: "session",
       method: "DELETE",
       success: function() {
         window.location = "/";
@@ -53,12 +53,11 @@ fetchSingleUser: function (id) {
 
 
 fetchAllUsers: function () {
-
   $.ajax({
     url: "api/users/",
 
     success: function (users) {
-    
+
       ApiActions.receiveAllUsers(users);
     }
   });

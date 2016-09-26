@@ -16,7 +16,7 @@ class Api::HumansController < ApplicationController
   end
 
   def index
-    @human = Human.all
+    @humen = Human.all
   end
 
   def show

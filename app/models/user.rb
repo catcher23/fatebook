@@ -1,16 +1,14 @@
 class User < ActiveRecord::Base
   after_initialize :ensure_token
+
   attr_reader :password
+
   validates :username, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: {minimum: 5, allow_nil: true}
-  has_many :notes
-  has_many(
-  :tracks,
-  foreign_key: :tracker_id,
-  class_name: "Track"
-  )
 
-  has_many :trackees, through: :tracks, source: :trackee
+  has_many :notes
+  has_many :tracks,  foreign_key: :tracker_id
+  has_many :trackees, through: :tracks
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

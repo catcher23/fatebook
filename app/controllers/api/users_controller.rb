@@ -1,12 +1,24 @@
 class Api::UsersController < ApplicationController
+
+  def new
+    @user = User.new
+    render :new
+  end
+
   def create
     @user = User.new(user_params)
-
+    @user.image_url = "http://www.robohash.org/#{@user.username}"
     if @user.save
-      render :show
+      login(@user)
+      redirect_to "/#/users/#{current_user.id}"
     else
-      render json: @user.errors.full_messages, status: 422
+      flash[:errors] = @user.errors.full_messages
+      redirect_to new_session_url
     end
+  end
+
+  def user_params
+    params.require(:user).permit(:username, :password, :session_token, :image_url, :title, :division)
   end
 
   def destroy
@@ -16,11 +28,10 @@ class Api::UsersController < ApplicationController
   end
 
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def show
-
     @user = User.find(params[:id])
   end
 
